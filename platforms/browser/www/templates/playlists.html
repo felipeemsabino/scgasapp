@@ -1,0 +1,13 @@
+<ion-view view-title="Playlists">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
+        {{playlist.title}}
+      </ion-item>
+    </ion-list>
+	
+	<ion-item href="#/app/new_account">
+	  <button class="button button-block button-success">Cadastre-se</button>
+	</ion-item>
+  </ion-content>
+</ion-view>
