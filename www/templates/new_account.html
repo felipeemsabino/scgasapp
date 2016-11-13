@@ -3,20 +3,20 @@
     <form ng-submit="createNewUser(newUserData)" data-ng-init="init()">
       <div class="list">
         <label class="item item-input">
-          <span class="input-label">Nome</span>
-          <input type="text" ng-model="newUserData.nome">
+          
+          <input type="text" placeholder="Nome" ng-model="newUserData.nome">
         </label>
 		<label class="item item-input">
-          <span class="input-label">Email</span>
-          <input type="email" ng-model="newUserData.email">
+         
+          <input type="email" placeholder="Email" ng-model="newUserData.email">
         </label>
         <label class="item item-input">
-          <span class="input-label">Senha</span>
-          <input type="password" ng-model="newUserData.senha">
+          
+          <input type="password" placeholder="Senha" ng-model="newUserData.senha">
         </label>
 		<label class="item item-input">
-          <span class="input-label">Repita a senha</span>
-          <input type="password" ng-model="newUserData.confirmacaoSenha">
+          
+          <input type="password" placeholder="Repita a senha" ng-model="newUserData.confirmacaoSenha">
         </label>
         <label class="item">
           <button class="button button-block button-positive" type="submit">Criar conta</button>
