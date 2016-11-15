@@ -39,12 +39,12 @@ angular.module('starter.controllers', [])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
+    
     facebookConnectPlugin.login(["email"], function(response) {
              if (response.authResponse) {
                  facebookConnectPlugin.api('/me', null,
                      function(response) {
-                         alert('Good to see you, ' +
-                             response.email + response.name + '.');
+                         alert('Good to see you, ' + JSON.stringify({data: response}));
                      });
              }
          });
