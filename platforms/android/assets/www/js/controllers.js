@@ -39,7 +39,7 @@ angular.module('starter.controllers', [])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    
+    /**
     facebookConnectPlugin.login(["email"], function(response) {
              if (response.authResponse) {
                  facebookConnectPlugin.api('/me', null,
@@ -48,6 +48,19 @@ angular.module('starter.controllers', [])
                      });
              }
          });
+         */
+      
+       window.plugins.googleplus.login(
+        {},
+        function (obj) {
+          alert('Good to see you, ' + JSON.stringify({data: obj}));
+          
+        },
+        function (msg) {
+            alert('Good to see you, ' + JSON.stringify({data: msg}));
+         
+        }
+    );
       
       
       
