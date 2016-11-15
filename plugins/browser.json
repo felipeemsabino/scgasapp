@@ -29,7 +29,14 @@
             "APP_ID": "1857306741157529",
             "APP_NAME": "scgasapp",
             "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
+        }
+    }
 }
