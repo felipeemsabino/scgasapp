@@ -10,7 +10,10 @@ angular.module('starter.controllers', [])
   //});
 
   // Form data for the login modal
-  $scope.loginData = {};
+  $scope.loginData = {
+      
+    
+  };
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -36,14 +39,22 @@ angular.module('starter.controllers', [])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
+    facebookConnectPlugin.login(["email"], function(response) {
+             if (response.authResponse) {
+                 facebookConnectPlugin.api('/me', null,
+                     function(response) {
+                         alert('Good to see you, ' +
+                             response.email + response.name + '.');
+                     });
+             }
+         });
   };
+    
+  $scope.doLoginFacebook = function() {
+      
+      
+  };
+    
 })
 
 .controller('PlaylistsCtrl', function($scope) {
@@ -61,6 +72,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('NewAccountCtrl', function($scope, $stateParams, $http) {
+   
 	$scope.init = function () {
 		$scope.newUserData = {
 			nome: "Felipe",
@@ -72,9 +84,13 @@ angular.module('starter.controllers', [])
 		};
 	};
 	$scope.createNewUser = function(user) {
+        
+        
+        
 		delete user.confirmacaoSenha;
 		console.log(user);
 		
+        
         var response = $http.post('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/cadastrarusuario', 
 			user);
 		response.success(function(data, status, headers, config) {
@@ -83,5 +99,11 @@ angular.module('starter.controllers', [])
 		response.error(function(data, status, headers, config) {
 			alert( "failure message: " + JSON.stringify({data: data}));
 		});
+        
+        
+        
+
 	};
+    
+    
 });
