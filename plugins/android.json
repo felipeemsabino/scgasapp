@@ -24,6 +24,11 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "1857306741157529",
+            "APP_NAME": "scgasapp",
+            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
         }
     },
     "dependent_plugins": {}

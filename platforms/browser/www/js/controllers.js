@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['ionic', 'ionic-toast'])
+angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -60,9 +60,16 @@ angular.module('starter.controllers', ['ionic', 'ionic-toast'])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
-.controller('NewAccountCtrl',function($scope,ionicToast, $stateParams, $http) {
+.controller('NewAccountCtrl', function($scope, $stateParams, $http) {
 	$scope.init = function () {
-		
+		$scope.newUserData = {
+			nome: "Felipe",
+			email: "felipeems87@gmail.com",
+			senha: "felipe",
+			confirmacaoSenha: "felipe",
+			tokenFacebook: "jointt",
+			tokenGmail: "jointt"
+		};
 	};
 	$scope.createNewUser = function(user) {
 		delete user.confirmacaoSenha;
@@ -71,11 +78,10 @@ angular.module('starter.controllers', ['ionic', 'ionic-toast'])
         var response = $http.post('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/cadastrarusuario', 
 			user);
 		response.success(function(data, status, headers, config) {
-			ionicToast.show("Sucess: " + JSON.stringify({data: data}), 'bottom', true, 2500);
+			$scope.message = data;
 		});
 		response.error(function(data, status, headers, config) {
-            ionicToast.show("failure message: " + JSON.stringify({data: data}), 'bottom', true, 2500);
-			
+			alert( "failure message: " + JSON.stringify({data: data}));
 		});
 	};
 });
