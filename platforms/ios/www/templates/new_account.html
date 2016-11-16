@@ -1,0 +1,27 @@
+<ion-view view-title="Criar nova conta">
+  <ion-content>
+    <form ng-submit="createNewUser(newUserData)" data-ng-init="init()">
+      <div class="list">
+        <label class="item item-input">
+          
+          <input type="text" placeholder="Nome" ng-model="newUserData.nome">
+        </label>
+		<label class="item item-input">
+         
+          <input type="email" placeholder="Email" ng-model="newUserData.email">
+        </label>
+        <label class="item item-input">
+          
+          <input type="password" placeholder="Senha" ng-model="newUserData.senha">
+        </label>
+		<label class="item item-input">
+          
+          <input type="password" placeholder="Repita a senha" ng-model="newUserData.confirmacaoSenha">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Criar conta</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>
