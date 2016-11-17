@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/nadal/Documents/Estrategos/meus projetos/scgasapp/platforms/android/CordovaLib/src/main/shaders"/></dataSet><dataSet config="release"><source path="/Users/nadal/Documents/Estrategos/meus projetos/scgasapp/platforms/android/CordovaLib/src/release/shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\Users\Felipe\Desktop\apache-tomcat-7.0.65\webapps\scgasapp2\platforms\android\CordovaLib\src\main\shaders"/></dataSet><dataSet config="release"><source path="C:\Users\Felipe\Desktop\apache-tomcat-7.0.65\webapps\scgasapp2\platforms\android\CordovaLib\src\release\shaders"/></dataSet></merger>
