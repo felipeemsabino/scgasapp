@@ -74,6 +74,9 @@
 		A47D279819BB43F2AB4A6121 /* libGcmLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B99ED72061422298579C26 /* libGcmLib.a */; };
 		EDD4AEA1A48243E095F9CCE9 /* libProtocolBuffers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 545ADC40AD9B46FBAB5B1295 /* libProtocolBuffers.a */; };
 		79B6AA716BA142EAAFCFE49D /* libsqlite3.tbd in Resources */ = {isa = PBXBuildFile; fileRef = 148A718F3F514256BC59C057 /* libsqlite3.tbd */; };
+		75F9A93A2B7A4C2F9DD4CE8E /* CDVNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = D44EEE82E7F04932A277B003 /* CDVNotification.m */; };
+		1A8E60DB612840098A7E2343 /* CDVNotification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F0F058470593463DA10A341E /* CDVNotification.bundle */; };
+		791F00E938BE4A9C95445EC8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9DDC232387411EA6FFFB2B /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +203,10 @@
 		B251969CC6504B948CF1E2E8 /* GCMService.h */ = {isa = PBXFileReference; name = "GCMService.h"; path = "phonegap-plugin-push/GCM/Headers/GCMService.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		8414544786314DBD92F94690 /* GoogleCloudMessaging.h */ = {isa = PBXFileReference; name = "GoogleCloudMessaging.h"; path = "phonegap-plugin-push/GCM/Headers/GoogleCloudMessaging.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		148A718F3F514256BC59C057 /* libsqlite3.tbd */ = {isa = PBXFileReference; name = "libsqlite3.tbd"; path = "libsqlite3.tbd"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D44EEE82E7F04932A277B003 /* CDVNotification.m */ = {isa = PBXFileReference; name = "CDVNotification.m"; path = "cordova-plugin-dialogs/CDVNotification.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		EAAB8B4045DD4B61914A2D98 /* CDVNotification.h */ = {isa = PBXFileReference; name = "CDVNotification.h"; path = "cordova-plugin-dialogs/CDVNotification.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		F0F058470593463DA10A341E /* CDVNotification.bundle */ = {isa = PBXFileReference; name = "CDVNotification.bundle"; path = "CDVNotification.bundle"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.plug-in; explicitFileType = undefined; includeInIndex = 0; };
+		1E9DDC232387411EA6FFFB2B /* AudioToolbox.framework */ = {isa = PBXFileReference; name = "AudioToolbox.framework"; path = "System/Library/Frameworks/AudioToolbox.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +261,7 @@
 				A47D279819BB43F2AB4A6121 /* libGcmLib.a in Frameworks */,
 				EDD4AEA1A48243E095F9CCE9 /* libProtocolBuffers.a in Frameworks */,
 				79B6AA716BA142EAAFCFE49D /* libsqlite3.tbd in Resources */,
+				791F00E938BE4A9C95445EC8 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +323,7 @@
 				0207DA571B56EA530066E2B4 /* Images.xcassets */,
 				3047A50E1AB8057F00498E2A /* config */,
 				8D1107310486CEB800E47090 /* scgasApp-Info.plist */,
+				F0F058470593463DA10A341E /* CDVNotification.bundle */,
 			);
 			name = Resources;
 			path = scgasApp/Resources;
@@ -369,6 +378,7 @@
 				65B99ED72061422298579C26 /* libGcmLib.a */,
 				545ADC40AD9B46FBAB5B1295 /* libProtocolBuffers.a */,
 				148A718F3F514256BC59C057 /* libsqlite3.tbd */,
+				1E9DDC232387411EA6FFFB2B /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -435,6 +445,8 @@
 				4D74ABC365354208B0F2A4D9 /* GCMReceiverDelegate.h */,
 				B251969CC6504B948CF1E2E8 /* GCMService.h */,
 				8414544786314DBD92F94690 /* GoogleCloudMessaging.h */,
+				D44EEE82E7F04932A277B003 /* CDVNotification.m */,
+				EAAB8B4045DD4B61914A2D98 /* CDVNotification.h */,
 			);
 			name = Plugins;
 			path = scgasApp/Plugins;
@@ -521,6 +533,7 @@
 				3047A5141AB8059700498E2A /* build.xcconfig in Resources */,
 				0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */,
 				3047A5121AB8059700498E2A /* build-debug.xcconfig in Resources */,
+				1A8E60DB612840098A7E2343 /* CDVNotification.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,6 +578,7 @@
 				4F214E2CEE064C11A94FB20A /* Toast.m in Sources */,
 				F749D8D17700413B9FFAE2CB /* AppDelegate+notification.m in Sources */,
 				AC6DBD3C9F384832A1C1912F /* PushPlugin.m in Sources */,
+				75F9A93A2B7A4C2F9DD4CE8E /* CDVNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -107,7 +107,7 @@ function setupPush() {
    });
 
    push.on('registration', function(data) {
-       alert("registration event: " + data.registrationId);
+       console.log("registration event: " + data.registrationId);
        var oldRegId = localStorage.getItem('registrationId');
        if (oldRegId !== data.registrationId) {
            // Save new registration ID
@@ -117,6 +117,22 @@ function setupPush() {
    });
 
    push.on('error', function(e) {
-       alert("push error = " + e.message);
+       console.log("push error = " + e.message);
    });
+    
+   push.on('notification', function(data) {
+         console.log('notification event');
+         navigator.notification.alert(
+             data.message,         // message
+             null,                 // callback
+             data.title,           // title
+             'Ok'                  // buttonName
+         );
+     });
+    
+     push.finish(function() {
+             console.log('success');
+         }, function() {
+             console.log('error');
+         });
  }

@@ -101,5 +101,13 @@
         "variables": {
             "SENDER_ID": "718432446608"
         }
+    },
+    "cordova-plugin-dialogs": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-dialogs"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

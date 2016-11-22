@@ -42,6 +42,9 @@
     <feature name="PushNotification">
         <param name="android-package" value="com.adobe.phonegap.push.PushPlugin" />
     </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
     <name>scgasApp</name>
     <description>
         An Ionic Framework and Cordova project.
@@ -52,6 +55,7 @@
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://192.168.0.143:8100" />
+    <allow-navigation href="http://192.168.189.48:8100" />
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />

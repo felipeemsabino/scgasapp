@@ -10,6 +10,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    setupPush();
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
@@ -91,3 +92,41 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
 });
+
+function setupPush() {
+   var push = PushNotification.init({
+       "android": {
+           "senderID": "718432446608"
+       },
+       "ios": {
+         "sound": true,
+         "alert": true,
+         "badge": true
+       },
+       "windows": {}
+   });
+
+   push.on('registration', function(data) {
+       console.log("registration event: " + data.registrationId);
+       var oldRegId = localStorage.getItem('registrationId');
+       if (oldRegId !== data.registrationId) {
+           // Save new registration ID
+           localStorage.setItem('registrationId', data.registrationId);
+           // Post registrationId to your app server as the value has changed
+       }
+   });
+
+   push.on('error', function(e) {
+       console.log("push error = " + e.message);
+   });
+    
+   push.on('notification', function(data) {
+         console.log('notification event');
+         navigator.notification.alert(
+             data.message,         // message
+             null,                 // callback
+             data.title,           // title
+             'Ok'                  // buttonName
+         );
+     });
+ }
