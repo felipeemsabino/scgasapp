@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		0856AC85248A46B6AEE30C57 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768A84296F7A464BBF9C26EC /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -43,6 +42,9 @@
 		E6DB4D3B0FEA4A10ADDCE010 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C558483D8D794ACEBFF12232 /* Bolts.framework */; };
 		E8D3345C1A2844C19478FF21 /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 96106C0E0969426DA3BCEC5C /* CDVViewController+SplashScreen.m */; };
 		F88814F6A2684F6594C2DA15 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F5CCA147A94FCDBEBA4D34 /* AddressBook.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		75C4C27F6F5F4023ACED6A23 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C2D364B39844888641F989 /* Toast+UIView.m */; };
+		4F214E2CEE064C11A94FB20A /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = B79CC0AE7C864865960CB780 /* Toast.m */; };
+		1A7E602E899240EB93BFB5C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B01BA1494DF044F6810EC13C /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,11 @@
 		ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = scgasApp/config.xml; sourceTree = "<group>"; };
 		FF2397037C6346849A9065BF /* CoreLocation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B5C2D364B39844888641F989 /* Toast+UIView.m */ = {isa = PBXFileReference; name = "Toast+UIView.m"; path = "cordova-plugin-x-toast/Toast+UIView.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		B79CC0AE7C864865960CB780 /* Toast.m */ = {isa = PBXFileReference; name = "Toast.m"; path = "cordova-plugin-x-toast/Toast.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		A5CBE21C6E834D24851F4B32 /* Toast+UIView.h */ = {isa = PBXFileReference; name = "Toast+UIView.h"; path = "cordova-plugin-x-toast/Toast+UIView.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		794C5C6727184058B27146E1 /* Toast.h */ = {isa = PBXFileReference; name = "Toast.h"; path = "cordova-plugin-x-toast/Toast.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		B01BA1494DF044F6810EC13C /* QuartzCore.framework */ = {isa = PBXFileReference; name = "QuartzCore.framework"; path = "System/Library/Frameworks/QuartzCore.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +151,7 @@
 				0856AC85248A46B6AEE30C57 /* SystemConfiguration.framework in Frameworks */,
 				DA390413BAEA48848B320CFC /* libz.tbd in Frameworks */,
 				E579746FC08041A9B2A6BA4B /* libz.dylib in Frameworks */,
+				1A7E602E899240EB93BFB5C8 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +239,7 @@
 				768A84296F7A464BBF9C26EC /* SystemConfiguration.framework */,
 				B9B3BF799F0E47E9AC45F662 /* libz.tbd */,
 				486A632721314DC5A5C7E0BD /* libz.dylib */,
+				B01BA1494DF044F6810EC13C /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -274,6 +283,10 @@
 				679CE87D9C664914B52D9936 /* CDVStatusBar.h */,
 				72907320B86A4E54998FB759 /* IonicKeyboard.m */,
 				20F6F10F707B4721A0315D07 /* IonicKeyboard.h */,
+				B5C2D364B39844888641F989 /* Toast+UIView.m */,
+				B79CC0AE7C864865960CB780 /* Toast.m */,
+				A5CBE21C6E834D24851F4B32 /* Toast+UIView.h */,
+				794C5C6727184058B27146E1 /* Toast.h */,
 			);
 			name = Plugins;
 			path = scgasApp/Plugins;
@@ -400,6 +413,8 @@
 				E8D3345C1A2844C19478FF21 /* CDVViewController+SplashScreen.m in Sources */,
 				BE49E92FED3B4287B2589B78 /* CDVStatusBar.m in Sources */,
 				307CB33EFA534DFBAACC13B5 /* IonicKeyboard.m in Sources */,
+				75C4C27F6F5F4023ACED6A23 /* Toast+UIView.m in Sources */,
+				4F214E2CEE064C11A94FB20A /* Toast.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

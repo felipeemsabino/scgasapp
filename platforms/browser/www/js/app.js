@@ -25,13 +25,23 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    .state('app', {
+   .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
 
+  .state('app.user_login', {
+    url: '/user_login',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/user_login.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  
   .state('app.new_account', {
     url: '/new_account',
     views: {

@@ -39,7 +39,7 @@ angular.module('starter.controllers', [])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    
+    /**
     facebookConnectPlugin.login(["email"], function(response) {
              if (response.authResponse) {
                  facebookConnectPlugin.api('/me', null,
@@ -48,6 +48,20 @@ angular.module('starter.controllers', [])
                      });
              }
          });
+         */
+      
+      //Template Google+
+       window.plugins.googleplus.login(
+        {},
+        function (obj) {
+          alert('Good to see you, ' + JSON.stringify({data: obj}));
+          
+        },
+        function (msg) {
+            alert('Good to see you, ' + JSON.stringify({data: msg}));
+         
+        }
+    );
       
       
       
@@ -58,6 +72,80 @@ angular.module('starter.controllers', [])
       
   };
     
+})
+/***
+* Login controller 
+**/
+.controller('LoginCtrl', function($scope, $stateParams, $http, $ionicPopup, $ionicLoading) {
+	$scope.list = [];
+	$scope.user = {
+		email: "felipeems87@gmail.com",
+		senha: "felipe"
+	};
+	$scope.init = function() {};
+	
+	$scope.submit = function(user) {
+		var response = $http.post('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/autentica', user);
+		response.success(function(data, status, headers, config) {
+			$scope.message = data;
+		});
+		response.error(function(data, status, headers, config) {
+			
+			 // An alert dialog
+			 $scope.showAlert = function(status) {
+			   var errorMessage = 'Usuário e/ou senha inválidos. Verifique os dados e tente novamente!';
+			   if(status == 500)
+				   errorMessage = 'Problemas com o servidor. Tente novamente mais tarde.';
+			   var alertPopup = $ionicPopup.alert({
+				 title: 'Erro ao realizar login',
+				 template: errorMessage
+			   });
+
+			   alertPopup.then(function(res) {
+				 //console.log('Thank you for not eating my delicious ice cream cone');
+			   });
+			 };
+			 $scope.showAlert(status);
+		});
+	};
+	$scope.doFacebookLogin = function() {
+		$ionicLoading.show({
+		  template: 'Carregando...'
+		});
+		
+		facebookConnectPlugin.login(["email"], function(response) {
+			if (response.authResponse) {
+				facebookConnectPlugin.api('/me', null,
+				function(response) {
+					$ionicLoading.hide();
+					console.log(JSON.stringify({data: response}));
+					console.log(response.name);
+					console.log(response.id);
+				});
+			}
+        });
+	};
+	$scope.doGoogleLogin = function() {
+		$ionicLoading.show({
+		  template: 'Carregando...'
+		});
+		
+		window.plugins.googleplus.login(
+			{},
+			function (obj) {
+				console.log("function (obj)");
+				console.log(obj);
+				$ionicLoading.hide();
+				alert('Good to see you 1, ' + JSON.stringify({data: obj}));
+			},
+			function (msg) {
+				console.log("function (msg)");
+				console.log(msg);
+				$ionicLoading.hide();
+				alert('Good to see you 2, ' + JSON.stringify({data: msg}));
+			}
+		);
+	};
 })
 
 .controller('PlaylistsCtrl', function($scope) {
@@ -74,39 +162,42 @@ angular.module('starter.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
-.controller('NewAccountCtrl', function($scope, $stateParams, $http) {
+.controller('NewAccountCtrl', function($scope, $stateParams, $http, $ionicPopup) {
    
 	$scope.init = function () {
 		$scope.newUserData = {
 			nome: "Felipe",
 			email: "felipeems87@gmail.com",
 			senha: "felipe",
-			confirmacaoSenha: "felipe",
-			tokenFacebook: "jointt",
-			tokenGmail: "jointt"
+			confirmacaoSenha: "felipe"
 		};
 	};
 	$scope.createNewUser = function(user) {
-        
-        
-        
-		delete user.confirmacaoSenha;
+        delete user.confirmacaoSenha;
 		console.log(user);
 		
-        
-        var response = $http.post('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/cadastrarusuario', 
+		var response = $http.post('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/cadastrarusuario', 
 			user);
 		response.success(function(data, status, headers, config) {
-			$scope.message = data;
+			console.log("success createNewUser message");
+			console.log($scope.message);
 		});
 		response.error(function(data, status, headers, config) {
-			alert( "failure message: " + JSON.stringify({data: data}));
-		});
-        
-        
-        
+			// An alert dialog
+			 $scope.showAlert = function(status) {
+			   var errorMessage = 'Verifique os dados e tente novamente!';
+			   if(status == 500)
+				   errorMessage = 'Problemas com o servidor. Tente novamente mais tarde.';
+			   var alertPopup = $ionicPopup.alert({
+				 title: 'Erro ao realizar cadastro!',
+				 template: errorMessage
+			   });
 
+			   alertPopup.then(function(res) {
+				 //console.log('Thank you for not eating my delicious ice cream cone');
+			   });
+			 };
+			 $scope.showAlert(status);
+		});
 	};
-    
-    
 });

@@ -6,5 +6,6 @@
     "Security.framework": 1,
     "SystemConfiguration.framework": 1,
     "libz.tbd": 1,
-    "libz.dylib": 1
+    "libz.dylib": 1,
+    "QuartzCore.framework": 1
 }

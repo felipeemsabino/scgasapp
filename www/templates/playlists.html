@@ -8,6 +8,7 @@
 	
 	<ion-item href="#/app/new_account">
 	  <button class="button button-block button-success">Cadastre-se</button>
+     <button onclick="window.plugins.toast.show('Hello there!', 'long', 'center', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)})">Toast show long center</button>
 	</ion-item>
   </ion-content>
 </ion-view>
