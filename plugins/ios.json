@@ -39,6 +39,10 @@
         },
         "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "718432446608",
+            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
         }
     },
     "dependent_plugins": {

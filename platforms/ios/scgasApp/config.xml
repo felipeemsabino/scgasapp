@@ -58,6 +58,9 @@
     <feature name="Toast">
         <param name="ios-package" value="Toast" />
     </feature>
+    <feature name="PushNotification">
+        <param name="ios-package" value="PushPlugin" />
+    </feature>
     <name>scgasApp</name>
     <description>
         An Ionic Framework and Cordova project.
