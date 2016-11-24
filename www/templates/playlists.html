@@ -1,11 +1,28 @@
-<ion-view view-title="Playlists">
+<ion-view view-title="APP GNV" ng-init="init();">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
+      <ion-item  href="#/app/playlists/{{playlist.id}}">
+        Buscar postos
+      </ion-item>
+      <ion-item  href="#/app/playlists/{{playlist.id}}">
+        Calculadora de economia
+      </ion-item>
+      <ion-item  href="#/app/playlists/{{playlist.id}}">
+        Dicas e novidades
+      </ion-item>
+      <ion-item  href="#/app/playlists/{{playlist.id}}">
+        Instaladores autorizados
+      </ion-item>
+      <ion-item  href="#/app/playlists/{{playlist.id}}">
+        Inspeção veicular
+      </ion-item>
+      <ion-item  href="#/ app/playlists/{{playlist.id}}">
+        Retorno de investimento
+      </ion-item>
+      <ion-item  href="#/app/playlists/{{playlist.id}}">
+        Licenciamento veicular
       </ion-item>
     </ion-list>
-	
 	<ion-item href="#/app/new_account">
 	  <button class="button button-block button-success">Cadastre-se</button>
      <button onclick="window.plugins.toast.show('Hello there!', 'long', 'center', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)})">Toast show long center</button>

@@ -74,46 +74,37 @@ angular.module('starter.controllers', [])
     
 })
 /***
-* Login controller 
+* Login controller
 **/
-.controller('LoginCtrl', function($scope, $stateParams, $http, $ionicPopup, $ionicLoading) {
+.controller('LoginCtrl', function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
 	$scope.list = [];
 	$scope.user = {
 		email: "felipeems87@gmail.com",
 		senha: "felipe"
 	};
 	$scope.init = function() {};
-	
+
 	$scope.submit = function(user) {
 		var response = $http.post('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/autentica', user);
 		response.success(function(data, status, headers, config) {
-			$scope.message = data;
+      alert('Login realizado com sucesso!');
+      // Sobrescreve registro de login
+      window.localStorage.setItem("dadosUsuario", data);
+      $state.go("app.playlists");
 		});
 		response.error(function(data, status, headers, config) {
-			
-			 // An alert dialog
-			 $scope.showAlert = function(status) {
 			   var errorMessage = 'Usuário e/ou senha inválidos. Verifique os dados e tente novamente!';
 			   if(status == 500)
 				   errorMessage = 'Problemas com o servidor. Tente novamente mais tarde.';
-			   var alertPopup = $ionicPopup.alert({
-				 title: 'Erro ao realizar login',
-				 template: errorMessage
-			   });
-
-			   alertPopup.then(function(res) {
-				 //console.log('Thank you for not eating my delicious ice cream cone');
-			   });
-			 };
-			 $scope.showAlert(status);
+         alert(errorMessage);
 		});
 	};
 	$scope.doFacebookLogin = function() {
 		$ionicLoading.show({
 		  template: 'Carregando...'
 		});
-		
-		facebookConnectPlugin.login(["email"], function(response) {
+
+    facebookConnectPlugin.login(["email"], function(response) {
 			if (response.authResponse) {
 				facebookConnectPlugin.api('/me', null,
 				function(response) {
@@ -125,79 +116,114 @@ angular.module('starter.controllers', [])
 			}
         });
 	};
-	$scope.doGoogleLogin = function() {
+  $scope.doGoogleLogin = function() {
+
+    alert('Fazendo login com dados do Google+');
+
 		$ionicLoading.show({
 		  template: 'Carregando...'
 		});
-		
-		window.plugins.googleplus.login(
-			{},
-			function (obj) {
-				console.log("function (obj)");
-				console.log(obj);
-				$ionicLoading.hide();
-				alert('Good to see you 1, ' + JSON.stringify({data: obj}));
-			},
-			function (msg) {
-				console.log("function (msg)");
-				console.log(msg);
-				$ionicLoading.hide();
-				alert('Good to see you 2, ' + JSON.stringify({data: msg}));
-			}
-		);
+
+    if(window.localStorage.getItem("dadosUsuario") != null) {
+          /*var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
+          alert('Dados do usuário encontrados -> ' + user);
+          alert('Dados do usuário encontrados NOME -> ' + user.nome + 'Dados do usuário encontrados EMAIL -> ' + user.email +
+          'Dados do usuário encontrados tokenGmail -> ' + user.tokenGmail);*/
+
+          var response = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/autenticaGmail/102140681765740944491', {});
+          response.success(function(data, status, headers, config) {
+            alert('Login via G+ realizado com sucesso!');
+            alert(JSON.stringify({data2: data}));
+            $state.go("app.playlists");
+      		});
+      		response.error(function(data, status, headers, config) {
+            alert('Erros ao realizar Login via G+!');
+            alert(JSON.stringify({data2: data}));
+      		});
+
+    } else {
+        alert('Nada encontrado no localStorage');
+        $state.go("app.user_login");
+    }
+    $ionicLoading.hide();
 	};
+  $scope.cadastrarUsuario = function() {
+    $ionicLoading.show({
+      template: 'Carregando...'
+    });
+
+    $state.go("app.new_account");
+
+    $ionicLoading.hide();
+  };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+.controller('TelaInicialCtrl', function($scope, $ionicPopup, $state) {
+
+  $scope.init = function() {
+    if(window.localStorage.getItem("dadosUsuario") != null) {
+          var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
+          alert('Dados do usuário encontrados -> ' + user);
+          alert('Dados do usuário encontrados NOME -> ' + user.nome);
+          alert('Dados do usuário encontrados EMAIL -> ' + user.email);
+    } else {
+        alert('Nada encontrado no localStorage');
+        $state.go("app.user_login");
+    }
+  };
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+	
 })
 
-.controller('NewAccountCtrl', function($scope, $stateParams, $http, $ionicPopup) {
-   
+.controller('NewAccountCtrl', function($scope, $stateParams, $state, $http, $ionicPopup) {
+
 	$scope.init = function () {
 		$scope.newUserData = {
-			nome: "Felipe",
-			email: "felipeems87@gmail.com",
-			senha: "felipe",
-			confirmacaoSenha: "felipe"
+        nome: obj.displayName,
+        email: obj.email,
+        senha: "",
+        confirmacaoSenha: "",
+        tokenFacebook: "",
+        tokenGmail: obj.userId
 		};
 	};
-	$scope.createNewUser = function(user) {
-        delete user.confirmacaoSenha;
-		console.log(user);
-		
-		var response = $http.post('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/cadastrarusuario', 
+  $scope.createNewUser = function(user) {
+    delete user.confirmacaoSenha;
+		var response = $http.post(
+      'http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/cadastrarusuario',
 			user);
 		response.success(function(data, status, headers, config) {
-			console.log("success createNewUser message");
-			console.log($scope.message);
+      alert('Usuário cadastrado com sucesso!');
+      alert('Retorno -> ' + JSON.stringify({data2: data}));
+      window.localStorage.setItem("dadosUsuario", JSON.stringify(data));
+      $state.go("app.playlists");
 		});
 		response.error(function(data, status, headers, config) {
-			// An alert dialog
-			 $scope.showAlert = function(status) {
-			   var errorMessage = 'Verifique os dados e tente novamente!';
-			   if(status == 500)
-				   errorMessage = 'Problemas com o servidor. Tente novamente mais tarde.';
-			   var alertPopup = $ionicPopup.alert({
-				 title: 'Erro ao realizar cadastro!',
-				 template: errorMessage
-			   });
-
-			   alertPopup.then(function(res) {
-				 //console.log('Thank you for not eating my delicious ice cream cone');
-			   });
-			 };
-			 $scope.showAlert(status);
+      alert('Ocorreram erros ao cadastrar usuário. Tente novamente!');
+      alert('Erro -> ' + JSON.stringify({data2: data}));
 		});
 	};
+  $scope.cadastrarGoogle = function() {
+    alert('Cadastrar via Google+!');
+    window.plugins.googleplus.login( {},
+      function (obj) {
+
+        alert('Dados recuperados do G+ para Login, ' + JSON.stringify({data: obj}));
+        $scope.newUserData = {
+    			nome: obj.displayName,
+    			email: obj.email,
+          senha: "",
+          confirmacaoSenha: "",
+          tokenGmail: obj.userId
+    		};
+
+      },
+      function (msg) {
+        $ionicLoading.hide();
+        alert('Erro ao trazer dados do Google+, ' + JSON.stringify({data: msg}));
+      }
+    );
+  };
 });
