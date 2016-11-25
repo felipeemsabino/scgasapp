@@ -1,28 +1,85 @@
 <ion-view view-title="APP GNV" ng-init="init();">
   <ion-content>
-    <ion-list>
-      <ion-item  href="#/app/playlists/{{playlist.id}}">
-        Buscar postos
-      </ion-item>
-      <ion-item  href="#/app/playlists/{{playlist.id}}">
-        Calculadora de economia
-      </ion-item>
-      <ion-item  href="#/app/playlists/{{playlist.id}}">
-        Dicas e novidades
-      </ion-item>
-      <ion-item  href="#/app/playlists/{{playlist.id}}">
-        Instaladores autorizados
-      </ion-item>
-      <ion-item  href="#/app/playlists/{{playlist.id}}">
-        Inspeção veicular
-      </ion-item>
-      <ion-item  href="#/ app/playlists/{{playlist.id}}">
-        Retorno de investimento
-      </ion-item>
-      <ion-item  href="#/app/playlists/{{playlist.id}}">
-        Licenciamento veicular
-      </ion-item>
-    </ion-list>
+    <div class="list">
+      <div class="row">
+        <div class="col col-50">
+          <div class="item">
+            <div class="item-image">
+              <img src="img/img-android.jpg">
+              <div class="caption">
+                <p>Buscar postos</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-50">
+          <div class="item">
+            <div class="item-image">
+              <img src="img/img-android.jpg">
+              <div class="caption">
+                <p>Calculadora de economia</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          <div class="item">
+            <div class="item-image">
+              <img src="img/img-android.jpg">
+              <div class="caption">
+                <p>Dicas e novidades</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-50">
+          <div class="item">
+            <div class="item-image">
+              <img src="img/img-android.jpg">
+              <div class="caption">
+                <p>Instaladores autorizados</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          <div class="item">
+            <div class="item-image">
+              <img src="img/img-android.jpg">
+              <div class="caption">
+                <p>Inspeção veicular</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-50">
+          <div class="item">
+            <div class="item-image">
+              <img src="img/img-android.jpg">
+              <div class="caption">
+                <p>Retorno de investimento</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          <div class="item">
+            <div class="item-image">
+              <img src="img/img-android.jpg">
+              <div class="caption">
+                <p>Licenciamento veicular</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 	<ion-item href="#/app/new_account">
 	  <button class="button button-block button-success">Cadastre-se</button>
      <button onclick="window.plugins.toast.show('Hello there!', 'long', 'center', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)})">Toast show long center</button>

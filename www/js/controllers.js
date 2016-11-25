@@ -11,8 +11,8 @@ angular.module('starter.controllers', [])
 
   // Form data for the login modal
   $scope.loginData = {
-      
-    
+
+
   };
 
   // Create the login modal that we will use later
@@ -26,7 +26,7 @@ angular.module('starter.controllers', [])
   $scope.closeLogin = function() {
     $scope.modal.hide();
   };
-	
+
   // Triggered in the login modal to open a new user window
   $scope.closeLogin = function() {
     $scope.modal.hide();
@@ -49,29 +49,29 @@ angular.module('starter.controllers', [])
              }
          });
          */
-      
+
       //Template Google+
        window.plugins.googleplus.login(
         {},
         function (obj) {
           alert('Good to see you, ' + JSON.stringify({data: obj}));
-          
+
         },
         function (msg) {
             alert('Good to see you, ' + JSON.stringify({data: msg}));
-         
+
         }
     );
-      
-      
-      
+
+
+
   };
-    
+
   $scope.doLoginFacebook = function() {
-      
-      
+
+
   };
-    
+
 })
 /***
 * Login controller
@@ -114,7 +114,7 @@ angular.module('starter.controllers', [])
 					console.log(response.id);
 				});
 			}
-        });
+    });
 	};
   $scope.doGoogleLogin = function() {
 
@@ -174,23 +174,25 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
-	
+
 })
 
 .controller('NewAccountCtrl', function($scope, $stateParams, $state, $http, $ionicPopup) {
 
 	$scope.init = function () {
 		$scope.newUserData = {
-        nome: obj.displayName,
-        email: obj.email,
+        nome: "",
+        email: "",
         senha: "",
         confirmacaoSenha: "",
         tokenFacebook: "",
-        tokenGmail: obj.userId
+        tokenGmail: ""
 		};
 	};
   $scope.createNewUser = function(user) {
     delete user.confirmacaoSenha;
+    alert('criar conta para -> ' + JSON.stringify({data2: user}));
+
 		var response = $http.post(
       'http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/cadastrarusuario',
 			user);
@@ -221,9 +223,30 @@ angular.module('starter.controllers', [])
 
       },
       function (msg) {
-        $ionicLoading.hide();
         alert('Erro ao trazer dados do Google+, ' + JSON.stringify({data: msg}));
       }
     );
+  };
+
+  $scope.cadastrarFacebook = function() {
+    alert('cadastrar facebbok');
+
+    facebookConnectPlugin.login(["email"], function(response) {
+      alert('chegou response'+JSON.stringify({data: response}));
+      if (response.authResponse) {
+        alert('chegou response.authResponse');
+        facebookConnectPlugin.api('/me', null,
+        function(response) {
+          alert('Dados recuperados do FB para Login,' +JSON.stringify({data: response}));
+          $scope.newUserData = {
+      			nome: response.name,
+      			email: response.email ? response.email : 'felipeems87@gmail.com',
+            senha: "",
+            confirmacaoSenha: "",
+            tokenFacebook: response.id
+      		};
+        });
+      }
+    });
   };
 });

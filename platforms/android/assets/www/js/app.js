@@ -42,7 +42,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
-  
+
   .state('app.new_account', {
     url: '/new_account',
     views: {
@@ -52,7 +52,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
-  
+
   .state('app.search', {
     url: '/search',
     views: {
@@ -75,7 +75,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent': {
           templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          controller: 'TelaInicialCtrl'
         }
       }
     })
@@ -119,7 +119,7 @@ function setupPush() {
    push.on('error', function(e) {
        console.log("push error = " + e.message);
    });
-    
+
    push.on('notification', function(data) {
          console.log('notification event');
          navigator.notification.alert(
@@ -129,7 +129,7 @@ function setupPush() {
              'Ok'                  // buttonName
          );
      });
-    
+
      push.finish(function() {
              console.log('success');
          }, function() {
