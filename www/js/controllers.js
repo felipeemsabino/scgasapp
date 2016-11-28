@@ -76,13 +76,17 @@ angular.module('starter.controllers', [])
 /***
 * Login controller
 **/
-.controller('LoginCtrl', function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
+/*.controller('LoginCtrl', function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
 	$scope.list = [];
 	$scope.user = {
-		email: "felipeems87@gmail.com",
-		senha: "felipe"
+		email: "",
+		senha: ""
 	};
-	$scope.init = function() {};
+	$scope.init = function() {
+
+
+
+  };
 
 	$scope.submit = function(user) {
 		var response = $http.post('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/autentica', user);
@@ -104,17 +108,28 @@ angular.module('starter.controllers', [])
 		  template: 'Carregando...'
 		});
 
-    facebookConnectPlugin.login(["email"], function(response) {
-			if (response.authResponse) {
-				facebookConnectPlugin.api('/me', null,
-				function(response) {
-					$ionicLoading.hide();
-					console.log(JSON.stringify({data: response}));
-					console.log(response.name);
-					console.log(response.id);
-				});
-			}
-    });
+    if(window.localStorage.getItem("dadosUsuario") != null) {
+
+          var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
+          if(user.tokenFacebook == null || user.tokenFacebook == "") {
+            alert('Cadastre-se utilizando o FB antes de realizar login!');
+          } else {
+            var response = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/autenticaFacebook/'+user.tokenFacebook, {});
+            response.success(function(data, status, headers, config) {
+              alert('Login via FB realizado com sucesso!');
+              alert(JSON.stringify({data2: data}));
+              $state.go("app.playlists");
+            });
+            response.error(function(data, status, headers, config) {
+              alert('Erros ao realizar Login via FB!');
+              alert(JSON.stringify({data2: data}));
+            });
+          }
+    } else {
+        alert('Nada encontrado no localStorage');
+        $state.go("app.user_login");
+    }
+    $ionicLoading.hide();
 	};
   $scope.doGoogleLogin = function() {
 
@@ -125,22 +140,26 @@ angular.module('starter.controllers', [])
 		});
 
     if(window.localStorage.getItem("dadosUsuario") != null) {
-          /*var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
-          alert('Dados do usuário encontrados -> ' + user);
-          alert('Dados do usuário encontrados NOME -> ' + user.nome + 'Dados do usuário encontrados EMAIL -> ' + user.email +
-          'Dados do usuário encontrados tokenGmail -> ' + user.tokenGmail);*/
+          //var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
+          //alert('Dados do usuário encontrados -> ' + user);
+          //aert('Dados do usuário encontrados NOME -> ' + user.nome + 'Dados do usuário encontrados EMAIL -> ' + user.email +
+          //'Dados do usuário encontrados tokenGmail -> ' + user.tokenGmail);
+          var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
+          if(user.tokenGmail == null || user.tokenGmail == "") {
+            alert('Cadastre-se utilizando o G+ antes de realizar login!');
+          } else {
 
-          var response = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/autenticaGmail/102140681765740944491', {});
-          response.success(function(data, status, headers, config) {
-            alert('Login via G+ realizado com sucesso!');
-            alert(JSON.stringify({data2: data}));
-            $state.go("app.playlists");
-      		});
-      		response.error(function(data, status, headers, config) {
-            alert('Erros ao realizar Login via G+!');
-            alert(JSON.stringify({data2: data}));
-      		});
-
+            var response = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/autenticaGmail/'+user.tokenGmail, {});
+            response.success(function(data, status, headers, config) {
+              alert('Login via G+ realizado com sucesso!');
+              alert(JSON.stringify({data2: data}));
+              $state.go("app.playlists");
+        		});
+        		response.error(function(data, status, headers, config) {
+              alert('Erros ao realizar Login via G+!');
+              alert(JSON.stringify({data2: data}));
+        		});
+          }
     } else {
         alert('Nada encontrado no localStorage');
         $state.go("app.user_login");
@@ -180,25 +199,30 @@ angular.module('starter.controllers', [])
 .controller('NewAccountCtrl', function($scope, $stateParams, $state, $http, $ionicPopup) {
 
 	$scope.init = function () {
+
+    var storedUser = JSON.parse(window.localStorage.getItem("dadosUsuario"));
+
 		$scope.newUserData = {
         nome: "",
         email: "",
         senha: "",
-        confirmacaoSenha: "",
-        tokenFacebook: "",
-        tokenGmail: ""
+        confirmacaoSenha: ""
 		};
+    if (storedUser != null) {
+      $scope.newUserData.id = storedUser.id;
+    }
 	};
-  $scope.createNewUser = function(user) {
-    delete user.confirmacaoSenha;
-    alert('criar conta para -> ' + JSON.stringify({data2: user}));
+  $scope.createNewUser = function() {
+    delete $scope.newUserData.confirmacaoSenha;
+    //alert('criar conta para -> ' + JSON.stringify({data2: $scope.newUserData}));
+    //alert('criar conta para -> ' + $scope.newUserData.id);
 
 		var response = $http.post(
       'http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/cadastrarusuario',
-			user);
+			$scope.newUserData);
 		response.success(function(data, status, headers, config) {
-      alert('Usuário cadastrado com sucesso!');
-      alert('Retorno -> ' + JSON.stringify({data2: data}));
+      //alert('Usuário cadastrado com sucesso!');
+      //alert('Retorno -> ' + JSON.stringify({data2: data}));
       window.localStorage.setItem("dadosUsuario", JSON.stringify(data));
       $state.go("app.playlists");
 		});
@@ -211,15 +235,21 @@ angular.module('starter.controllers', [])
     alert('Cadastrar via Google+!');
     window.plugins.googleplus.login( {},
       function (obj) {
+        //alert('Dados recuperados do G+ para Login, ' + JSON.stringify({data: obj}));
+        var storedUser = JSON.parse(window.localStorage.getItem("dadosUsuario"));
+        //alert('storedUser ' + JSON.stringify({data: storedUser}));
+        if(storedUser != null) {
+          $scope.newUserData.id = storedUser.id;
+        }
+        //alert('storedUser ' + storedUser.id+ ' storedUser ' + storedUser.nome
+        //+' storedUser ' + storedUser.email);
 
-        alert('Dados recuperados do G+ para Login, ' + JSON.stringify({data: obj}));
-        $scope.newUserData = {
-    			nome: obj.displayName,
-    			email: obj.email,
-          senha: "",
-          confirmacaoSenha: "",
-          tokenGmail: obj.userId
-    		};
+        $scope.newUserData.nome = storedUser != null ? storedUser.nome : obj.displayName;
+  			$scope.newUserData.email = storedUser != null ? storedUser.email : obj.email;
+        $scope.newUserData.senha = "";
+        $scope.newUserData.confirmacaoSenha = "";
+        $scope.newUserData.tokenGmail = obj.userId;
+        //alert('apos setar tudo no model ' + JSON.stringify({data: $scope.newUserData}));
 
       },
       function (msg) {
@@ -229,24 +259,27 @@ angular.module('starter.controllers', [])
   };
 
   $scope.cadastrarFacebook = function() {
-    alert('cadastrar facebbok');
+    //alert('Cadastrar via Facebook!');
 
     facebookConnectPlugin.login(["email"], function(response) {
-      alert('chegou response'+JSON.stringify({data: response}));
+      //alert('chegou response'+JSON.stringify({data: response}));
       if (response.authResponse) {
-        alert('chegou response.authResponse');
+        //alert('chegou response.authResponse');
         facebookConnectPlugin.api('/me', null,
         function(response) {
-          alert('Dados recuperados do FB para Login,' +JSON.stringify({data: response}));
-          $scope.newUserData = {
-      			nome: response.name,
-      			email: response.email ? response.email : 'felipeems87@gmail.com',
-            senha: "",
-            confirmacaoSenha: "",
-            tokenFacebook: response.id
-      		};
+          //alert('Dados recuperados do FB para Login,' +JSON.stringify({data: response}));
+          var storedUser = JSON.parse(window.localStorage.getItem("dadosUsuario"));
+
+          if(storedUser != null) {
+            $scope.newUserData.id = storedUser.id;
+          }
+          $scope.newUserData.nome = storedUser != null ? storedUser.nome : response.name;
+          $scope.newUserData.email = storedUser != null ? storedUser.email : response.email;
+          $scope.newUserData.senha = "";
+          $scope.newUserData.confirmacaoSenha = "";
+          $scope.newUserData.tokenFacebook = response.id;
         });
       }
     });
   };
-});
+})*/;

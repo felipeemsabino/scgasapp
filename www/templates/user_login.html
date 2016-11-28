@@ -10,15 +10,15 @@
         </label>
         <label class="item">
           <button class="button button-block button-balanced" type="submit">Entrar</button>
+
+          <div class="button-bar">
+            <a class="button button-assertive" ng-click="doGoogleLogin();">Google+</a>
+            <a class="button button-positive" ng-click="doFacebookLogin();">Facebook</a>
+          </div>
+
+          <button class="button button-block button-assertive" ng-click="cadastrarUsuario();">Cadastre-se agora</button>
         </label>
       </div>
     </form>
-    <div class="button-bar item">
-  	  <a class="button button-assertive" ng-click="doGoogleLogin();">Google+</a>
-  	  <a class="button button-positive" ng-click="doFacebookLogin();">Facebook</a>
-  	</div>
-    <div class="button-bar item">
-      <a class="button button-assertive" ng-click="cadastrarUsuario();">Cadastre-se agora</a>
-    </div>
   </ion-content>
 </ion-view>
