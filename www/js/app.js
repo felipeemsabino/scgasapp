@@ -88,7 +88,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'PlaylistCtrl'
       }
     }
-  });
+  })
+
+.state('app.recuperar_senha', {
+  url: '/recuperar_senha',
+  views: {
+    'menuContent': {
+      templateUrl: 'templates/recuperar_senha.html',
+      controller: 'RecuperarSenhaCtrl'
+    }
+  }
+});
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/user_login');
 });

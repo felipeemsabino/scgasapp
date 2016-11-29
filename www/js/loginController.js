@@ -16,7 +16,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
       var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
       //$state.go("app.playlists");
     } else {
-      alert('Nada encontrado no localStorage');
+      //alert('Nada encontrado no localStorage');
     }
     $ionicLoading.hide();
   };
@@ -25,6 +25,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
   * Executa a autenticação do usuário no servidor.
   */
 	$scope.submit = function(user) {
+    //alert('submit');
     $ionicLoading.show({
       template: 'Carregando...'
     });
@@ -59,6 +60,9 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
   * Executa a autenticação do usuário no servidor utilizando o Facebook.
   */
 	$scope.doFacebookLogin = function() {
+
+    //alert('doFacebookLogin');
+
 		$ionicLoading.show({
 		  template: 'Carregando...'
 		});
@@ -89,6 +93,8 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
     $ionicLoading.hide();
 	};
   $scope.doGoogleLogin = function() {
+
+    //alert('doGoogleLogin');
 
 		$ionicLoading.show({
 		  template: 'Carregando...'
@@ -121,12 +127,27 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
     }
     $ionicLoading.hide();
 	};
+
   $scope.cadastrarUsuario = function() {
+    //alert('cadastrarUsuario');
+
     $ionicLoading.show({
       template: 'Carregando...'
     });
 
     $state.go("app.new_account");
+
+    $ionicLoading.hide();
+  };
+
+  $scope.recuperarSenha = function() {
+    //alert('recuperarSenha');
+
+    $ionicLoading.show({
+      template: 'Carregando...'
+    });
+
+    $state.go("app.recuperar_senha");
 
     $ionicLoading.hide();
   };

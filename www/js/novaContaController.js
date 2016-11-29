@@ -32,12 +32,12 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
       $state.go("app.playlists");
     });
     response.error(function(data, status, headers, config) {
-      alert('Ocorreram erros ao cadastrar usuário. Tente novamente!');
-      alert('Erro -> ' + JSON.stringify({data2: data}));
+      window.plugins.toast.show('Ocorreram erros ao cadastrar usuário. Tente novamente!', 'long', 'center', function(a){}, function(b){});
+      //alert('Erro -> ' + JSON.stringify({data2: data}));
     });
   };
   $scope.cadastrarGoogle = function() {
-    alert('Cadastrar via Google+!');
+    //alert('Cadastrar via Google+!');
     window.plugins.googleplus.login( {},
       function (obj) {
         //alert('Dados recuperados do G+ para Login, ' + JSON.stringify({data: obj}));
@@ -58,7 +58,8 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
 
       },
       function (msg) {
-        alert('Erro ao trazer dados do Google+, ' + JSON.stringify({data: msg}));
+        window.plugins.toast.show('Erro ao recuperar dados do Google+!', 'long', 'center', function(a){}, function(b){});
+        //alert('Erro ao trazer dados do Google+, ' + JSON.stringify({data: msg}));
       }
     );
   };
