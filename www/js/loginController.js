@@ -9,7 +9,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
   };
 	$scope.init = function() {
 
-    $ionicLoading.show({
+    /*$ionicLoading.show({
       template: 'Carregando...'
     });
 
@@ -21,7 +21,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
     } else {
       //alert('Nada encontrado no localStorage');
     }
-    $ionicLoading.hide();
+    $ionicLoading.hide();*/
   };
 
   /*
