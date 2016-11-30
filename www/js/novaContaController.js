@@ -5,6 +5,10 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
 
   $scope.init = function () {
 
+    $ionicLoading.show({
+      template: 'Carregando...'
+    });
+
     var storedUser = JSON.parse(window.localStorage.getItem("dadosUsuario"));
 
     $scope.newUserData = {
@@ -16,11 +20,13 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
     if (storedUser != null) {
       $scope.newUserData.id = storedUser.id;
     }
+
+      $ionicLoading.hide();
   };
   $scope.createNewUser = function() {
     delete $scope.newUserData.confirmacaoSenha;
-    //alert('criar conta para -> ' + JSON.stringify({data2: $scope.newUserData}));
-    //alert('criar conta para -> ' + $scope.newUserData.id);
+    alert('criar conta para -> ' + JSON.stringify({data2: $scope.newUserData}));
+    alert('criar conta para -> ' + $scope.newUserData.id);
 
     var response = $http.post(
       'http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/cadastrarusuario',
@@ -54,6 +60,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
         $scope.newUserData.senha = "";
         $scope.newUserData.confirmacaoSenha = "";
         $scope.newUserData.tokenGmail = obj.userId;
+        $scope.newUserData.tokenFacebook = (storedUser != null && storedUser.tokenFacebook != null) ? storedUser.tokenFacebook  : null;
         //alert('apos setar tudo no model ' + JSON.stringify({data: $scope.newUserData}));
 
       },
@@ -84,6 +91,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
           $scope.newUserData.senha = "";
           $scope.newUserData.confirmacaoSenha = "";
           $scope.newUserData.tokenFacebook = response.id;
+          $scope.newUserData.tokenGmail = (storedUser != null && storedUser.tokenGmail != null) ? storedUser.tokenGmail  : null;
         });
       }
     });

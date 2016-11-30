@@ -1,7 +1,7 @@
-<ion-view view-title="Login">
+<ion-view view-title="Login de usuário">
   <ion-content>
-    <form ng-submit="submit(user)" data-ng-init="init()">
-      <div class="list">
+
+      <div class="list" data-ng-init="init()">
 		      <label class="item item-input">
             <input type="email" placeholder="Email" ng-model="user.email">
           </label>
@@ -9,18 +9,18 @@
             <input type="password" placeholder="Senha" ng-model="user.senha">
           </label>
           <label class="item">
-            <button class="button button-block button-balanced" type="submit">Entrar</button>
+            <button class="button button-block button-balanced" ng-click="submitLogin();">Entrar</button>
           </label>
       </div>
-    </form>
+
       <div class="item">
         <div class="button-bar">
-          <a id="1" name="1" class="button button-assertive" ng-click="doGoogleLogin();">Google+</a>
-          <a id="2" name="2" class="button button-positive" ng-click="doFacebookLogin();">Facebook</a>
+          <a class="button button-assertive" ng-click="doGoogleLogin();">Google+</a>
+          <a class="button button-positive" ng-click="doFacebookLogin();">Facebook</a>
         </div>
 
-        <a id="3" name="3" class="button button-block button-assertive" ng-click="cadastrarUsuario();">Cadastre-se agora</a>
-        <a id="4" name="4" class="button button-block button-assertive" ng-click="recuperarSenha();">Recuperar senha</a>
+        <a class="button button-block button-assertive" ng-click="cadastrarUsuario();">Cadastre-se agora</a>
+        <a class="button button-block button-assertive" ng-click="recuperarSenha();">Recuperar senha</a>
       </div>
   </ion-content>
 </ion-view>

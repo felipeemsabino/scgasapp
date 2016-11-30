@@ -8,13 +8,16 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
     senha: ""
   };
 	$scope.init = function() {
+
     $ionicLoading.show({
       template: 'Carregando...'
     });
 
     if(window.localStorage.getItem("dadosUsuario") != null) {
+      $ionicLoading.hide();
       var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
-      //$state.go("app.playlists");
+
+      $state.go("app.playlists");
     } else {
       //alert('Nada encontrado no localStorage');
     }
@@ -24,18 +27,18 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
   /*
   * Executa a autenticação do usuário no servidor.
   */
-	$scope.submit = function(user) {
-    //alert('submit');
+	$scope.submitLogin = function() {
+    alert('submit2');
     $ionicLoading.show({
       template: 'Carregando...'
     });
 
-		var response = $http.post('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/autentica', user);
+		var response = $http.post('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/autentica', $scope.user);
 
     // Response retornado com sucesso
     response.success(function(data, status, headers, config) {
 
-      window.localStorage.setItem("dadosUsuario", data); // Sobrescreve registro de login
+      window.localStorage.setItem("dadosUsuario", JSON.stringify(data)); // Sobrescreve registro de login
 
       window.plugins.toast.show('Login realizado com sucesso!', 'long', 'center', function(a){}, function(b){});
 
@@ -67,65 +70,62 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
 		  template: 'Carregando...'
 		});
 
-    if(window.localStorage.getItem("dadosUsuario") != null) {
-
-          var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
-          if(user.tokenFacebook == null || user.tokenFacebook == "") {
-            window.plugins.toast.show('Usuário não cadastrado via Facebook!', 'long', 'center', function(a){}, function(b){});
-          } else {
-            var response = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/autenticaFacebook/'+user.tokenFacebook, {timeout: 5000});
-            response.success(function(data, status, headers, config) {
-              //alert('Login realizado com sucesso! -> '+JSON.stringify({data2: data}));
-              $ionicLoading.hide();
-
-              $state.go("app.playlists");
-            });
-            response.error(function(data, status, headers, config) {
-              //alert(JSON.stringify({data2: data}));
-              $ionicLoading.hide();
-
-              window.plugins.toast.show('Erro ao realizar login utilizando Facebook!', 'long', 'center', function(a){}, function(b){});
-            });
-          }
-    } else {
-        $state.go("app.user_login");
-    }
+    facebookConnectPlugin.login(["email"], function(response) {
+      //alert('chegou response'+JSON.stringify({data: response}));
+      if (response.authResponse) {
+        //alert('chegou response.authResponse');
+        facebookConnectPlugin.api('/me', null,
+        function(response) {
+          //alert('Dados recuperados do FB para Login,' +JSON.stringify({data: response}));
+          var response = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/autenticaFacebook/'+response.id, {timeout: 5000});
+          response.success(function(data, status, headers, config) {
+            //alert('Login realizado com sucesso! -> '+JSON.stringify({data2: data}));
+            $ionicLoading.hide();
+            window.localStorage.setItem("dadosUsuario", JSON.stringify(data)); // Sobrescreve registro de login
+            $state.go("app.playlists");
+          });
+          response.error(function(data, status, headers, config) {
+            //alert(JSON.stringify({data2: data}));
+            $ionicLoading.hide();
+            window.plugins.toast.show('Erro ao realizar login utilizando Facebook!', 'long', 'center', function(a){}, function(b){});
+          });
+        });
+      }
+    });
     $ionicLoading.hide();
 	};
-  $scope.doGoogleLogin = function() {
 
-    //alert('doGoogleLogin');
+  $scope.doGoogleLogin = function() {
 
 		$ionicLoading.show({
 		  template: 'Carregando...'
 		});
 
-    if(window.localStorage.getItem("dadosUsuario") != null) {
+    window.plugins.googleplus.login( {},
+      function (obj) {
+        //alert('Dados recuperados do G+ para Login, ' + JSON.stringify({data: obj}));
 
-          var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
-          //alert('buscou info do storage'+JSON.stringify({data2: user}));
+        var response = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/autenticaGmail/'+obj.userId, {timeout: 5000});
+        response.success(function(data, status, headers, config) {
+          //alert('Sucesso' + JSON.stringify({data2: data}));
+          $ionicLoading.hide();
+          window.localStorage.setItem("dadosUsuario", JSON.stringify(data)); // Sobrescreve registro de login
+          $state.go("app.playlists");
+        });
+        response.error(function(data, status, headers, config) {
+          //alert(JSON.stringify({data2: data}));
+          $ionicLoading.hide();
+          window.plugins.toast.show('Erro ao realizar login utilizando GooglePlus!', 'long', 'center', function(a){}, function(b){});
+        });
+      },
+      function (msg) {
+        window.plugins.toast.show('Erro ao recuperar dados do Google+!', 'long', 'center', function(a){}, function(b){});
+        //alert('Erro ao trazer dados do Google+, ' + JSON.stringify({data: msg}));
+      }
+    );
 
-          if(user.tokenGmail == null || user.tokenGmail == "") {
-            window.plugins.toast.show('Usuário não cadastrado via GooglePlus!', 'long', 'center', function(a){}, function(b){});
-          } else {
-            var response = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/autenticaGmail/'+user.tokenGmail, {timeout: 5000});
-            response.success(function(data, status, headers, config) {
-              //alert('Sucesso' + JSON.stringify({data2: data}));
-              $ionicLoading.hide();
-
-              $state.go("app.playlists");
-        		});
-        		response.error(function(data, status, headers, config) {
-              //alert(JSON.stringify({data2: data}));
-              $ionicLoading.hide();
-
-              window.plugins.toast.show('Erro ao realizar login utilizando GooglePlus!', 'long', 'center', function(a){}, function(b){});
-        		});
-          }
-    } else {
-        $state.go("app.user_login");
-    }
     $ionicLoading.hide();
+    $scope.submit($scope.newUserData);
 	};
 
   $scope.cadastrarUsuario = function() {
