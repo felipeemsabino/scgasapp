@@ -28,7 +28,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
   * Executa a autenticação do usuário no servidor.
   */
 	$scope.submitLogin = function() {
-    alert('submit2');
+    //alert('submit2');
     $ionicLoading.show({
       template: 'Carregando...'
     });
