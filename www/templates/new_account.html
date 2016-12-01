@@ -1,6 +1,9 @@
 <ion-view view-title="Dados do perfil">
-  <ion-content>
-    <form ng-submit="createNewUser()" data-ng-init="init()">
+  <ion-content class="card">
+      <div class="item item-image" >
+			<img src="img/logo_scgas.png" class="full-image item">
+		</div>
+    <form class="item" ng-submit="createNewUser()" data-ng-init="init()">
       <div class="list">
         <label class="item item-input">
 
@@ -18,10 +21,10 @@
 
           <input type="password" placeholder="Repita a senha" ng-model="newUserData.confirmacaoSenha">
       </label>
-        <label class="item">
+        <label>
           <button class="button button-block button-positive" type="submit">Salvar</button>
         </label>
-        <div class="button-bar item">
+        <div class="button-bar ">
           <a class="button button-assertive" ng-click="cadastrarGoogle();">Google+</a>
           <a class="button button-positive" ng-click="cadastrarFacebook();">Facebook</a>
         </div>

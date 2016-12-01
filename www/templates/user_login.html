@@ -1,19 +1,22 @@
-<ion-view view-title="Login de usuário" hide-back-button="true">
-  <ion-content>
-
-      <div class="list" data-ng-init="init()">
+<ion-view view-title="Login" hide-back-button="true">
+  <ion-content class ="card">
+      <div class="item item-image" >
+			<img src="img/logo_scgas.png" class="full-image item">
+		</div>
+		
+      <div class="item" data-ng-init="init()">
 		      <label class="item item-input">
             <input type="email" placeholder="Email" ng-model="user.email">
           </label>
-          <label class="item item-input">
+          <label class=" item item-input">
             <input type="password" placeholder="Senha" ng-model="user.senha">
           </label>
-          <label class="item">
+          <label >
             <button class="button button-block button-balanced" ng-click="submitLogin();">Entrar</button>
           </label>
       </div>
 
-      <div class="item">
+      <div >
         <div class="button-bar">
           <a class="button button-assertive" ng-click="doGoogleLogin();">Google+</a>
           <a class="button button-positive" ng-click="doFacebookLogin();">Facebook</a>

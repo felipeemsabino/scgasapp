@@ -2,3 +2,10 @@
 .scgas-nav-bar{
   height: 50px !important;
 }
+
+
+.scgas-center-image{
+      margin:0 auto;
+      max-width: 80px !important;
+      max-height: 80px !important;
+    }
