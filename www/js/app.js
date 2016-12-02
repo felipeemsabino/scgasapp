@@ -89,6 +89,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+  .state('app.sair', {
+    url: '/sair',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/sair.html',
+        controller: 'LogoutCtrl'
+      }
+    }
+  })
 
 .state('app.recuperar_senha', {
   url: '/recuperar_senha',

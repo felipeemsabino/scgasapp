@@ -5,6 +5,13 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading,$ionicP
 
   $scope.init = function() {
 
+   
+    if(window.localStorage.getItem("dadosUsuario") != 'null') {
+          var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
+    } else {
+        $state.go("app.user_login");
+    }
+     
     var customBackButton = function() {};
 
     // registerBackButtonAction() returns a function which can be used to deregister it
@@ -16,11 +23,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading,$ionicP
         deregisterBackButtonAction();
     });
 
-    if(window.localStorage.getItem("dadosUsuario") != null) {
-          var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
-    } else {
-        $state.go("app.user_login");
-    }
+    
   };
 
 }]);
