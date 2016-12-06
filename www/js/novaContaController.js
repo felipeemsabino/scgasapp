@@ -29,19 +29,17 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
     //alert('criar conta para -> ' + JSON.stringify({data2: $scope.newUserData}));
     //alert('criar conta para -> ' + $scope.newUserData.id);
 
-    if(window.localStorage.getItem("dadosUsuario") == null) {
-      if($scope.newUserData.senha == "") {
-        window.plugins.toast.show('Senha obrigatória!', 'long', 'center', function(a){}, function(b){});
-        return;
-      }
-
-      if($scope.newUserData.senha != $scope.newUserData.confirmacaoSenha) {
-        window.plugins.toast.show('Senhas não conferem!', 'long', 'center', function(a){}, function(b){});
-        return;
-      }
-
-      delete $scope.newUserData.confirmacaoSenha;
+    if($scope.newUserData.senha == "") {
+      window.plugins.toast.show('Senha obrigatória!', 'long', 'center', function(a){}, function(b){});
+      return;
     }
+
+    if($scope.newUserData.senha != $scope.newUserData.confirmacaoSenha) {
+      window.plugins.toast.show('Senhas não conferem!', 'long', 'center', function(a){}, function(b){});
+      return;
+    }
+
+    delete $scope.newUserData.confirmacaoSenha;
 
     var response = $http.post(
       'http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/cadastrarusuario',

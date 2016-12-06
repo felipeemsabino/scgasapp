@@ -4,23 +4,19 @@ angular.module('starter.controllers')
 function($scope, $stateParams, $state, $http, $ionicSideMenuDelegate, $ionicLoading, $ionicPlatform) {
 
   $scope.$on('$ionicView.beforeEnter', function (e, data) {
-    /*if (data.enableBack) {
-        $scope.$root.showMenuIcon = true;
-    } else {*/
-    //$ionicHistory.clearHistory();
+
     $ionicSideMenuDelegate.canDragContent(true);
+
     $scope.$root.showMenuIcon = true;
-    //}
-  });
-
-  $scope.init = function() {
-
 
     if(window.localStorage.getItem("dadosUsuario") != 'null') {
-          var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
+        var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
     } else {
         $state.go("app.user_login");
     }
+  });
+
+  $scope.init = function() {
 
     var customBackButton = function() {};
 
@@ -33,7 +29,5 @@ function($scope, $stateParams, $state, $http, $ionicSideMenuDelegate, $ionicLoad
         deregisterBackButtonAction();
     });
 
-
   };
-
 }]);
