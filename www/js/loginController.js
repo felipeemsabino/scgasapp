@@ -1,12 +1,20 @@
 angular.module('starter.controllers')
 
-.controller('LoginCtrl', ['$scope', '$stateParams', '$state', '$http', '$ionicPopup', '$ionicLoading',
-function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
+.controller('LoginCtrl', ['$scope', '$stateParams', '$state', '$http', '$ionicPopup', '$ionicLoading', '$ionicSideMenuDelegate',
+function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionicSideMenuDelegate) {
   $scope.list = [];
   $scope.user = {
     email: "",
     senha: ""
   };
+  $ionicSideMenuDelegate.canDragContent(false);
+  $scope.$on('$ionicView.beforeEnter', function (e, data) {
+    /*if (data.enableBack) {
+        $scope.$root.showMenuIcon = true;
+    } else {*/
+      $scope.$root.showMenuIcon = false;
+    //}
+  });
 	$scope.init = function() {
 
     /*$ionicLoading.show({

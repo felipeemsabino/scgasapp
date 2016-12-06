@@ -49,11 +49,12 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
     response.success(function(data, status, headers, config) {
       //alert('Usuário cadastrado com sucesso!');
       //alert('Retorno -> ' + JSON.stringify({data2: data}));
-      var navegarTelaInicial = window.localStorage.getItem("dadosUsuario") == null ? true : false;
 
       window.localStorage.setItem("dadosUsuario", JSON.stringify(data));
 
       window.plugins.toast.show('Dados inseridos com sucesso!', 'long', 'center', function(a){}, function(b){});
+
+      var navegarTelaInicial = window.localStorage.getItem("dadosUsuario") == null ? false : true;
 
       if(navegarTelaInicial)
         $state.go("app.playlists");
