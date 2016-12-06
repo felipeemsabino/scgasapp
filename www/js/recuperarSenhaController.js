@@ -74,10 +74,11 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
 
     // Response retornado com sucesso
     response.success(function(data, status, headers, config) {
+      window.localStorage.setItem("dadosUsuario", JSON.stringify(data));
       $scope.hide();
-
+        
       window.plugins.toast.show('Recuperação de senha realizada com sucesso!', 'long', 'center', function(a){}, function(b){});
-
+      
       $state.go("app.playlists");
     });
 
