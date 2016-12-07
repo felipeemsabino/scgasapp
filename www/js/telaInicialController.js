@@ -8,11 +8,11 @@ function($scope, $stateParams, $state, $http, $ionicSideMenuDelegate, $ionicLoad
     $ionicSideMenuDelegate.canDragContent(true);
 
     $scope.$root.showMenuIcon = true;
-
-    if(window.localStorage.getItem("dadosUsuario") != 'null') {
-        var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
-    } else {
+   
+    if(window.localStorage.getItem("dadosUsuario") === null || window.localStorage.getItem("dadosUsuario") === 'null') {
         $state.go("app.user_login");
+    } else {
+        var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
     }
   });
 
