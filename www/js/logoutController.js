@@ -1,12 +1,17 @@
 angular.module('starter.controllers')
 
-.controller('LogoutCtrl', ['$scope', '$stateParams', '$state', '$http', '$ionicPopup', '$ionicLoading','$ionicPlatform', '$location',
-function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading,$ionicPlatform,$location) {
+.controller('LogoutCtrl', ['$scope', '$stateParams', '$state', '$http', '$ionicPopup', '$ionicLoading','$ionicPlatform', '$location','$window',
+function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading,$ionicPlatform,$location,$window) {
 
-  $scope.init = function() {
-
-      window.localStorage.setItem("dadosUsuario",null); // Sobrescreve registro de login
-      $state.go("app.user_login");
-  };
+  $scope.$on('$ionicView.enter', function() {
+      try{
+          $window.localStorage.clear();
+          $state.go("app.user_login");      
+      }catch(ex){
+          alert(ex);
+      }
+  });
+    
+  $scope.init = function() {};
 
 }]);

@@ -12,6 +12,11 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
   $ionicSideMenuDelegate.canDragContent(false);
   $scope.$on('$ionicView.beforeEnter', function (e, data) {
     $scope.$root.showMenuIcon = false;
+      
+    $scope.user = {
+        email: "",
+        senha: ""
+    }; 
   });
 
   // Associando configuração da tela de carregando para o escopo
@@ -38,7 +43,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
     // Response retornado com sucesso
     response.success(function(data, status, headers, config) {
       $scope.hide();
-
+     // alert('Login Normal realizado com sucesso! -> '+JSON.stringify({data2: data}));
       window.localStorage.setItem("dadosUsuario", JSON.stringify(data)); // Sobrescreve registro de login
 
       window.plugins.toast.show('Login realizado com sucesso!', 'long', 'center', function(a){}, function(b){});
@@ -78,7 +83,8 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
           responseAutentica.success(function(data, status, headers, config) {
             $scope.hide();
 
-            //alert('Login realizado com sucesso! -> '+JSON.stringify({data2: data}));
+          //  alert('Login realizado com sucesso! -> '+JSON.stringify({data2: data}));
+            
             window.localStorage.setItem("dadosUsuario", JSON.stringify(data)); // Sobrescreve registro de login
             $state.go("app.playlists");
           });

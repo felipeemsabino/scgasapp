@@ -50,7 +50,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
 
       window.localStorage.setItem("dadosUsuario", JSON.stringify(data));
 
-      window.plugins.toast.show('Dados inseridos com sucesso!', 'long', 'center', function(a){}, function(b){});
+      window.plugins.toast.show('Conta cadastrada com sucesso.', 'long', 'center', function(a){}, function(b){});
 
       var navegarTelaInicial = window.localStorage.getItem("dadosUsuario") == null ? false : true;
 

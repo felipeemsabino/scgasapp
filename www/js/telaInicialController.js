@@ -4,12 +4,13 @@ angular.module('starter.controllers')
 function($scope, $stateParams, $state, $http, $ionicSideMenuDelegate, $ionicLoading, $ionicPlatform) {
 
   $scope.$on('$ionicView.beforeEnter', function (e, data) {
-
+    //alert('tela inicial '+ window.localStorage.getItem("dadosUsuario"));
     $ionicSideMenuDelegate.canDragContent(true);
 
     $scope.$root.showMenuIcon = true;
    
-    if(window.localStorage.getItem("dadosUsuario") === null || window.localStorage.getItem("dadosUsuario") === 'null') {
+    if(window.localStorage.getItem("dadosUsuario") === null || window.localStorage.getItem("dadosUsuario") === 'null'
+      || window.localStorage.getItem("dadosUsuario") === '') {
         $state.go("app.user_login");
     } else {
         var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
