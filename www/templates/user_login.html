@@ -1,11 +1,20 @@
 <ion-view view-title="Login" hide-back-button="true">
   <ion-content class ="card">
-      <div class="item item-image" >
-			<img src="img/logo_scgas.png" class="full-image item">
-		</div>
-
+           
       <div class="item" data-ng-init="init()">
-		      <label class="item item-input">
+           <div class="item item-image" style="width : 100%;" >
+			<img src="img/logo_scgas.png" class="full-image item">
+		      </div>
+
+      <div class="button-bar" >
+           <img src="img/google-plus.png" style="width : 20% ; height : 5%" ng-click="doGoogleLogin();" >
+           <img src="img/fb_icon.png" style="width : 20% ; height : 5%" ng-click="doGoogleLogin();" >
+          <!--a class="button button-assertive" ng-click="doGoogleLogin();">Google+</a>
+          <a class="button button-positive" ng-click="doFacebookLogin();">Facebook</a>
+-->
+        </div>
+
+		  <label class="item item-input">
             <input type="email" placeholder="Email" ng-model="user.email">
           </label>
           <label class=" item item-input">
@@ -17,11 +26,6 @@
       </div>
 
       <div class="item">
-        <div class="button-bar">
-          <a class="button button-assertive" ng-click="doGoogleLogin();">Google+</a>
-          <a class="button button-positive" ng-click="doFacebookLogin();">Facebook</a>
-        </div>
-
         <a class="button button-block button-assertive" ng-click="cadastrarUsuario();">Cadastre-se agora</a>
         <a class="button button-block button-assertive" ng-click="recuperarSenha();">Recuperar senha</a>
       </div>
