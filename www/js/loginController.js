@@ -12,11 +12,11 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
   $ionicSideMenuDelegate.canDragContent(false);
   $scope.$on('$ionicView.beforeEnter', function (e, data) {
     $scope.$root.showMenuIcon = false;
-      
+
     $scope.user = {
         email: "",
         senha: ""
-    }; 
+    };
   });
 
   // Associando configuração da tela de carregando para o escopo
@@ -84,7 +84,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
             $scope.hide();
 
           //  alert('Login realizado com sucesso! -> '+JSON.stringify({data2: data}));
-            
+
             window.localStorage.setItem("dadosUsuario", JSON.stringify(data)); // Sobrescreve registro de login
             $state.go("app.playlists");
           });
@@ -173,7 +173,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
 
               window.localStorage.setItem("dadosUsuario", JSON.stringify(data));
 
-              window.plugins.toast.show('Dados inseridos com sucesso!', 'long', 'center', function(a){}, function(b){});
+              //window.plugins.toast.show('Dados inseridos com sucesso!', 'long', 'center', function(a){}, function(b){});
 
               var navegarTelaInicial = window.localStorage.getItem("dadosUsuario") == null ? false : true;
 
