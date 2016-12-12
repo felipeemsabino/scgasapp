@@ -1,21 +1,33 @@
-<ion-view view-title="Login">
+<ion-view view-title="Login" hide-back-button="true">
   <ion-content>
-    <form ng-submit="submit(user)" data-ng-init="init()">
-      <div class="list">
-		<label class="item item-input">
+    <div class="card">
+      <div class="item" style="padding-top: 0px;padding-bottom: 0px;">
+        <div class="item-image">
+          <img src="img/logo_scgas.png">
+        </div>
+      </div>
+
+      <div class="item" style="text-align:center;">
+        <h4>Conectar com:</h4>
+        <img align="center" src="img/google-plus.png" style="width: 20%;height: 5%;margin-left: auto;margin-right: auto;display: inline-block;" ng-click="doGoogleLogin();" >
+        <img align="center" src="img/fb_icon.png" style="width: 20%;height: 5%;margin-left: auto;margin-right: auto;display: inline-block;" ng-click="doFacebookLogin();" >
+      </div>
+
+      <div class="item" style="text-align:center;">
+        <h4>Ou:</h4>
+        <label class="item item-input">
           <input type="email" placeholder="Email" ng-model="user.email">
         </label>
-        <label class="item item-input">
+        <label class=" item item-input">
           <input type="password" placeholder="Senha" ng-model="user.senha">
         </label>
-        <label class="item">
-          <button class="button button-block button-balanced" type="submit">Entrar</button>
+        <label >
+          <button class="button button-block button-balanced" ng-click="submitLogin();">Entrar</button>
         </label>
+
+        <a class="button button-assertive" ng-click="cadastrarUsuario();">Cadastre-se agora</a>
+        <a class="button button-assertive" ng-click="recuperarSenha();">Recuperar senha</a>
       </div>
-    </form>
-	<div class="button-bar item">
-	  <a class="button button-assertive" ng-click="doGoogleLogin();">Google+</a>
-	  <a class="button button-positive" ng-click="doFacebookLogin();">Facebook</a>
-	</div>
+    </div>
   </ion-content>
 </ion-view>

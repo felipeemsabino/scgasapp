@@ -42,17 +42,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
-  
+
   .state('app.new_account', {
     url: '/new_account',
     views: {
       'menuContent': {
         templateUrl: 'templates/new_account.html',
-        controller: 'NewAccountCtrl'
+        controller: 'NovaContaCtrl'
       }
     }
   })
-  
+
   .state('app.search', {
     url: '/search',
     views: {
@@ -75,7 +75,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent': {
           templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          controller: 'TelaInicialCtrl'
         }
       }
     })
@@ -88,11 +88,31 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'PlaylistCtrl'
       }
     }
-  });
+  })
+  .state('app.sair', {
+    url: '/sair',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/sair.html',
+        controller: 'LogoutCtrl'
+      }
+    }
+  })
+
+.state('app.recuperar_senha', {
+  url: '/recuperar_senha',
+  views: {
+    'menuContent': {
+      templateUrl: 'templates/recuperar_senha.html',
+      controller: 'RecuperarSenhaCtrl'
+    }
+  }
+});
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
 });
 
+ /*
 function setupPush() {
    var push = PushNotification.init({
        "android": {
@@ -106,6 +126,7 @@ function setupPush() {
        "windows": {}
    });
 
+   
    push.on('registration', function(data) {
        console.log("registration event: " + data.registrationId);
        var oldRegId = localStorage.getItem('registrationId');
@@ -119,7 +140,7 @@ function setupPush() {
    push.on('error', function(e) {
        console.log("push error = " + e.message);
    });
-    
+
    push.on('notification', function(data) {
          console.log('notification event');
          navigator.notification.alert(
@@ -129,4 +150,11 @@ function setupPush() {
              'Ok'                  // buttonName
          );
      });
+
+     push.finish(function() {
+             console.log('success');
+         }, function() {
+             console.log('error');
+         });
+         */
  }

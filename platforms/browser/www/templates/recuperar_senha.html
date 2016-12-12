@@ -1,0 +1,23 @@
+<ion-view view-title="Recuperar senha">
+  <ion-content class="card">
+      <div class="item item-image" >
+			<img src="img/logo_scgas.png" class="full-image item">
+		</div>
+    <form class="item" name="recuperarSenhaForm" data-ng-init="init()">
+      <div class="list">
+		      <label class="item item-input">
+            <input name="email" type="email" placeholder="Email" ng-model="user.email" >
+          </label>
+          <label class="item item-input" ng-show="pin_received" ng-hide="!pin_received">
+            <input type="text" placeholder="Pin" ng-model="user.pinSenha">
+          </label>
+          <label class="item" ng-hide="pin_received" ng-show="!pin_received">
+            <button class="button button-block button-balanced" ng-click="recuperaPin();">Gerar pin</button>
+          </label>
+          <label class="item" ng-show="pin_received" ng-hide="!pin_received">
+            <button class="button button-block button-balanced" ng-click="recuperaSenha();">Recuperar senha</button>
+          </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

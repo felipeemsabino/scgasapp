@@ -112,46 +112,4 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   $urlRouterProvider.otherwise('/app/playlists');
 });
 
-function setupPush() {
-   var push = PushNotification.init({
-       "android": {
-           "senderID": "718432446608"
-       },
-       "ios": {
-         "sound": true,
-         "alert": true,
-         "badge": true
-       },
-       "windows": {}
-   });
 
-   push.on('registration', function(data) {
-       console.log("registration event: " + data.registrationId);
-       var oldRegId = localStorage.getItem('registrationId');
-       if (oldRegId !== data.registrationId) {
-           // Save new registration ID
-           localStorage.setItem('registrationId', data.registrationId);
-           // Post registrationId to your app server as the value has changed
-       }
-   });
-
-   push.on('error', function(e) {
-       console.log("push error = " + e.message);
-   });
-
-   push.on('notification', function(data) {
-         console.log('notification event');
-         navigator.notification.alert(
-             data.message,         // message
-             null,                 // callback
-             data.title,           // title
-             'Ok'                  // buttonName
-         );
-     });
-
-     push.finish(function() {
-             console.log('success');
-         }, function() {
-             console.log('error');
-         });
- }

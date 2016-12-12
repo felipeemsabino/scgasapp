@@ -48,7 +48,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: 'templates/new_account.html',
-        controller: 'NewAccountCtrl'
+        controller: 'NovaContaCtrl'
       }
     }
   })
@@ -88,51 +88,28 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'PlaylistCtrl'
       }
     }
-  });
+  })
+  .state('app.sair', {
+    url: '/sair',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/sair.html',
+        controller: 'LogoutCtrl'
+      }
+    }
+  })
+
+.state('app.recuperar_senha', {
+  url: '/recuperar_senha',
+  views: {
+    'menuContent': {
+      templateUrl: 'templates/recuperar_senha.html',
+      controller: 'RecuperarSenhaCtrl'
+    }
+  }
+});
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
 });
 
-function setupPush() {
-   var push = PushNotification.init({
-       "android": {
-           "senderID": "718432446608"
-       },
-       "ios": {
-         "sound": true,
-         "alert": true,
-         "badge": true
-       },
-       "windows": {}
-   });
 
-   push.on('registration', function(data) {
-       console.log("registration event: " + data.registrationId);
-       var oldRegId = localStorage.getItem('registrationId');
-       if (oldRegId !== data.registrationId) {
-           // Save new registration ID
-           localStorage.setItem('registrationId', data.registrationId);
-           // Post registrationId to your app server as the value has changed
-       }
-   });
-
-   push.on('error', function(e) {
-       console.log("push error = " + e.message);
-   });
-
-   push.on('notification', function(data) {
-         console.log('notification event');
-         navigator.notification.alert(
-             data.message,         // message
-             null,                 // callback
-             data.title,           // title
-             'Ok'                  // buttonName
-         );
-     });
-
-     push.finish(function() {
-             console.log('success');
-         }, function() {
-             console.log('error');
-         });
- }

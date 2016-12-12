@@ -13,16 +13,7 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
-        },
-        "ionic-plugin-keyboard": {
+        "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
         },
         "cordova-plugin-facebook4": {
@@ -36,14 +27,19 @@
         "cordova-plugin-googleplus": {
             "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
         },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
+        },
         "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
         },
-        "phonegap-plugin-push": {
-            "SENDER_ID": "718432446608",
-            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
-        },
-        "cordova-plugin-dialogs": {
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
         }
     },

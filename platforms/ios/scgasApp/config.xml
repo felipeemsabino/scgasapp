@@ -21,6 +21,9 @@
     <feature name="Device">
         <param name="ios-package" value="CDVDevice" />
     </feature>
+    <feature name="Notification">
+        <param name="ios-package" value="CDVNotification" />
+    </feature>
     <feature name="FacebookConnectPlugin">
         <param name="ios-package" value="FacebookConnectPlugin" />
         <param name="onload" value="true" />
@@ -47,22 +50,11 @@
         <param name="ios-package" value="CDVStatusBar" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="Keyboard">
-        <param name="ios-package" onload="true" value="IonicKeyboard" />
-    </feature>
-    <description>
-        An Ionic Framework and Cordova project.
-    </description>
-    <splash height="2048" src="resources/ios/splash/Default-Landscape@~ipadpro.png" width="2732" />
-    <splash height="2732" src="resources/ios/splash/Default-Portrait@~ipadpro.png" width="2048" />
     <feature name="Toast">
         <param name="ios-package" value="Toast" />
     </feature>
-    <feature name="PushNotification">
-        <param name="ios-package" value="PushPlugin" />
-    </feature>
-    <feature name="Notification">
-        <param name="ios-package" value="CDVNotification" />
+    <feature name="Keyboard">
+        <param name="ios-package" onload="true" value="IonicKeyboard" />
     </feature>
     <name>scgasApp</name>
     <description>
@@ -74,6 +66,7 @@
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://192.168.0.143:8100" />
+    <allow-navigation href="http://192.168.189.48:8100" />
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <icon height="57" src="resources/ios/icon/icon.png" width="57" />
     <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />
@@ -104,6 +97,8 @@
     <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
     <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     <preference name="AllowInlineMediaPlayback" value="false" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="DisallowOverscroll" value="true" />
     <preference name="EnableViewportScale" value="false" />
     <preference name="KeyboardDisplayRequiresUserAction" value="true" />
     <preference name="MediaPlaybackRequiresUserAction" value="false" />
@@ -118,10 +113,8 @@
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
-    <preference name="DisallowOverscroll" value="true" />
     <preference name="SplashScreenDelay" value="2000" />
     <preference name="FadeSplashScreenDuration" value="2000" />
     <preference name="android-minSdkVersion" value="16" />
-    <preference name="BackupWebStorage" value="none" />
     <preference name="SplashScreen" value="screen" />
 </widget>

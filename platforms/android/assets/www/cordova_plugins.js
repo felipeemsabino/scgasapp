@@ -9,29 +9,20 @@ module.exports = [
         ]
     },
     {
-        "id": "cordova-plugin-splashscreen.SplashScreen",
-        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-        "pluginId": "cordova-plugin-splashscreen",
-        "clobbers": [
-            "navigator.splashscreen"
+        "id": "cordova-plugin-dialogs.notification",
+        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
         ]
     },
     {
-        "id": "cordova-plugin-statusbar.statusbar",
-        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
-        "pluginId": "cordova-plugin-statusbar",
-        "clobbers": [
-            "window.StatusBar"
+        "id": "cordova-plugin-dialogs.notification_android",
+        "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
         ]
-    },
-    {
-        "id": "ionic-plugin-keyboard.keyboard",
-        "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
-        "pluginId": "ionic-plugin-keyboard",
-        "clobbers": [
-            "cordova.plugins.Keyboard"
-        ],
-        "runs": true
     },
     {
         "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
@@ -64,6 +55,22 @@ module.exports = [
         ]
     },
     {
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
+    },
+    {
+        "id": "cordova-plugin-statusbar.statusbar",
+        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+        "pluginId": "cordova-plugin-statusbar",
+        "clobbers": [
+            "window.StatusBar"
+        ]
+    },
+    {
         "id": "cordova-plugin-x-toast.Toast",
         "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
         "pluginId": "cordova-plugin-x-toast",
@@ -77,46 +84,30 @@ module.exports = [
         "pluginId": "cordova-plugin-x-toast"
     },
     {
-        "id": "phonegap-plugin-push.PushNotification",
-        "file": "plugins/phonegap-plugin-push/www/push.js",
-        "pluginId": "phonegap-plugin-push",
+        "id": "ionic-plugin-keyboard.keyboard",
+        "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
+        "pluginId": "ionic-plugin-keyboard",
         "clobbers": [
-            "PushNotification"
-        ]
-    },
-    {
-        "id": "cordova-plugin-dialogs.notification",
-        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
-        "pluginId": "cordova-plugin-dialogs",
-        "merges": [
-            "navigator.notification"
-        ]
-    },
-    {
-        "id": "cordova-plugin-dialogs.notification_android",
-        "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
-        "pluginId": "cordova-plugin-dialogs",
-        "merges": [
-            "navigator.notification"
-        ]
+            "cordova.plugins.Keyboard"
+        ],
+        "runs": true
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
+    "cordova-plugin-compat": "1.1.0",
     "cordova-plugin-console": "1.0.4",
     "cordova-plugin-device": "1.1.3",
+    "cordova-plugin-dialogs": "1.3.0",
+    "cordova-plugin-facebook4": "1.7.4",
+    "cordova-plugin-geolocation": "2.4.0",
+    "cordova-plugin-googleplus": "5.1.1",
     "cordova-plugin-splashscreen": "4.0.0",
     "cordova-plugin-statusbar": "2.2.0",
     "cordova-plugin-whitelist": "1.3.0",
-    "ionic-plugin-keyboard": "2.2.1",
-    "cordova-plugin-facebook4": "1.7.4",
-    "cordova-plugin-compat": "1.1.0",
-    "cordova-plugin-geolocation": "2.4.0",
-    "cordova-plugin-googleplus": "5.1.1",
     "cordova-plugin-x-toast": "2.5.2",
-    "phonegap-plugin-push": "1.8.4",
-    "cordova-plugin-dialogs": "1.3.0"
+    "ionic-plugin-keyboard": "2.2.1"
 };
 // BOTTOM OF METADATA
 });

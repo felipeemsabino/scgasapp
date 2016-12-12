@@ -24,45 +24,26 @@
     <string>0.0.1</string>
     <key>CFBundleSignature</key>
     <string>????</string>
-    <key>CFBundleURLTypes</key>
-    <array>
-      <dict>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>fb1857306741157529</string>
-        </array>
-      </dict>
-      <dict>
-        <key>CFBundleTypeRole</key>
-        <string>Editor</string>
-        <key>CFBundleURLName</key>
-        <string>REVERSED_CLIENT_ID</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>com.googleusercontent.apps.718432446608-ekr6agfdpa5hagsd269d4q36nmr7v88u</string>
-        </array>
-      </dict>
-    </array>
     <key>CFBundleVersion</key>
     <string>0.0.1</string>
-    <key>FacebookAppID</key>
-    <string>1857306741157529</string>
-    <key>FacebookDisplayName</key>
-    <string>scgasapp</string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-      <string>fbapi</string>
-      <string>fb-messenger-api</string>
-      <string>fbauth2</string>
-      <string>fbshareextension</string>
-    </array>
     <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>NSMainNibFile</key>
+    <string/>
+    <key>NSMainNibFile~ipad</key>
+    <string/>
+    <key>UIRequiresFullScreen</key>
     <true/>
     <key>NSAppTransportSecurity</key>
     <dict>
       <key>NSExceptionDomains</key>
       <dict>
         <key>192.168.0.143</key>
+        <dict>
+          <key>NSExceptionAllowsInsecureHTTPLoads</key>
+          <true/>
+        </dict>
+        <key>192.168.189.48</key>
         <dict>
           <key>NSExceptionAllowsInsecureHTTPLoads</key>
           <true/>
@@ -89,21 +70,37 @@
       <key>NSAllowsArbitraryLoads</key>
       <true/>
     </dict>
+    <key>FacebookAppID</key>
+    <string>1857306741157529</string>
+    <key>FacebookDisplayName</key>
+    <string>scgasapp</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>fb1857306741157529</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLName</key>
+        <string>REVERSED_CLIENT_ID</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>com.googleusercontent.apps.718432446608-ekr6agfdpa5hagsd269d4q36nmr7v88u</string>
+        </array>
+      </dict>
+    </array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>fbapi</string>
+      <string>fb-messenger-api</string>
+      <string>fbauth2</string>
+      <string>fbshareextension</string>
+    </array>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string/>
-    <key>NSMainNibFile</key>
-    <string/>
-    <key>NSMainNibFile~ipad</key>
-    <string/>
-    <key>UIRequiresFullScreen</key>
-    <true/>
-    <key>UIBackgroundModes</key>
-    <array>
-      <string>remote-notification</string>
-    </array>
-    <key>GCM_SENDER_ID</key>
-    <string>718432446608</string>
-    <key>IS_GCM_ENABLED</key>
-    <true/>
   </dict>
 </plist>

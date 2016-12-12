@@ -1,26 +1,33 @@
-<ion-view view-title="Criar nova conta">
-  <ion-content>
-    <form ng-submit="createNewUser(newUserData)" data-ng-init="init()">
+<ion-view view-title="Dados do perfil">
+  <ion-content class="card">
+      <div class="item item-image" >
+			<img src="img/logo_scgas.png" class="full-image item">
+		</div>
+    <form class="item" ng-submit="createNewUser()" data-ng-init="init()">
       <div class="list">
         <label class="item item-input">
-          
+
           <input type="text" placeholder="Nome" ng-model="newUserData.nome">
         </label>
 		<label class="item item-input">
-         
+
           <input type="email" placeholder="Email" ng-model="newUserData.email">
         </label>
         <label class="item item-input">
-          
+
           <input type="password" placeholder="Senha" ng-model="newUserData.senha">
         </label>
 		<label class="item item-input">
-          
+
           <input type="password" placeholder="Repita a senha" ng-model="newUserData.confirmacaoSenha">
+      </label>
+        <label>
+          <button class="button button-block button-positive" type="submit">Salvar</button>
         </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit">Criar conta</button>
-        </label>
+        <!--div class="button-bar ">
+          <a class="button button-assertive" ng-click="cadastrarGoogle();">Google+</a>
+          <a class="button button-positive" ng-click="cadastrarFacebook();">Facebook</a>
+        </div-->
       </div>
     </form>
   </ion-content>

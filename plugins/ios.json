@@ -13,6 +13,9 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
         },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
+        },
         "cordova-plugin-facebook4": {
             "APP_ID": "1857306741157529",
             "APP_NAME": "scgasapp",
@@ -34,17 +37,10 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
         },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
-        },
         "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
         },
-        "phonegap-plugin-push": {
-            "SENDER_ID": "718432446608",
-            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
-        },
-        "cordova-plugin-dialogs": {
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
         }
     },

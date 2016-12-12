@@ -1,13 +1,12 @@
 {
+    "AudioToolbox.framework": 1,
     "CoreLocation.framework": 1,
-    "AddressBook.framework": 2,
+    "AddressBook.framework": 1,
     "CoreText.framework": 1,
     "SafariServices.framework": 1,
     "Security.framework": 1,
     "SystemConfiguration.framework": 1,
-    "libz.tbd": 2,
+    "libz.tbd": 1,
     "libz.dylib": 1,
-    "QuartzCore.framework": 1,
-    "libsqlite3.tbd": 1,
-    "AudioToolbox.framework": 1
+    "QuartzCore.framework": 1
 }
