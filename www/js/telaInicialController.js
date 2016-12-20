@@ -17,6 +17,10 @@ function($scope, $stateParams, $state, $http, $ionicSideMenuDelegate, $ionicLoad
     }
   });
 
+  $scope.carregaMapa = function() {
+    $state.go("app.mapa");
+  };
+  
   $scope.init = function() {
 
     var customBackButton = function() {};

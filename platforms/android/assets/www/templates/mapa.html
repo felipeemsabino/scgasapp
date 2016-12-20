@@ -1,0 +1,45 @@
+<ion-view view-title="Buscar postos" hide-back-button="true">
+  <ion-tabs class="tabs-positive tabs-icon-top">
+
+    <ion-tab title="Mapa" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+      <ion-view>
+         <ion-content class="has-header" >
+           <div id="map" data-tap-disabled="true"></div>
+         </ion-content>
+       </ion-view>
+    </ion-tab>
+
+    <ion-tab title="Lista" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+      <ion-view>
+         <ion-content class="has-header" >
+          <ion-list>
+            <div class="card" ng-repeat="posto in postos">
+              <div class="row" >
+                <div class="col col-25" style="text-align: center">
+                  <h3>{{posto.preco}}</h3>
+                  {{posto.ultimaAtualizacao}}
+                </div>
+                <div class="col col-55" style="text-align: center">
+                  <h6>{{posto.endereco}}</h6>
+                  <h6>{{posto.bandeira}}</h6>
+                </div>
+                <div class="col col-20" style="text-align: center">
+                  <img src="img/map-icon.png" width="24px" height="24px" ng-click="carregaMapa();">
+                  <h6>{{posto.distancia}}</h6>
+                </div>
+              </div>
+            </div>
+          </ion-list>
+
+          <ion-infinite-scroll
+            ng-if="moreDataCanBeLoaded()"
+            icon="ion-loading-c"
+            on-infinite="loadMore()"
+            distance="1%">
+          </ion-infinite-scroll>
+         </ion-content>
+       </ion-view>
+    </ion-tab>
+
+  </ion-tabs>
+</ion-view>
