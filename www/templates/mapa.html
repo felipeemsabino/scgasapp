@@ -1,4 +1,4 @@
-<ion-view view-title="Buscar postos" hide-back-button="true">
+<ion-view view-title="Buscar postos" >
   <ion-tabs class="tabs-positive tabs-icon-top">
 
     <ion-tab title="Mapa" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
@@ -13,11 +13,11 @@
       <ion-view>
          <ion-content class="has-header" >
           <ion-list>
-            <div class="card" ng-repeat="posto in postos">
+            <div class="card" ng-repeat="posto in arrPostos">
               <div class="row" >
                 <div class="col col-25" style="text-align: center">
-                  <h3>{{posto.preco}}</h3>
-                  {{posto.ultimaAtualizacao}}
+                  <h3>{{posto.preco ? posto.preco : 0.000}}</h3>
+                  {{posto.ultimaAtualizacao ? posto.ultimaAtualizacao : 'Sem atualizações'}}
                 </div>
                 <div class="col col-55" style="text-align: center">
                   <h6>{{posto.endereco}}</h6>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col col-20" style="text-align: center">
                   <img src="img/map-icon.png" width="24px" height="24px" ng-click="carregaMapa();">
-                  <h6>{{posto.distancia}}</h6>
+                  <h6>{{posto.distanciaPosto}}</h6>
                 </div>
               </div>
             </div>

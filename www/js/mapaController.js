@@ -62,9 +62,8 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http) {
     $scope.criarMarkers = function (lat, lng) {
       var latFormatada = parseFloat(lat.replace(',','.'));
       var lngFormatada = parseFloat(lng.replace(',','.'));
-      console.log(latFormatada +' - '+ lngFormatada);
       var latLng = new google.maps.LatLng(latFormatada, lngFormatada);
-      console.log(latLng);
+      
       var marker = new google.maps.Marker({
           map: $scope.map,
           animation: google.maps.Animation.DROP,
@@ -115,6 +114,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http) {
           for(var counter = 0;counter < data.length-1;counter++){ // sempre ignorar ultima posicao do array
             $scope.criarMarkers(data[counter].coordenadaX, data[counter].coordenadaY);
           }
+		  console.log($scope.arrPostos[0]);
           //alert('markers posicionados');
         });
         responseRecuperaPostos1.error(function(data, status, headers, config) {
