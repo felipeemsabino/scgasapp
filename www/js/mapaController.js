@@ -110,9 +110,10 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http) {
         responseRecuperaPostos1.success(function(data, status, headers, config) {
           //alert('resultado de postos! -> '+JSON.stringify({data2: data}));
           //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
-          $scope.arrPostos = $scope.arrPostos.concat(data);
+          //$scope.arrPostos = $scope.arrPostos.concat(data.splice(-1,1));
           for(var counter = 0;counter < data.length-1;counter++){ // sempre ignorar ultima posicao do array
             $scope.criarMarkers(data[counter].coordenadaX, data[counter].coordenadaY);
+			$scope.arrPostos.push(data[counter]);
           }
 		  console.log($scope.arrPostos[0]);
           //alert('markers posicionados');
@@ -122,13 +123,14 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http) {
           //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
         });
 
-		var responseRecuperaPostos2 = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/postoservice/listaPostos/45/50/'+position.coords.latitude+'/'+position.coords.longitude, {timeout: 5000});
+		var responseRecuperaPostos2 = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/postoservice/listaPostos/45/90/'+position.coords.latitude+'/'+position.coords.longitude, {timeout: 5000});
 		responseRecuperaPostos2.success(function(data, status, headers, config) {
 		  //alert('resultado de postos! -> '+JSON.stringify({data2: data}));
 		  //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
-		  $scope.arrPostos = $scope.arrPostos.concat(data);
+		  //$scope.arrPostos = $scope.arrPostos.concat(data.splice(-1,1));
 		  for(var counter = 0;counter < data.length-1;counter++){ // sempre ignorar ultima posicao do array
 			$scope.criarMarkers(data[counter].coordenadaX, data[counter].coordenadaY);
+			$scope.arrPostos.push(data[counter]);
 		  }
 		  //alert('markers posicionados');
 		});
@@ -141,9 +143,10 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http) {
 		responseRecuperaPostos3.success(function(data, status, headers, config) {
 		  //alert('resultado de postos! -> '+JSON.stringify({data2: data}));
 		  //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
-		  $scope.arrPostos = $scope.arrPostos.concat(data);
+		  //$scope.arrPostos = $scope.arrPostos.concat(data.splice(-1,1));
 		  for(var counter = 0;counter < data.length-1;counter++){ // sempre ignorar ultima posicao do array
 			$scope.criarMarkers(data[counter].coordenadaX, data[counter].coordenadaY);
+			$scope.arrPostos.push(data[counter]);
 		  }
 		  //alert('markers posicionados');
 		});
