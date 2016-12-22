@@ -108,7 +108,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
 			}
 		}
 	})
-	
+
 	.state('app.mapa', {
 		url: '/mapa',
 		views: {
@@ -117,9 +117,18 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
 			controller: 'MapaCtrl'
 		  }
 		}
+})
+
+  .state('app.detalhe_posto', {
+    url: '/detalhe_posto',
+    params: {paramPosto: null},
+    views: {
+      'menuContent': {
+      templateUrl: 'templates/detalhe_posto.html',
+      controller: 'DetalhePostoCtrl'
+      }
+    }
 });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
 });
-
-

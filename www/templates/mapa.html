@@ -13,7 +13,7 @@
       <ion-view>
          <ion-content class="has-header" >
           <ion-list>
-            <div class="card" ng-repeat="posto in arrPostos">
+            <div class="card" ng-repeat="posto in arrPostos" ng-click="detalhesPosto(posto);">
               <div class="row" >
                 <div class="col col-25" style="text-align: center">
                   <h3>{{posto.preco ? posto.preco : '0.000'}}</h3>
