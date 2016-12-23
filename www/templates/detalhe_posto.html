@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="row" style="height: 150px;">
-          mapa
+        <div id="map" data-tap-disabled="true"></div>
       </div>
       <div class="row">
         <div class="col col-33" style="text-align: center">
@@ -28,15 +28,11 @@
         </div>
         <div class="col col-33" style="text-align: center">
           <label>
-            <span class="input-label">Valor:</span>
-            <input type="number" ng-model="posto.preco"/>
+            <button class="button button-block button-assertive" ng-click="showPopupPreco();">Atualizar preço</button>
           </label>
-          <a class="button button-assertive" ng-click="atualizarPrecoPosto();">Atualizar Preço</a>
         </div>
       </div>
-      <div class="row" style="height: 50px; border: 1px solid;text-align: center;">
-        <a class="button button-positive" ng-click="alert('Navegar até posto');">Ir até o posto</a>
-      </div>
+      <button class="button button-block button-positive" ng-click="alert('Navegar até posto');">Ir até o posto</button>
     </div>
   </ion-content>
 </ion-view>

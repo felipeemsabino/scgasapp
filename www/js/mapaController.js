@@ -91,8 +91,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http) {
       google.maps.event.addListenerOnce($scope.map, 'idle', function(){
         $scope.hide();
 
-      var responseRecuperaPostos1 = $http.get(
-        'http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/postoservice/listaPostos/0/2/'+position.coords.latitude+'/'+position.coords.longitude, {timeout: 5000});
+      var responseRecuperaPostos1 = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/postoservice/listaPostos/0/45/'+position.coords.latitude+'/'+position.coords.longitude, {timeout: 5000});
       responseRecuperaPostos1.success(function(data, status, headers, config) {
         //alert('resultado de postos! -> '+JSON.stringify({data2: data}));
         //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
@@ -111,7 +110,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http) {
           $scope.criarMarkers(data[counter].coordenadaX, data[counter].coordenadaY);
           $scope.arrPostos.push(data[counter]);
         }
-		      console.log($scope.arrPostos[0]);
+		      //console.log($scope.arrPostos[0]);
           //alert('markers posicionados');
         });
         responseRecuperaPostos1.error(function(data, status, headers, config) {
@@ -119,19 +118,29 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http) {
           //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
         });
 
-    		/*var responseRecuperaPostos2 = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/postoservice/listaPostos/45/90/'+position.coords.latitude+'/'+position.coords.longitude, {timeout: 5000});
+    		var responseRecuperaPostos2 = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/postoservice/listaPostos/45/90/'+position.coords.latitude+'/'+position.coords.longitude, {timeout: 5000});
     		responseRecuperaPostos2.success(function(data, status, headers, config) {
     		  //alert('resultado de postos! -> '+JSON.stringify({data2: data}));
     		  //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
     		  //$scope.arrPostos = $scope.arrPostos.concat(data.splice(-1,1));
-    		  for(var counter = 0;counter < data.length-1;counter++){ // sempre ignorar ultima posicao do array
-    			$scope.criarMarkers(data[counter].coordenadaX, data[counter].coordenadaY);
-    			$scope.arrPostos.push(data[counter]);
-    		  }
+          for(var counter = 0;counter < data.length-1;counter++){ // sempre ignorar ultima posicao do array
+
+            data[counter].preco = data[counter].listaPrecosGNV.length == 0 ? '0.000' :
+                data[counter].listaPrecosGNV[data[counter].listaPrecosGNV.length - 1].valorGNV;
+
+            data[counter].ultimaAtualizacao = data[counter].listaPrecosGNV.length == 0 ? 'Sem atualizações' :
+                data[counter].listaPrecosGNV[data[counter].listaPrecosGNV.length - 1].tempoUltimaAtulizacao;
+
+            data[counter].usuarioUltimaAtualizacao =  data[counter].listaPrecosGNV.length == 0 ? 'Nenhum usuário atualizou' :
+                data[counter].listaPrecosGNV[data[counter].listaPrecosGNV.length - 1].usuario.nome;
+
+            $scope.criarMarkers(data[counter].coordenadaX, data[counter].coordenadaY);
+            $scope.arrPostos.push(data[counter]);
+          }
     		  //alert('markers posicionados');
     		});
     		responseRecuperaPostos2.error(function(data, status, headers, config) {
-    		  alert('Erro ao recuperar postos 2! -> '+JSON.stringify({data2: data}));
+    		  alert('Erro ao recuperar postos! -> '+JSON.stringify({data2: data}));
     		  //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
     		});
 
@@ -140,16 +149,26 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http) {
     		  //alert('resultado de postos! -> '+JSON.stringify({data2: data}));
     		  //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
     		  //$scope.arrPostos = $scope.arrPostos.concat(data.splice(-1,1));
-    		  for(var counter = 0;counter < data.length-1;counter++){ // sempre ignorar ultima posicao do array
-    			$scope.criarMarkers(data[counter].coordenadaX, data[counter].coordenadaY);
-    			$scope.arrPostos.push(data[counter]);
-    		  }
+          for(var counter = 0;counter < data.length-1;counter++){ // sempre ignorar ultima posicao do array
+
+            data[counter].preco = data[counter].listaPrecosGNV.length == 0 ? '0.000' :
+                data[counter].listaPrecosGNV[data[counter].listaPrecosGNV.length - 1].valorGNV;
+
+            data[counter].ultimaAtualizacao = data[counter].listaPrecosGNV.length == 0 ? 'Sem atualizações' :
+                data[counter].listaPrecosGNV[data[counter].listaPrecosGNV.length - 1].tempoUltimaAtulizacao;
+
+            data[counter].usuarioUltimaAtualizacao =  data[counter].listaPrecosGNV.length == 0 ? 'Nenhum usuário atualizou' :
+                data[counter].listaPrecosGNV[data[counter].listaPrecosGNV.length - 1].usuario.nome;
+
+            $scope.criarMarkers(data[counter].coordenadaX, data[counter].coordenadaY);
+            $scope.arrPostos.push(data[counter]);
+          }
     		  //alert('markers posicionados');
     		});
     		responseRecuperaPostos3.error(function(data, status, headers, config) {
-    		  alert('Erro ao recuperar postos 3! -> '+JSON.stringify({data2: data}));
-    		  //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
-    		});*/
+    		  alert('Erro ao recuperar postos! -> '+JSON.stringify({data2: data}));
+          //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
+    		});
       });
     }, function(error){
       //alert("erro -> "+JSON.stringify({data2: error}));
