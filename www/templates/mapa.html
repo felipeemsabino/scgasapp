@@ -4,6 +4,8 @@
     <ion-tab title="Mapa" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
       <ion-view>
          <ion-content class="has-header" >
+           <label class="item item-input" ng-show="habilitarPesquisaEnd"><input type="text" id="origem" placeholder="Escolher a origem" ng-model="rota.origem.nome"></label>
+           <label class="item item-input" ng-show="habilitarPesquisaEnd"><input type="text" id="destino" placeholder="Escolher o destino" ng-model="rota.destino.nome"></label>
            <div id="map" data-tap-disabled="true"></div>
          </ion-content>
        </ion-view>
@@ -47,7 +49,7 @@
       Filtrar
     </a>
     <a class="tab-item">
-      <i class="icon ion-star" ng-click="tracarRotaPosto();"></i>
+      <i class="icon ion-star" ng-click="habilitarPesquisaEndereco();"></i>
       Rota
     </a>
     <a class="tab-item">

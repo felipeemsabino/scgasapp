@@ -4,8 +4,14 @@ angular.module('starter.controllers')
 
 function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup) {
   try {
+    $scope.habilitarPesquisaEnd = false;
     $scope.allMarkers = []; // array para armazenar os markers do mapa
+    $scope.locationMarker = null;
     $scope.arrPostos = []; // array para armazenar os postos recuperados do serviço
+    $scope.rota = {
+      "origem": {"nome":"", "lat":"", "lng":""},
+      "destino": {"nome":"", "lat":"", "lng":""}
+    };
     $scope.bandeiras = [ // array para armazenar as bandeiras cadastradas
      {"nome":"Bandeira Branca", "id":"ban", "selecionado":true},
      {"nome":"Raízen Mime", "id":"rai", "selecionado":true},
@@ -48,6 +54,9 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup)
     };
     /* Fim de bloco "load more"*/
 
+    $scope.localizacaoAlterada = function (location) {
+      //alert('localizacaoAlterada -> '+location);
+    };
 
      // Mostra o popup com os filtros de bandeira para o mapa
     $scope.showPopupFiltroBandeira = function() {
@@ -102,8 +111,15 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup)
     };
 
     // Inicia fluxo para traçar rota do usuário até um determinado posto
-    $scope.tracarRotaPosto = function () {
-      alert('tracarRotaPosto');
+    $scope.habilitarPesquisaEndereco = function () {
+      if($scope.habilitarPesquisaEnd == true) {
+        $scope.habilitarPesquisaEnd = false;
+      } else {
+        $scope.habilitarPesquisaEnd = true;
+      }
+      if(!$scope.habilitarPesquisaEnd) {
+        $scope.directionsDisplay.setMap(null);
+      }
     };
 
     // Atualiza as informações dos postos que estão no mapa
@@ -111,6 +127,29 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup)
       $scope.removeDadosPostos();
       $scope.recuperaPostos();
     };
+
+    var watchOptions = {timeout : 3000,  enableHighAccuracy: false};
+
+    $cordovaGeolocation.watchPosition(watchOptions).then(null, function(err) {
+        // error
+      },
+      function(position) {
+        var lat  = position.coords.latitude;
+        var long = position.coords.longitude;
+        var latLng = new google.maps.LatLng(lat, long);
+
+        if($scope.locationMarker == null) {
+
+          $scope.locationMarker = new google.maps.Marker({
+              map: $scope.map,
+              //animation: google.maps.Animation.DROP,
+              position: latLng,
+              icon: 'img/map_pointer.png'
+          });
+        } else {
+          $scope.locationMarker.setPosition(latLng);
+        }
+      });
 
     // Configurações do mapa
     var options = {timeout: 10000, enableHighAccuracy: true};
@@ -142,7 +181,6 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup)
 
     // Carrega tela que exibe as informações detalhadas do posto selecionado pelo usuário
     $scope.detalhesPosto = function (posto)  {
-      console.log(posto);
       $state.go('app.detalhe_posto', {paramPosto: posto});//
     };
 
@@ -161,6 +199,14 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup)
 
       $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+      $scope.geocoder = new google.maps.Geocoder();
+
+      $scope.directionsService = new google.maps.DirectionsService();
+
+      $scope.directionsDisplay = new google.maps.DirectionsRenderer();
+
+      $scope.directionsDisplay.setMap($scope.map);
+
       //Reload markers every time the map moves
       google.maps.event.addListener($scope.map, 'dragend', function(){});
 
@@ -171,6 +217,9 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup)
       google.maps.event.addListenerOnce($scope.map, 'idle', function(){
         $scope.hide();
         $scope.recuperaPostos();
+        $scope.rota.origem.lat = position.coords.latitude;
+        $scope.rota.origem.lng = position.coords.longitude;
+        $scope.recuperaLocalizacaoAtual();
       });
     }, function(error){
       //alert("erro -> "+JSON.stringify({data2: error}));
@@ -269,5 +318,101 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup)
           //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
         });
     };
-  } catch (ex) {alert(ex);}
+
+    $scope.recuperaLocalizacaoAtual = function () {
+      var latlng = {lat: parseFloat($scope.position.coords.latitude), lng: parseFloat($scope.position.coords.longitude)};
+      console.log(latlng);
+      $scope.geocoder.geocode({'location': latlng}, function(results, status) {
+        if (status === 'OK') {
+          if (results[1]) {
+            $scope.rota.origem.nome = results[1].formatted_address
+          } else {
+            console.log('No results found');
+          }
+        } else {
+          console.log('Geocoder failed due to: ' + status);
+        }
+      });
+    };
+
+    $scope.carregarNoMapa = function(endereco) {
+        geocoder.geocode({ 'address': endereco + ', Brasil', 'region': 'BR' }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    var latitude = results[0].geometry.location.lat();
+                    var longitude = results[0].geometry.location.lng();
+
+                    $('#txtEndereco').val(results[0].formatted_address);
+                    $('#txtLatitude').val(latitude);
+                    $('#txtLongitude').val(longitude);
+
+                    var location = new google.maps.LatLng(latitude, longitude);
+                    marker.setPosition(location);
+                    map.setCenter(location);
+                    map.setZoom(16);
+                }
+            }
+        });
+    };
+
+    jQuery(document).ready(function() {
+      $("#origem").autocomplete({
+          source: function (request, response) {
+              $scope.geocoder.geocode({ 'address': request.term + ', Brasil', 'region': 'BR' }, function (results, status) {
+                  response($.map(results, function (item) {
+                      return {
+                          label: item.formatted_address,
+                          value: item.formatted_address,
+                          latitude: item.geometry.location.lat(),
+                          longitude: item.geometry.location.lng()
+                      }
+                  }));
+              })
+          },
+          select: function (event, ui) {
+              $scope.rota.origem.nome = ui.item.label;
+              $scope.rota.origem.lat = ui.item.latitude;
+              $scope.rota.origem.lng = ui.item.longitude;
+          }
+      });
+      $("#destino").autocomplete({
+          source: function (request, response) {
+              $scope.geocoder.geocode({ 'address': request.term + ', Brasil', 'region': 'BR' }, function (results, status) {
+                  response($.map(results, function (item) {
+                      return {
+                          label: item.formatted_address,
+                          value: item.formatted_address,
+                          latitude: item.geometry.location.lat(),
+                          longitude: item.geometry.location.lng()
+                      }
+                  }));
+              })
+          },
+          select: function (event, ui) {
+              $scope.rota.destino.nome = ui.item.label;
+              $scope.rota.destino.lat = ui.item.latitude;
+              $scope.rota.destino.lng = ui.item.longitude;
+              $scope.buscarRota();
+          }
+      });
+    });
+
+    $scope.iniciarNavegacao = function () {
+
+    };
+
+    $scope.buscarRota = function () {
+      var request = { // Novo objeto google.maps.DirectionsRequest, contendo:
+          origin: $scope.rota.origem.nome, // origem
+          destination: $scope.rota.destino.nome, // destino
+          travelMode: google.maps.TravelMode.DRIVING // meio de transporte, nesse caso, de carro
+       };
+
+       $scope.directionsService.route(request, function(result, status) {
+          if (status == google.maps.DirectionsStatus.OK) { // Se deu tudo certo
+             $scope.directionsDisplay.setDirections(result); // Renderizamos no mapa o resultado
+          }
+       });
+    };
+  } catch (ex) {alert(ex);console.log(ex);}
 }]);
