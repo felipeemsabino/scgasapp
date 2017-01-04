@@ -23,7 +23,9 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  $ionicConfigProvider.tabs.position('top');
+
   $stateProvider
 
    .state('app', {
@@ -109,7 +111,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
 		}
 	})
 
-	.state('app.mapa', {
+  .state('app.mapa', {
 		url: '/mapa',
 		views: {
 		  'menuContent': {
