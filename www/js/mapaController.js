@@ -1,10 +1,14 @@
 angular.module('starter.controllers')
 
 .controller('MapaCtrl', ['$scope', '$state', '$cordovaGeolocation', '$ionicLoading', '$http', '$ionicPopup',
+'$ionicTabsDelegate', 'orderByFilter',
 
-function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup) {
+function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup, $ionicTabsDelegate, orderBy) {
   try {
     $scope.habilitarPesquisaEnd = false;
+    $scope.habilitarBotaoRota = true;
+    $scope.habilitarBotaoOrdenar = false;
+    $scope.tabAtiva = 0;
     $scope.allMarkers = []; // array para armazenar os markers do mapa
     $scope.locationMarker = null;
     $scope.arrPostos = []; // array para armazenar os postos recuperados do serviço
@@ -12,7 +16,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup)
       "origem": {"nome":"", "lat":"", "lng":""},
       "destino": {"nome":"", "lat":"", "lng":""}
     };
-    $scope.bandeiras = [ // array para armazenar as bandeiras cadastradas
+    $scope.bandeiras = [ // array para armazenar as bandeiras cadastradas. consumir serviço
      {"nome":"Bandeira Branca", "id":"ban", "selecionado":true},
      {"nome":"Raízen Mime", "id":"rai", "selecionado":true},
      {"nome":"Ipiranga", "id":"ipi", "selecionado":true},
@@ -21,6 +25,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup)
      {"nome":"Alesat", "id":"ale", "selecionado":true},
      {"nome":"American Oil", "id":"ame", "selecionado":true}
    ];
+
     // Mostrar popup carregando
     $scope.show = function() {
       $ionicLoading.show({
@@ -90,13 +95,28 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup)
     /* Coloca no map os markers que possuem bandeiras escolhidas no filtro e retirada do mapa os markers cuja bandeira não
      foi escolhida no filtro */
     function aplicaFiltroBandeira () {
-      for(var contadorMarkers = 0;contadorMarkers < $scope.allMarkers.length;contadorMarkers++){
-        for(var contadorBandeiras = 0;contadorBandeiras < $scope.bandeiras.length;contadorBandeiras++){
-          if($scope.allMarkers[contadorMarkers].nomeBandeira == $scope.bandeiras[contadorBandeiras].nome) {//marker é da mesma bandeira
+      var arrayAuxiliar = [];
+      if($scope.tabAtiva == 0) {
+        arrayAuxiliar = $scope.allMarkers; // copia cada marker referente ao posto para o array auxiliar
+      } else if($scope.tabAtiva == 1) {
+        arrayAuxiliar = $scope.arrPostos; // copia cada posto da lista de postos para o array auxiliar
+      }
+      for(var contadorMarkers = 0;contadorMarkers < arrayAuxiliar.length;contadorMarkers++) {
+        for(var contadorBandeiras = 0;contadorBandeiras < $scope.bandeiras.length;contadorBandeiras++) {
+          if(arrayAuxiliar[contadorMarkers].bandeiraPosto.nome == $scope.bandeiras[contadorBandeiras].nome) {//marker ou posto é da mesma bandeira
+
             if($scope.bandeiras[contadorBandeiras].selecionado) { //bandeira escolhida no filtro
-              $scope.allMarkers[contadorMarkers].setMap($scope.map);
+              if($scope.tabAtiva == 0) { // se estiver na aba de mapa
+                arrayAuxiliar[contadorMarkers].setMap($scope.map); // habilita visualizacão do marker no mapa
+              } else if($scope.tabAtiva == 1) {
+                arrayAuxiliar[contadorMarkers].mostrar = true; // habilita visualizacão do posto na lista
+              }
             } else {
-              $scope.allMarkers[contadorMarkers].setMap(null);
+              if($scope.tabAtiva == 0) { // se estiver na aba de lista de postos
+                arrayAuxiliar[contadorMarkers].setMap(null); // desabilita visualizacão do marker no mapa
+              } else if($scope.tabAtiva == 1) {
+                arrayAuxiliar[contadorMarkers].mostrar = false; // // desabilita visualizacão do posto na lista
+              }
             }
           }
         }
@@ -165,7 +185,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup)
           animation: google.maps.Animation.DROP,
           position: latLng,
           icon: posto.bandeiraPosto.nome == "Bandeira Branca" ? 'img/gas_default.png' : 'img/gas_default.png',
-          nomeBandeira: posto.bandeiraPosto.nome
+          bandeiraPosto: {"nome": posto.bandeiraPosto.nome}
       });
       $scope.allMarkers.push(marker);
 
@@ -256,6 +276,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup)
               data[counter].listaPrecosGNV[data[counter].listaPrecosGNV.length - 1].usuario.nome;
 
           $scope.criarMarkers(data[counter]);
+          data[counter].mostrar = true;
           $scope.arrPostos.push(data[counter]);
         }
           //console.log($scope.arrPostos[0]);
@@ -283,6 +304,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup)
                 data[counter].listaPrecosGNV[data[counter].listaPrecosGNV.length - 1].usuario.nome;
 
             $scope.criarMarkers(data[counter]);
+            data[counter].mostrar = true;
             $scope.arrPostos.push(data[counter]);
           }
           //alert('markers posicionados');
@@ -309,6 +331,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup)
                 data[counter].listaPrecosGNV[data[counter].listaPrecosGNV.length - 1].usuario.nome;
 
             $scope.criarMarkers(data[counter]);
+            data[counter].mostrar = true;
             $scope.arrPostos.push(data[counter]);
           }
           //alert('markers posicionados');
@@ -413,6 +436,34 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup)
              $scope.directionsDisplay.setDirections(result); // Renderizamos no mapa o resultado
           }
        });
+    };
+
+    $scope.alteraTab = function() {
+      if($ionicTabsDelegate.selectedIndex() == 0) {
+        $scope.tabAtiva = 0;
+        $scope.habilitarBotaoRota = true;
+        $scope.habilitarBotaoOrdenar = false;
+      } else if($ionicTabsDelegate.selectedIndex() == 1) {
+        $scope.tabAtiva = 1;
+        $scope.habilitarBotaoRota = false;
+        $scope.habilitarBotaoOrdenar = true;
+      }
+    };
+
+    // Ordena lista de postos de acordo com o preço
+    $scope.ordenarListaPostos = function () {
+      $scope.sortBy('preco');
+    };
+
+    $scope.propertyName = null;
+    $scope.reverse = true;
+    $scope.arrPostos = orderBy($scope.arrPostos, $scope.propertyName, $scope.reverse);
+
+    $scope.sortBy = function(propertyName) {
+      $scope.reverse = (propertyName !== null && $scope.propertyName === propertyName)
+          ? !$scope.reverse : false;
+      $scope.propertyName = propertyName;
+      $scope.arrPostos = orderBy($scope.arrPostos, $scope.propertyName, $scope.reverse);
     };
   } catch (ex) {alert(ex);console.log(ex);}
 }]);

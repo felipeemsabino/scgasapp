@@ -1,7 +1,7 @@
 <ion-view view-title="Buscar postos" >
   <ion-tabs class="tabs-positive tabs-icon-top">
 
-    <ion-tab title="Mapa" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+    <ion-tab title="Mapa" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline" on-select="alteraTab();">
       <ion-view>
          <ion-content class="has-header" >
            <label class="item item-input" ng-show="habilitarPesquisaEnd"><input type="text" id="origem" placeholder="Escolher a origem" ng-model="rota.origem.nome"></label>
@@ -11,11 +11,11 @@
        </ion-view>
     </ion-tab>
 
-    <ion-tab title="Lista" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+    <ion-tab title="Lista" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline" on-select="alteraTab();">
       <ion-view>
          <ion-content class="has-header" >
           <ion-list>
-            <div class="card" ng-repeat="posto in arrPostos" ng-click="detalhesPosto(posto);">
+            <div class="card" ng-repeat="posto in arrPostos" ng-click="detalhesPosto(posto);" ng-show="posto.mostrar">
               <div class="row" >
                 <div class="col col-25" style="text-align: center">
                   <h3>{{posto.preco ? posto.preco : '0.000'}}</h3>
@@ -48,9 +48,13 @@
       <i class="icon ion-home" ng-click="filtrarPostosBandeira();"></i>
       Filtrar
     </a>
-    <a class="tab-item">
+    <a class="tab-item" ng-show="habilitarBotaoRota">
       <i class="icon ion-star" ng-click="habilitarPesquisaEndereco();"></i>
       Rota
+    </a>
+    <a class="tab-item" ng-show="habilitarBotaoOrdenar">
+      <i class="icon ion-star" ng-click="ordenarListaPostos();"></i>
+      Ordenar Postos
     </a>
     <a class="tab-item">
       <i class="icon ion-gear-a" ng-click="atualizarInformacoesPostos();"></i>
