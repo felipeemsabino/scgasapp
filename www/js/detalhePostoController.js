@@ -71,42 +71,26 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     });
 
     myPopup.then(function(res) {
-      console.log('Tapped!', res);
+      //console.log('Tapped!', res);
     });
   };
-
-
-  /*var options = {timeout: 10000, enableHighAccuracy: true};
-
-  $cordovaGeolocation.getCurrentPosition(options).then(function(position){
-    $scope.show('Carregando mapa...');
-
-    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
+  try {
+    // Configurações do mapa
+    var options = {timeout: 10000, enableHighAccuracy: true};
+    var latLng = new google.maps.LatLng(-19.886519200000002, -43.9908041);
+    // Configurações do mapa e de localização do usuário
     var mapOptions = {
       center: latLng,
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-
-    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-    //Reload markers every time the map moves
-    google.maps.event.addListener($scope.map, 'dragend', function(){
-       //alert("moved!");
+    $scope.map = new google.maps.Map(document.getElementById("map2"), mapOptions);
+    google.maps.event.addListenerOnce($scope.map, 'idle', function(){
+      $scope.hide();
+      /*$scope.recuperaPostos();
+      $scope.rota.origem.lat = position.coords.latitude;
+      $scope.rota.origem.lng = position.coords.longitude;
+      $scope.recuperaLocalizacaoAtual();*/
     });
-
-     //Reload markers every time the zoom changes
-    google.maps.event.addListener($scope.map, 'zoom_changed', function(){
-     //alert("zoomed!");
-    });
-
-    //Wait until the map is loaded
-    google.maps.event.addListenerOnce($scope.map, 'idle', function(){ });
-  }, function(error){
-    //alert("erro -> "+JSON.stringify({data2: error}));
-    window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
-    //alert('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!');
-    $scope.hide();
-  });*/
+  } catch(ex) {console.log(ex);}
 }]);
