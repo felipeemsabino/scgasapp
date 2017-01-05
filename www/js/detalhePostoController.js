@@ -3,9 +3,13 @@ angular.module('starter.controllers')
 .controller('DetalhePostoCtrl', ['$scope', '$state', '$cordovaGeolocation', '$ionicLoading', '$http', '$stateParams', '$ionicPopup',
 
 function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams, $ionicPopup) {
+  $scope.rota = {
+    "origem": {"nome":"", "lat":"", "lng":""},
+    "destino": {"nome":"", "lat":"", "lng":""}
+  };
 
   $scope.posto = $stateParams.paramPosto;
-
+  //console.log($scope.posto);
   if(!$scope.posto.preco)
       $scope.posto.preco = 0.000;
 
@@ -74,23 +78,96 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
       //console.log('Tapped!', res);
     });
   };
-  try {
-    // Configurações do mapa
-    var options = {timeout: 10000, enableHighAccuracy: true};
-    var latLng = new google.maps.LatLng(-19.886519200000002, -43.9908041);
-    // Configurações do mapa e de localização do usuário
-    var mapOptions = {
-      center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+
+  $scope.navegarPosto = function () {
+    $scope.tracarRota();
+  };
+
+  jQuery(document).ready(function() {
+
+    /* Inicio configurações do mapa */
+
+      var mapOptions = {
+        center: $scope.latlngInicial,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+      var mapa = new google.maps.Map(document.getElementById("map2"), mapOptions);
+
+      $scope.geocoder = new google.maps.Geocoder();
+
+      $scope.directionsService = new google.maps.DirectionsService();
+
+      $scope.directionsDisplay = new google.maps.DirectionsRenderer();
+
+      $scope.directionsDisplay.setMap(mapa);
+
+      //Reload markers every time the map moves
+      google.maps.event.addListener(mapa, 'dragend', function(){});
+
+       //Reload markers every time the zoom changes
+      google.maps.event.addListener(mapa, 'zoom_changed', function(){});
+
+      //Wait until the map is loaded
+      google.maps.event.addListenerOnce(mapa, 'idle', function(){
+        $scope.hide();
+
+        // Seta coordenadas do usuario
+        $scope.rota.origem.lat = $scope.position.coords.latitude;
+        $scope.rota.origem.lng = $scope.position.coords.longitude;
+
+        // Recupera o endereço do usuario
+        $scope.recuperaLocalizacaoAtual($scope.rota.origem.lat, $scope.rota.origem.lng, true);
+
+        // Seta lat e lng do destino e recupera endereço do mesmo
+        $scope.rota.destino.lat = parseFloat($scope.posto.coordenadaX.replace(',','.'));
+        $scope.rota.destino.lng = parseFloat($scope.posto.coordenadaY.replace(',','.'));
+        $scope.recuperaLocalizacaoAtual($scope.rota.destino.lat, $scope.rota.destino.lng, false);
+
+        $scope.setMap(mapa);
+        $scope.resetLocationMarker();
+
+        $scope.adicionaMarker($scope.posto);
+      });
+    /* Fim configurações do mapa */
+
+    $scope.recuperaLocalizacaoAtual = function (lat, lng, origem) {
+      var latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
+      $scope.geocoder.geocode({'location': latlng}, function(results, status) {
+        if (status === 'OK') {
+          if (results[1]) {
+              if(origem) {
+                $scope.rota.origem.nome = results[1].formatted_address;
+              } else {
+                $scope.rota.destino.nome = results[1].formatted_address;
+              }
+
+          } else {
+            console.log('No results found');
+          }
+        } else {
+          console.log('Geocoder failed due to: ' + status);
+        }
+      });
     };
-    $scope.map = new google.maps.Map(document.getElementById("map2"), mapOptions);
-    google.maps.event.addListenerOnce($scope.map, 'idle', function(){
-      $scope.hide();
-      /*$scope.recuperaPostos();
-      $scope.rota.origem.lat = position.coords.latitude;
-      $scope.rota.origem.lng = position.coords.longitude;
-      $scope.recuperaLocalizacaoAtual();*/
-    });
-  } catch(ex) {console.log(ex);}
+
+    // Busca rota entre dois endereços
+    $scope.tracarRota = function () {
+      var request = { // Novo objeto google.maps.DirectionsRequest, contendo:
+          origin: $scope.rota.origem.nome, // origem
+          destination: $scope.rota.destino.nome, // destino
+          travelMode: google.maps.TravelMode.DRIVING // meio de transporte, nesse caso, de carro
+       };
+
+       $scope.directionsService.route(request, function(result, status) {
+          if (status == google.maps.DirectionsStatus.OK) { // Se deu tudo certo
+             $scope.directionsDisplay.setDirections(result);
+          } else {
+            console.log(result);
+          }
+       });
+    };
+
+  });
 }]);
