@@ -59,7 +59,6 @@ angular.module('starter.controllers', [])
     if($scope.map != null) {
 
       if($scope.locationMarker == null) {
-        alert('nulooooooooooooooooooooo');
         $scope.locationMarker = new google.maps.Marker({
             map: $scope.map,
             //animation: google.maps.Animation.DROP,
