@@ -76,7 +76,9 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup,
             text: '<b>Ok</b>',
             type: 'button-positive',
             onTap: function(e) {
+              $scope.show();
               aplicaFiltroBandeira();
+              $scope.hide();
             }
           }
         ]
@@ -415,7 +417,9 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup,
 
     // Ordena lista de postos de acordo com o preço
     $scope.ordenarListaPostos = function () {
+      $scope.show();
       $scope.sortBy('preco');
+      $scope.hide();
     };
 
     $scope.propertyName = null;
