@@ -1,17 +1,31 @@
 <ion-view view-title="Buscar postos" >
   <ion-tabs class="tabs-positive tabs-icon-top">
 
-    <ion-tab title="Mapa" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline" on-select="alteraTab();">
+    <ion-tab title="Mapa" icon-on="ion-ios-location" icon-off="ion-ios-location-outline" on-select="alteraTab();">
       <ion-view>
          <ion-content class="has-header" >
-           <label class="item item-input" ng-show="habilitarPesquisaEnd"><input type="text" id="origem" placeholder="Escolher a origem" ng-model="rota.origem.nome"></label>
-           <label class="item item-input" ng-show="habilitarPesquisaEnd"><input type="text" id="destino" placeholder="Escolher o destino" ng-model="rota.destino.nome"></label>
+             <div class="row" ng-show="habilitarPesquisaEnd">
+               <div class="col col-80">
+                  <label class="item item-input"><input type="text" id="origem" placeholder="Escolher a origem" ng-model="rota.origem.nome"></label>
+                  <label class="item item-input"><input type="text" id="destino" placeholder="Escolher o destino" ng-model="rota.destino.nome"></label>
+               </div>
+               <div class="col col-20">
+                 <button class="button button-icon" style="margin-left:auto;margin-right:auto;display:block;"
+                      ng-click="tracarRota();">
+                   <i class="icon ion-android-search"></i>
+                 </button>
+                 <button class="button button-icon" style="margin-left:auto;margin-right:auto;display:block;"
+                      ng-click="limparRota();">
+                   <i class="icon ion-minus-circled"></i>
+                 </button>
+               </div>
+            </div>
            <div id="map" data-tap-disabled="true"></div>
          </ion-content>
        </ion-view>
     </ion-tab>
 
-    <ion-tab title="Lista" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline" on-select="alteraTab();">
+    <ion-tab title="Lista" icon-on="ion-ios-list" icon-off="ion-ios-list-outline" on-select="alteraTab();">
       <ion-view>
          <ion-content class="has-header" >
           <ion-list>
@@ -45,19 +59,19 @@
   </ion-tabs>
   <div class="tabs tabs-icon-top">
     <a class="tab-item">
-      <i class="icon ion-home" ng-click="filtrarPostosBandeira();"></i>
+      <i class="icon ion-ios-color-filter-outline" ng-click="filtrarPostosBandeira();"></i>
       Filtrar
     </a>
     <a class="tab-item" ng-show="habilitarBotaoRota">
-      <i class="icon ion-star" ng-click="habilitarPesquisaEndereco();"></i>
+      <i class="icon ion-ios-navigate-outline" ng-click="habilitarPesquisaEndereco();"></i>
       Rota
     </a>
     <a class="tab-item" ng-show="habilitarBotaoOrdenar">
-      <i class="icon ion-star" ng-click="ordenarListaPostos();"></i>
+      <i class="icon ion-ios-drag" ng-click="ordenarListaPostos();"></i>
       Ordenar Postos
     </a>
     <a class="tab-item">
-      <i class="icon ion-gear-a" ng-click="atualizarInformacoesPostos();"></i>
+      <i class="icon ion-ios-cloud-download-outline" ng-click="atualizarInformacoesPostos();"></i>
       Atualizar
     </a>
   </div>

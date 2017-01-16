@@ -385,13 +385,25 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup,
               $scope.rota.destino.nome = ui.item.label;
               $scope.rota.destino.lat = ui.item.latitude;
               $scope.rota.destino.lng = ui.item.longitude;
-              $scope.tracarRota();
           }
       });
     });
 
+    $scope.limparRota = function () {
+      $scope.show();
+      $scope.directionsDisplay.setMap(null);
+      $("#destino").val("");
+      $scope.hide();
+    };
+
     // Busca rota entre dois endereços
     $scope.tracarRota = function () {
+      if( !$("#origem").val() || !$("#destino").val() ) {
+        //alert('Favor preencher os campos de origem e destino!');
+        window.plugins.toast.show('Favor preencher os campos de origem e destino!', 'long', 'center', function(a){}, function(b){});
+        return;
+      }
+      $scope.show();
       var request = { // Novo objeto google.maps.DirectionsRequest, contendo:
           origin: $scope.rota.origem.nome, // origem
           destination: $scope.rota.destino.nome, // destino
@@ -403,6 +415,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup,
              $scope.directionsDisplay.setMap($scope.map);
              $scope.directionsDisplay.setDirections(result);
           }
+          $scope.hide();
        });
     };
 
