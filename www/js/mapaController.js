@@ -1,9 +1,9 @@
 angular.module('starter.controllers')
 
 .controller('MapaCtrl', ['$scope', '$state', '$cordovaGeolocation', '$ionicLoading', '$http', '$ionicPopup',
-'$ionicTabsDelegate', 'orderByFilter',
+'$ionicTabsDelegate', 'orderByFilter', '$compile',
 
-function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup, $ionicTabsDelegate, orderBy) {
+function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup, $ionicTabsDelegate, orderBy, $compile) {
   try {
 
     $scope.habilitarPesquisaEnd = false;
@@ -164,10 +164,12 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup,
           bandeiraPosto: {"nome": posto.bandeiraPosto.nome}
       });
       $scope.allMarkers.push(marker);
-
-      var popupContent = posto.listaPrecosGNV.length == 0 ? '0.000' : posto.listaPrecosGNV[posto.listaPrecosGNV.length-1].valorGNV.toString();
+      var compiledContent = $compile('<a ng-click='detalhesPosto(posto)'>Ver detalhes</a>')($scope);
+      var popupContent = "<div id='infoWindowDiv' style='align-content:center;text-align:center'>";
+      popupContent += posto.listaPrecosGNV.length == 0 ? '0.000' : posto.listaPrecosGNV[posto.listaPrecosGNV.length-1].valorGNV.toString();
+      popupContent += '</br><a>Ver detalhes</a>';
       var infoWindow = new google.maps.InfoWindow({
-          content: popupContent
+          content: popupContent+'</div>'
       });
 
       google.maps.event.addListener(marker, 'click', function () {
@@ -328,6 +330,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup,
           $scope.rota.origem.lng = $scope.position.coords.longitude;
           $scope.recuperaLocalizacaoAtual();
           $scope.setMap(mapa);
+          criaBotaoCentralizar();
         });
       /* Fim configurações do mapa */
 
@@ -432,5 +435,56 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup,
       $scope.propertyName = propertyName;
       $scope.arrPostos = orderBy($scope.arrPostos, $scope.propertyName, $scope.reverse);
     };
+
+    function criaBotaoCentralizar () {
+      // Create the DIV to hold the control and call the CenterControl()
+      // constructor passing in this DIV.
+      //alert('cria botao centralizar');
+      var centerControlDiv = document.createElement('div');
+      var centerControl = new CenterControl(centerControlDiv, $scope.map);
+
+      centerControlDiv.index = 1;
+      $scope.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+    }
+
+    /**
+       * The CenterControl adds a control to the map that recenters the map on
+       * Chicago.
+       * This constructor takes the control DIV as an argument.
+       * @constructor
+       */
+      function CenterControl(controlDiv, map) {
+
+        // Set CSS for the control border.
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.border = '2px solid #fff';
+        controlUI.style.borderRadius = '3px';
+        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.marginBottom = '22px';
+        controlUI.style.textAlign = 'center';
+        controlUI.title = 'Click to recenter the map';
+        controlDiv.appendChild(controlUI);
+
+        // Set CSS for the control interior.
+        var controlText = document.createElement('div');
+        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+        controlText.style.fontSize = '16px';
+        controlText.style.lineHeight = '38px';
+        controlText.style.paddingLeft = '5px';
+        controlText.style.paddingRight = '5px';
+        controlText.innerHTML = 'Center Map';
+        controlUI.appendChild(controlText);
+
+        // Setup the click event listeners: simply set the map to Chicago.
+        controlUI.addEventListener('click', function() {
+          var posicaoUsuario = {lat: $scope.position.coords.latitude, lng: $scope.position.coords.longitude};
+          map.setCenter(posicaoUsuario);
+        });
+
+      }
+
   } catch (ex) {alert(ex);console.log(ex);}
 }]);
