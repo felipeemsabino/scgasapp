@@ -164,23 +164,19 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup,
           bandeiraPosto: {"nome": posto.bandeiraPosto.nome}
       });
       $scope.allMarkers.push(marker);
-      //var compiledContent = $compile('<a ng-click='detalhesPosto(posto)'>Ver detalhes</a>')($scope);
+
       var popupContent = "<div id='infoWindowDiv' style='align-content:center;text-align:center'>";
       popupContent += posto.listaPrecosGNV.length == 0 ? '0.000' : posto.listaPrecosGNV[posto.listaPrecosGNV.length-1].valorGNV.toString();
-      popupContent += '</br><a ng-click="testeChamada();">Ver detalhes</a></div>';
-      // ao inves de    ng-click="testeChamada();"       tem que ser ng-click="detalhesPosto(posto)"
-      
+      popupContent += "</br><a ng-click='detalhesPosto("+JSON.stringify(posto)+");'>Ver detalhes</a></div>";
+      var compiled = $compile(popupContent)($scope);
+
       var infoWindow = new google.maps.InfoWindow({
-          content: popupContent
+          content: compiled[0]
       });
 
       google.maps.event.addListener(marker, 'click', function () {
           infoWindow.open($scope.map, marker);
       });
-    };
-
-    $scope.testeChamada = function () {
-        alert(chamou);
     };
 
     // Carrega tela que exibe as informações detalhadas do posto selecionado pelo usuário
