@@ -164,12 +164,12 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $ionicPopup,
           bandeiraPosto: {"nome": posto.bandeiraPosto.nome}
       });
       $scope.allMarkers.push(marker);
-      var compiledContent = $compile('<a ng-click='detalhesPosto(posto)'>Ver detalhes</a>')($scope);
+      //var compiledContent = $compile('<a ng-click='detalhesPosto(posto)'>Ver detalhes</a>')($scope);
       var popupContent = "<div id='infoWindowDiv' style='align-content:center;text-align:center'>";
       popupContent += posto.listaPrecosGNV.length == 0 ? '0.000' : posto.listaPrecosGNV[posto.listaPrecosGNV.length-1].valorGNV.toString();
-      popupContent += '</br><a>Ver detalhes</a>';
+      popupContent += '</br><a>Ver detalhes</a></div>';
       var infoWindow = new google.maps.InfoWindow({
-          content: popupContent+'</div>'
+          content: popupContent
       });
 
       google.maps.event.addListener(marker, 'click', function () {
