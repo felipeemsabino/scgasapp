@@ -1,17 +1,36 @@
 angular.module('starter.controllers')
 
-.controller('DetalhePostoCtrl', ['$scope', '$state', '$cordovaGeolocation', '$ionicLoading', '$http', '$stateParams', '$ionicPopup',
+.controller('MapaDetalhePostoCtrl', ['$scope', '$state', '$cordovaGeolocation', '$ionicLoading', '$http', '$stateParams', '$ionicPopup',
+'$rootScope', '$ionicHistory', '$ionicSideMenuDelegate',
+function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams, $ionicPopup, $rootScope, $ionicHistory, $ionicSideMenuDelegate) {
 
-function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams, $ionicPopup) {
+  /* Variaveis de controle */
+
+  // Variavel representando origem e destino (posto) do usuario
   $scope.rota = {
     "origem": {"nome":"", "lat":"", "lng":""},
     "destino": {"nome":"", "lat":"", "lng":""}
   };
 
+  // Posto enviado via parametro
   $scope.posto = $stateParams.paramPosto;
-  //console.log($scope.posto);
+
+  // Verificacao de preco
   if(!$scope.posto.preco)
       $scope.posto.preco = 0.000;
+
+  /* Eventos View */
+  $scope.$on('$ionicView.afterEnter', function (e, data) {
+    $ionicSideMenuDelegate.canDragContent(false)
+    $scope.$root.showMenuIcon = false;
+
+    console.log('entrou na view de detalhe');
+  });
+
+  $scope.$on('$ionicView.beforeLeave', function (e, data) {
+    $scope.alteraMapa(null);
+    console.log('saiu da view do detalhe');
+  });
 
   $scope.show = function(mensagem) {
     $ionicLoading.show({
@@ -23,6 +42,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     $ionicLoading.hide().then(function(){});
   };
 
+  // Atualiza o preço do posto que o usuario inseriu
   $scope.atualizarPrecoPosto = function () {
     $scope.show('Atualizando preço...');
 
@@ -49,6 +69,8 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
       //alert('Erro -> ' + JSON.stringify({data2: data}));
     });
   };
+
+  // Mostra popup para usuario inserir o preço e salvar
   $scope.showPopupPreco = function() {
     var myPopup = $ionicPopup.show({
       template: '<input type="number" ng-model="posto.preco">',
@@ -79,10 +101,30 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     });
   };
 
+  // Traca rota da posicao do usuario ate o posto selecionado
   $scope.navegarPosto = function () {
     $scope.tracarRota();
   };
 
+  $scope.resetLocationMarker = function () {
+    $scope.locationMarker = null;
+  };
+
+  // Adiciona um marker para um posto especifico no mapa
+  $scope.adicionaMarker = function (posto) {
+    var latFormatada = parseFloat(posto.coordenadaX.replace(',','.'));
+    var lngFormatada = parseFloat(posto.coordenadaY.replace(',','.'));
+    var latLng = new google.maps.LatLng(latFormatada, lngFormatada);
+
+    var marker = new google.maps.Marker({
+        map: $scope.map,
+        animation: google.maps.Animation.DROP,
+        icon: posto.bandeiraPosto.nome == "Bandeira Branca" ? 'img/gas_default.png' : 'img/gas_default.png',
+        position: latLng
+    });
+    $scope.map.setCenter(latLng);
+  };
+  // Trecho para criar o Mapa e todas as configurações necessárias
   jQuery(document).ready(function() {
 
     /* Inicio configurações do mapa */
@@ -124,10 +166,8 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
         $scope.rota.destino.lat = parseFloat($scope.posto.coordenadaX.replace(',','.'));
         $scope.rota.destino.lng = parseFloat($scope.posto.coordenadaY.replace(',','.'));
         $scope.recuperaLocalizacaoAtual($scope.rota.destino.lat, $scope.rota.destino.lng, false);
-
-        $scope.setMap(mapa);
+        $scope.alteraMapa(mapa);
         $scope.resetLocationMarker();
-
         $scope.adicionaMarker($scope.posto);
       });
     /* Fim configurações do mapa */

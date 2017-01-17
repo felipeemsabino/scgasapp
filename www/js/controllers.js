@@ -14,28 +14,26 @@ angular.module('starter.controllers', [])
   $scope.position;
   $scope.locationMarker;
   $scope.map = null;
+  $scope.mapAux = null;
 
   $scope.setMap = function (mapa) {
     $scope.map = mapa;
   };
 
-  $scope.resetLocationMarker = function () {
-    $scope.locationMarker = null;
-  };
-
-  // Adiciona um marker para um posto especifico no mapa
-  $scope.adicionaMarker = function (posto) {
-    var latFormatada = parseFloat(posto.coordenadaX.replace(',','.'));
-    var lngFormatada = parseFloat(posto.coordenadaY.replace(',','.'));
-    var latLng = new google.maps.LatLng(latFormatada, lngFormatada);
-
-    var marker = new google.maps.Marker({
-        map: $scope.map,
-        animation: google.maps.Animation.DROP,
-        icon: posto.bandeiraPosto.nome == "Bandeira Branca" ? 'img/gas_default.png' : 'img/gas_default.png',
-        position: latLng
-    });
-    $scope.map.setCenter(latLng);
+  /*
+   * Altera o mapa que está sendo utilizado. Se é passado null, então o mapa da pagina mapa_postos esta sendo utilizado,
+   * caso contrario o mapa da pagina mapa_detalhe_posto estará sendo utilizado
+   */
+  $scope.alteraMapa = function (mapa) {
+    if (mapa != null) { // mapa referente ao detalhe posto
+      $scope.mapAux = $scope.map;
+      $scope.map = mapa;
+    } else {
+      mapa = $scope.mapAux;
+      $scope.mapAux = $scope.map;
+      $scope.map = mapa;
+    }
+    console.log($scope.map);
   };
 
   var watchOptions = {timeout : 3000,  enableHighAccuracy: false};

@@ -55,11 +55,23 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
     }
   })
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.mapa_postos', {
+    url: '/mapa_postos',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/mapa_postos.html',
+        controller: 'MapaPostosCtrl'
+      }
+    }
+  })
+
+  .state('app.mapa_detalhe_posto', {
+    url: '/mapa_detalhe_posto',
+    params: {paramPosto: null},
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/mapa_detalhe_posto.html',
+        controller: 'MapaDetalhePostoCtrl'
       }
     }
   })
@@ -109,28 +121,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
 				controller: 'RecuperarSenhaCtrl'
 			}
 		}
-	})
-
-  .state('app.mapa', {
-		url: '/mapa',
-		views: {
-		  'menuContent': {
-			templateUrl: 'templates/mapa.html',
-			controller: 'MapaCtrl'
-		  }
-		}
-})
-
-  .state('app.detalhe_posto', {
-    url: '/detalhe_posto',
-    params: {paramPosto: null},
-    views: {
-      'menuContent': {
-      templateUrl: 'templates/detalhe_posto.html',
-      controller: 'DetalhePostoCtrl'
-      }
-    }
-});
+	});
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
 });
