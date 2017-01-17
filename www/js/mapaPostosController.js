@@ -42,10 +42,10 @@ $ionicPopup, orderBy) {
  $scope.arrPostos = orderBy($scope.arrPostos, $scope.propertyName, $scope.reverse);
 
   // Mostrar popup carregando
-  $scope.show = function() {
+  $scope.show = function(popUpDuration) {
     $ionicLoading.show({
       template: 'Carregando...',
-      duration: 5000
+      duration: popUpDuration > 0 ? popUpDuration : 5000
     }).then(function(){});
   };
 
@@ -59,6 +59,7 @@ $ionicPopup, orderBy) {
   $scope.$on('$ionicView.afterEnter', function (e, data) {
     $ionicSideMenuDelegate.canDragContent(false)
     $scope.$root.showMenuIcon = false;
+    google.maps.event.trigger($scope.map, 'resize'); // resolvendo bug de area cinza quando volta para o mapa principal após atualizar o preço
 
     console.log('entrou na view de mapa');
   });
@@ -216,7 +217,7 @@ $ionicPopup, orderBy) {
 
   // Deleta a rota desenhada no mapa
   $scope.limparRota = function () {
-    $scope.show();
+    $scope.show(0);
     $scope.directionsDisplay.setMap(null);
     $("#destino").val("");
     $scope.hide();
@@ -229,7 +230,7 @@ $ionicPopup, orderBy) {
       window.plugins.toast.show('Favor preencher os campos de origem e destino!', 'long', 'center', function(a){}, function(b){});
       return;
     }
-    $scope.show();
+    $scope.show(0);
     var request = { // Novo objeto google.maps.DirectionsRequest, contendo:
         origin: $scope.rota.origem.nome, // origem
         destination: $scope.rota.destino.nome, // destino
@@ -241,7 +242,7 @@ $ionicPopup, orderBy) {
            $scope.directionsDisplay.setMap($scope.map);
            $scope.directionsDisplay.setDirections(result);
         }
-        $scope.hide();
+    $scope.hide();
      });
   };
 
@@ -263,16 +264,14 @@ $ionicPopup, orderBy) {
          text: '<b>Ok</b>',
          type: 'button-positive',
          onTap: function(e) {
-           $scope.show();
+           $scope.show(1000);
            aplicaFiltroBandeira();
-           $scope.hide();
          }
        }
      ]
    });
 
    myPopup.then(function(res) {
-     //console.log('Tapped!', res);
    });
   };
 
@@ -311,7 +310,7 @@ $ionicPopup, orderBy) {
 
   // Ordena lista de postos de acordo com o preço
   $scope.ordenarListaPostos = function () {
-    $scope.show();
+    $scope.show(0);
     $scope.sortBy('preco');
     $scope.hide();
   };
@@ -332,7 +331,7 @@ $ionicPopup, orderBy) {
 
   // Remove todos os dados dos postos do mapa e da lista de postos
   $scope.removeDadosPostos = function () {
-    $scope.show();
+    $scope.show(0);
     removeMarkers();
     $scope.allMarkers = []; // reseta array de markers
     $scope.arrPostos = []; // reseta array de postos
@@ -348,7 +347,7 @@ $ionicPopup, orderBy) {
 
   // Trecho para criar o Mapa e todas as configurações necessárias
   jQuery(document).ready(function() {
-    $scope.show();
+    $scope.show(0);
     /* Inicio configurações do mapa */
 
       var mapOptions = {

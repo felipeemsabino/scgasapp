@@ -28,7 +28,9 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   });
 
   $scope.$on('$ionicView.beforeLeave', function (e, data) {
+    // Coloca o mapa do controller mapaPostosController.js como próximo a ser usado
     $scope.alteraMapa(null);
+    
     console.log('saiu da view do detalhe');
   });
 
