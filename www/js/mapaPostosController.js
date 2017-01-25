@@ -72,6 +72,12 @@ $ionicPopup, orderBy) {
 
   /* Metodos auxiliares */
 
+  // Centraliza mapa na posição do usuario
+  $scope.centralizarMapaPosicaoUsuario = function () {
+      var posicaoUsuario = {lat: $scope.position.coords.latitude, lng: $scope.position.coords.longitude};
+      $scope.map.setCenter(posicaoUsuario);
+  };
+
   // Carrega a pagina de detalhe do posto
   $scope.carregaDetalhePosto = function (posto) {
     $state.go('app.mapa_detalhe_posto', {paramPosto: posto});
@@ -190,7 +196,13 @@ $ionicPopup, orderBy) {
     $scope.allMarkers.push(marker);
 
     var popupContent = "<div id='infoWindowDiv' style='align-content:center;text-align:center'>";
-    popupContent += posto.listaPrecosGNV.length == 0 ? '0.000' : posto.listaPrecosGNV[posto.listaPrecosGNV.length-1].valorGNV.toString();
+    if (posto.listaPrecosGNV.length == 0)
+      popupContent += 'R$ 00,00';
+    else {
+      var valor = parseFloat(posto.listaPrecosGNV[posto.listaPrecosGNV.length-1].valorGNV).toFixed(2).replace(".",",");
+      popupContent += 'R$ ' + valor;
+    }
+
     popupContent += "</br><a ng-click='carregaDetalhePosto("+JSON.stringify(posto)+");'>Ver detalhes</a></div>";
     var compiled = $compile(popupContent)($scope);
 
@@ -380,7 +392,7 @@ $ionicPopup, orderBy) {
         $scope.rota.origem.lng = $scope.position.coords.longitude;
         $scope.recuperaLocalizacaoAtual();
         $scope.setMap(mapa);
-        criaBotaoCentralizar();
+        //criaBotaoCentralizar();
       });
     /* Fim configurações do mapa */
 
