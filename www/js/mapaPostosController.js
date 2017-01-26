@@ -196,7 +196,7 @@ $ionicPopup, orderBy) {
     });
     $scope.allMarkers.push(marker);
 
-    var popupContent = "<div id='infoWindowDiv' style='align-content:center;text-align:center'>";
+    var popupContent = "<div id='infoWindowDiv' style='align-content:center;text-align:center;color:#2ECC71;'>";
     if (posto.listaPrecosGNV.length == 0)
       popupContent += 'R$ 00,00';
     else {

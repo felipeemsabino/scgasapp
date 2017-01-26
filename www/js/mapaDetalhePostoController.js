@@ -82,7 +82,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   $scope.aplicaMascara = function () {
     //http://www.rafaelwendel.com/2012/07/mascara-para-campos-monetarios-com-jquery-maskmoney/
     if(!$scope.flag) {
-      $("input.dinheiro").maskMoney({showSymbol:true, symbol:"R$ ", decimal:",", thousands:".", precision:4});
+      $("input.dinheiro").maskMoney({showSymbol:true, symbol:"R$ ", decimal:",", thousands:"."});
     }
 
     $scope.flag = true;
@@ -102,9 +102,9 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
           text: '<b>Salvar</b>',
           type: 'button-positive',
           onTap: function(e) {
-            if (!$scope.posto.preco) {
+            if (!$('.dinheiro').val() || $('.dinheiro').val() == "R$ 00,00" || parseFloat($('.dinheiro').val().replace(",","."))>99.99) {
               //don't allow the user to close unless he enters wifi password
-              window.plugins.toast.show('Favor digitar um valor!', 'long', 'center', function(a){}, function(b){});
+              window.plugins.toast.show('Favor digitar um valor maior que zero e menor que R$ 99,99!', 'long', 'center', function(a){}, function(b){});
               e.preventDefault();
             } else {
               $scope.atualizarPrecoPosto();
