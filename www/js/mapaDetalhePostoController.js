@@ -16,13 +16,11 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   $scope.posto = $stateParams.paramPosto;
   $scope.novoPreco = {'preco':''};
 
+  // flag para mascara
+  $scope.flag = false;
+
   // Verificacao de preco
-  if(!$scope.posto.preco)
-      $scope.novoPreco.preco = 'R$ 00,00';
-  else {
-    $scope.novoPreco.preco = 'R$ '+parseFloat($scope.posto.preco).toFixed(2).replace(".",",");
-  }
-  $scope.posto.preco = $scope.novoPreco.preco;
+  $scope.novoPreco.preco = 'R$ 00,00';
 
   /* Eventos View */
   $scope.$on('$ionicView.afterEnter', function (e, data) {
@@ -57,7 +55,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     var postParams = {
       "posto":{"id": $scope.posto.id},
       "usuario":{"id": storedUser.id},
-      "valorGNV": $scope.novoPreco.preco.replace("R$ ","").replace(",",".")
+      "valorGNV": $('.dinheiro').val().replace(",",".")
     };
 
     var response = $http.post(
@@ -71,7 +69,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
       //alert('Retorno -> ' + JSON.stringify({data2: data}));
 
       $scope.posto.usuarioUltimaAtualizacao = JSON.parse(window.localStorage.getItem("dadosUsuario")).nome;
-      $scope.posto.preco = 'R$ '+parseFloat(data.valorGNV).toFixed(2).replace(".",",");
+      $scope.posto.preco = data.valorGNV.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0].replace(".",",");
     });
     response.error(function(data, status, headers, config) {
       $scope.hide();
@@ -80,10 +78,21 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     });
   };
 
+  // Aplica mascara no campos
+  $scope.aplicaMascara = function () {
+    //http://www.rafaelwendel.com/2012/07/mascara-para-campos-monetarios-com-jquery-maskmoney/
+    if(!$scope.flag) {
+      $("input.dinheiro").maskMoney({showSymbol:true, symbol:"R$ ", decimal:",", thousands:".", precision:4});
+    }
+
+    $scope.flag = true;
+  };
+
   // Mostra popup para usuario inserir o preço e salvar
+
   $scope.showPopupPreco = function() {
     var myPopup = $ionicPopup.show({
-      template: '<input type="text" ng-model="novoPreco.preco">',
+      template: '<input type="text" ng-model="novoPreco.preco" class="dinheiro" ng-change="aplicaMascara();"> ',
       title: 'Atualizar preço do posto',
       subTitle: 'Entre com o valor do preço do posto!',
       scope: $scope,
@@ -107,8 +116,9 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     });
 
     myPopup.then(function(res) {
-      //console.log('Tapped!', res);
+      $scope.flag = false;// reseta flag para mascara de dinheiro
     });
+
   };
 
   // Traca rota da posicao do usuario ate o posto selecionado

@@ -200,10 +200,11 @@ $ionicPopup, orderBy) {
     if (posto.listaPrecosGNV.length == 0)
       popupContent += 'R$ 00,00';
     else {
-      var valor = parseFloat(posto.preco).toFixed(2).replace(".",",");
-      popupContent += 'R$ ' + valor;
+      //var valor = parseFloat(posto.preco).toFixed(2).replace(".",",");
+      posto.preco = posto.preco.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0].replace(".",",");
+      popupContent += 'R$ ' + posto.preco;
     }
-    posto.valor
+
     popupContent += "</br><a ng-click='carregaDetalhePosto("+JSON.stringify(posto)+");'>Ver detalhes</a></div>";
     var compiled = $compile(popupContent)($scope);
 
