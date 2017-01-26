@@ -38,7 +38,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
 	$scope.submitLogin = function() {
     //alert('submit2');
     $scope.show();
-		var response = $http.post('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/autentica', $scope.user);
+		var response = $http.post($scope.defaultURL+'/scgas/rest/usuarioservice/autentica', $scope.user);
 
     // Response retornado com sucesso
     response.success(function(data, status, headers, config) {
@@ -79,7 +79,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
           //alert('Dados recuperados do FB para Login,' +JSON.stringify({data: response}));
           $scope.show();
 
-          var responseAutentica = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/autenticaFacebook/'+response.id, {timeout: 5000});
+          var responseAutentica = $http.get($scope.defaultURL+'/scgas/rest/usuarioservice/autenticaFacebook/'+response.id, {timeout: 5000});
           responseAutentica.success(function(data, status, headers, config) {
             $scope.hide();
 
@@ -107,7 +107,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
               $scope.show();
 
               var responseCadastroUsuario = $http.post(
-                'http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/cadastrarusuario',
+                $scope.defaultURL+'/scgas/rest/usuarioservice/cadastrarusuario',
                 newUserData);
                 responseCadastroUsuario.success(function(data, status, headers, config) {
                   $scope.hide();
@@ -140,7 +140,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
       function (obj) {
         //alert('Dados recuperados do G+ para Login, ' + JSON.stringify({data: obj}));
         $scope.show();
-        var response = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/autenticaGmail/'+obj.userId);
+        var response = $http.get($scope.defaultURL+'/scgas/rest/usuarioservice/autenticaGmail/'+obj.userId);
         response.success(function(data, status, headers, config) {
           $scope.hide();
 
@@ -167,7 +167,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
             //alert(JSON.stringify({status2: newUserData}));
             // Parte 2 - Cadastra o usuário chamando o serviço de cadastro.
             $scope.show();
-            var responseCadastroUsuario = $http.post('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/cadastrarusuario', newUserData);
+            var responseCadastroUsuario = $http.post($scope.defaultURL+'/scgas/rest/usuarioservice/cadastrarusuario', newUserData);
             responseCadastroUsuario.success(function(data, status, headers, config) {
               $scope.hide();
 

@@ -59,15 +59,14 @@ $ionicPopup, orderBy) {
   $scope.$on('$ionicView.afterEnter', function (e, data) {
     $ionicSideMenuDelegate.canDragContent(false)
     $scope.$root.showMenuIcon = false;
-    google.maps.event.trigger($scope.map, 'resize'); // resolvendo bug de area cinza quando volta para o mapa principal após atualizar o preço
+    if($scope.map != null)
+      google.maps.event.trigger($scope.map, 'resize'); // resolvendo bug de area cinza quando volta para o mapa principal após atualizar o preço
 
-    console.log('entrou na view de mapa');
   });
 
   // Listener para antes de sair da pagina
   $scope.$on('$ionicView.beforeLeave', function (e, data) {
 
-    console.log('saiu da view do mapa');
   });
 
   /* Metodos auxiliares */
@@ -97,7 +96,7 @@ $ionicPopup, orderBy) {
 
   // Recupera todos os postos da base de dados
   $scope.recuperaPostos = function () {
-    var responseRecuperaPostos1 = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/postoservice/listaPostos/0/45/'+$scope.position.coords.latitude+'/'+$scope.position.coords.longitude, {timeout: 5000});
+    var responseRecuperaPostos1 = $http.get($scope.defaultURL+'/scgas/rest/postoservice/listaPostos/0/45/'+$scope.position.coords.latitude+'/'+$scope.position.coords.longitude, {timeout: 5000});
     responseRecuperaPostos1.success(function(data, status, headers, config) {
       //alert('resultado de postos! -> '+JSON.stringify({data2: data}));
       //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
@@ -125,7 +124,7 @@ $ionicPopup, orderBy) {
         window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
       });
 
-      var responseRecuperaPostos2 = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/postoservice/listaPostos/45/90/'+$scope.position.coords.latitude+'/'+$scope.position.coords.longitude, {timeout: 5000});
+      var responseRecuperaPostos2 = $http.get($scope.defaultURL+'/scgas/rest/postoservice/listaPostos/45/90/'+$scope.position.coords.latitude+'/'+$scope.position.coords.longitude, {timeout: 5000});
       responseRecuperaPostos2.success(function(data, status, headers, config) {
         //alert('resultado de postos! -> '+JSON.stringify({data2: data}));
         //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
@@ -152,7 +151,7 @@ $ionicPopup, orderBy) {
         window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
       });
 
-      var responseRecuperaPostos3 = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/postoservice/listaPostos/90/150/'+$scope.position.coords.latitude+'/'+$scope.position.coords.longitude, {timeout: 5000});
+      var responseRecuperaPostos3 = $http.get($scope.defaultURL+'/scgas/rest/postoservice/listaPostos/90/150/'+$scope.position.coords.latitude+'/'+$scope.position.coords.longitude, {timeout: 5000});
       responseRecuperaPostos3.success(function(data, status, headers, config) {
         //alert('resultado de postos! -> '+JSON.stringify({data2: data}));
         //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
@@ -185,12 +184,14 @@ $ionicPopup, orderBy) {
     var latFormatada = parseFloat(posto.coordenadaX.replace(',','.'));
     var lngFormatada = parseFloat(posto.coordenadaY.replace(',','.'));
     var latLng = new google.maps.LatLng(latFormatada, lngFormatada);
-
+    if(posto.listaPrecosGNV.length > 1)
+    console.log(posto);
     var marker = new google.maps.Marker({
         map: $scope.map,
         animation: google.maps.Animation.DROP,
         position: latLng,
-        icon: posto.bandeiraPosto.nome == "Bandeira Branca" ? 'img/gas_default.png' : 'img/gas_default.png',
+        icon: $scope.defaultURL+'/images/'+posto.bandeiraPosto.urlImgBandeira,
+        //"Bandeira Branca" ? 'img/gas_default.png' : 'img/gas_default.png',
         bandeiraPosto: {"nome": posto.bandeiraPosto.nome}
     });
     $scope.allMarkers.push(marker);
@@ -199,10 +200,10 @@ $ionicPopup, orderBy) {
     if (posto.listaPrecosGNV.length == 0)
       popupContent += 'R$ 00,00';
     else {
-      var valor = parseFloat(posto.listaPrecosGNV[posto.listaPrecosGNV.length-1].valorGNV).toFixed(2).replace(".",",");
+      var valor = parseFloat(posto.preco).toFixed(2).replace(".",",");
       popupContent += 'R$ ' + valor;
     }
-
+    posto.valor
     popupContent += "</br><a ng-click='carregaDetalhePosto("+JSON.stringify(posto)+");'>Ver detalhes</a></div>";
     var compiled = $compile(popupContent)($scope);
 

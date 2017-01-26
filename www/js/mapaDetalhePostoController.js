@@ -14,10 +14,15 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
 
   // Posto enviado via parametro
   $scope.posto = $stateParams.paramPosto;
-
+  $scope.novoPreco = {'preco':''};
+  
   // Verificacao de preco
   if(!$scope.posto.preco)
-      $scope.posto.preco = 0.000;
+      $scope.novoPreco.preco = 'R$ 00,00';
+  else {
+    $scope.novoPreco.preco = 'R$ '+parseFloat($scope.posto.preco).toFixed(2).replace(".",",");
+  }
+  $scope.posto.preco = $scope.novoPreco.preco;
 
   /* Eventos View */
   $scope.$on('$ionicView.afterEnter', function (e, data) {
@@ -30,7 +35,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   $scope.$on('$ionicView.beforeLeave', function (e, data) {
     // Coloca o mapa do controller mapaPostosController.js como próximo a ser usado
     $scope.alteraMapa(null);
-    
+
     console.log('saiu da view do detalhe');
   });
 
@@ -52,11 +57,11 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     var postParams = {
       "posto":{"id": $scope.posto.id},
       "usuario":{"id": storedUser.id},
-      "valorGNV":$scope.posto.preco
+      "valorGNV": $scope.novoPreco.preco.replace("R$ ","").replace(",",".")
     };
 
     var response = $http.post(
-      'http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/postoservice/atualizaPrecoCombustivel',
+      $scope.defaultURL+'/scgas/rest/postoservice/atualizaPrecoCombustivel',
       postParams);
     response.success(function(data, status, headers, config) {
       $scope.hide();
@@ -64,6 +69,9 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
 
       //alert('Preço atualizado com sucesso!');
       //alert('Retorno -> ' + JSON.stringify({data2: data}));
+      console.log(data);
+      $scope.posto.usuarioUltimaAtualizacao = data.usuario.id;
+      $scope.posto.preco = 'R$ '+parseFloat(data.valorGNV).toFixed(2).replace(".",",");
     });
     response.error(function(data, status, headers, config) {
       $scope.hide();
@@ -75,7 +83,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   // Mostra popup para usuario inserir o preço e salvar
   $scope.showPopupPreco = function() {
     var myPopup = $ionicPopup.show({
-      template: '<input type="number" ng-model="posto.preco">',
+      template: '<input type="text" ng-model="novoPreco.preco">',
       title: 'Atualizar preço do posto',
       subTitle: 'Entre com o valor do preço do posto!',
       scope: $scope,

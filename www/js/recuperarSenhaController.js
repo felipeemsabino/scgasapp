@@ -34,7 +34,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
     //alert(JSON.stringify({data2: $scope.user}));
     $scope.show();
 
-		var response = $http.get('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/geraPinSenha/'+$scope.user.email);
+		var response = $http.get($scope.defaultURL+'/scgas/rest/usuarioservice/geraPinSenha/'+$scope.user.email);
 
     // Response retornado com sucesso
     response.success(function(data, status, headers, config) {
@@ -70,15 +70,15 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
 
     $scope.show();
 
-    var response = $http.post('http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/recuperaSenhaPorPIN',$scope.user);
+    var response = $http.post($scope.defaultURL+'/scgas/rest/usuarioservice/recuperaSenhaPorPIN',$scope.user);
 
     // Response retornado com sucesso
     response.success(function(data, status, headers, config) {
       window.localStorage.setItem("dadosUsuario", JSON.stringify(data));
       $scope.hide();
-        
+
       window.plugins.toast.show('Recuperação de senha realizada com sucesso!', 'long', 'center', function(a){}, function(b){});
-      
+
       $state.go("app.playlists");
     });
 
