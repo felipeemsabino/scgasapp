@@ -33,7 +33,7 @@
               <div class="card" ng-repeat="posto in arrPostos" ng-click="carregaDetalhePosto(posto);" ng-show="posto.mostrar">
                 <div class="row" >
                   <div class="col col-25" style="text-align: center">
-                    <h3>{{posto.preco ? posto.preco : '0.000'}}</h3>
+                    <h3>{{posto.preco ? posto.preco : 'R$ 00,00'}}</h3>
                     {{posto.ultimaAtualizacao ? posto.ultimaAtualizacao : 'Sem atualizações'}}
                   </div>
                   <div class="col col-55" style="text-align: center">
@@ -76,7 +76,7 @@
         Atualizar
       </a>
       <a class="tab-item" ng-show="habilitarBotaoRota">
-        <i class="icon ion-android-locate" ng-click="atualizarInformacoesPostos();"></i>
+        <i class="icon ion-android-locate" ng-click="centralizarMapaPosicaoUsuario();"></i>
         Centralizar
       </a>
     </div>

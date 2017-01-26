@@ -15,7 +15,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   // Posto enviado via parametro
   $scope.posto = $stateParams.paramPosto;
   $scope.novoPreco = {'preco':''};
-  
+
   // Verificacao de preco
   if(!$scope.posto.preco)
       $scope.novoPreco.preco = 'R$ 00,00';
@@ -69,8 +69,8 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
 
       //alert('Preço atualizado com sucesso!');
       //alert('Retorno -> ' + JSON.stringify({data2: data}));
-      console.log(data);
-      $scope.posto.usuarioUltimaAtualizacao = data.usuario.id;
+
+      $scope.posto.usuarioUltimaAtualizacao = JSON.parse(window.localStorage.getItem("dadosUsuario")).nome;
       $scope.posto.preco = 'R$ '+parseFloat(data.valorGNV).toFixed(2).replace(".",",");
     });
     response.error(function(data, status, headers, config) {
