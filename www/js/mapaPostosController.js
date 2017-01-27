@@ -184,8 +184,8 @@ $ionicPopup, orderBy) {
     var latFormatada = parseFloat(posto.coordenadaX.replace(',','.'));
     var lngFormatada = parseFloat(posto.coordenadaY.replace(',','.'));
     var latLng = new google.maps.LatLng(latFormatada, lngFormatada);
-    if(posto.listaPrecosGNV.length > 1)
-    console.log(posto);
+    //if(posto.listaPrecosGNV.length > 1)
+    //console.log(posto);
     var marker = new google.maps.Marker({
         map: $scope.map,
         animation: google.maps.Animation.DROP,

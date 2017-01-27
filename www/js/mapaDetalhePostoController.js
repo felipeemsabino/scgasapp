@@ -15,6 +15,10 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   // Posto enviado via parametro
   $scope.posto = $stateParams.paramPosto;
   $scope.novoPreco = {'preco':''};
+  $scope.posto.preco = parseFloat($scope.posto.preco) == 0 ? '00,00' : $scope.posto.preco;
+
+  $scope.urlImagemx24 = $scope.defaultURL+'/images/'+$scope.posto.bandeiraPosto.urlImgBandeira;
+  $scope.urlImagemx48 = $scope.urlImagemx24.replace(".png","_x48.png");
 
   // flag para mascara
   $scope.flag = false;
@@ -139,7 +143,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     var marker = new google.maps.Marker({
         map: $scope.map,
         animation: google.maps.Animation.DROP,
-        icon: posto.bandeiraPosto.nome == "Bandeira Branca" ? 'img/gas_default.png' : 'img/gas_default.png',
+        icon: $scope.urlImagemx24,
         position: latLng
     });
     $scope.map.setCenter(latLng);
