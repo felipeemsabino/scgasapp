@@ -40,6 +40,11 @@ $ionicPopup, orderBy) {
  $scope.propertyName = null;
  $scope.reverse = true;
  $scope.arrPostos = orderBy($scope.arrPostos, $scope.propertyName, $scope.reverse);
+ $scope.parametroOrdenacao = '';
+ $scope.itemsOrdenacao = [
+   {"text":"Preço", "value":"p"},
+   {"text":"Distância", "value":"d"}
+ ];
 
   // Mostrar popup carregando
   $scope.show = function(popUpDuration) {
@@ -294,6 +299,36 @@ $ionicPopup, orderBy) {
     $scope.showPopupFiltroBandeira();
   };
 
+  $scope.setOrdenacao = function (item) {
+    $scope.parametroOrdenacao = item.value;
+  };
+
+  // Mostra o popup com os filtros de bandeira para o mapa
+  $scope.showPopupOrdenarPostos = function() {
+   var myPopup = $ionicPopup.show({
+     template: '<ion-radio ng-repeat="item in itemsOrdenacao" ng-value="item.value" ng-model="parametroOrdenacao" ng-change="setOrdenacao(item)"> {{ item.text }} </ion-radio>',
+     title: 'Ordenar lista',
+     subTitle: 'Selecione o parâmetro de ordenação:',
+     scope: $scope,
+     buttons: [
+       { text: 'Cancelar' },
+       {
+         text: '<b>Ok</b>',
+         type: 'button-positive',
+         onTap: function(e) {
+           $scope.show(1000);
+           $scope.show(0);
+           $scope.sortBy();
+           $scope.hide();
+         }
+       }
+     ]
+   });
+
+   myPopup.then(function(res) {
+   });
+  };
+
   // Mostra o popup com os filtros de bandeira para o mapa
   $scope.showPopupFiltroBandeira = function() {
    var myPopup = $ionicPopup.show({
@@ -353,13 +388,16 @@ $ionicPopup, orderBy) {
 
   // Ordena lista de postos de acordo com o preço
   $scope.ordenarListaPostos = function () {
-    $scope.show(0);
-    $scope.sortBy('preco');
-    $scope.hide();
+    $scope.showPopupOrdenarPostos();
   };
 
   // Metodo de ordenação
-  $scope.sortBy = function(propertyName) {
+  $scope.sortBy = function() {
+    if($scope.parametroOrdenacao == 'p')
+      propertyName = 'preco';
+    else if($scope.parametroOrdenacao == 'd')
+      propertyName = 'distanciaParaOdernar';
+
     $scope.reverse = (propertyName !== null && $scope.propertyName === propertyName)
         ? !$scope.reverse : false;
     $scope.propertyName = propertyName;
