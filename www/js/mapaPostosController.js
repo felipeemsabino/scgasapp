@@ -94,6 +94,26 @@ $ionicPopup, orderBy) {
     }
   };
 
+
+  function formataDistancia (distancia) {
+    return distancia.match(/^-?\d+(?:\.\d{0,2})?/)[0].replace(".",",");
+  }
+
+  function formataValor (valor) {
+
+    if(parseFloat(valor) == 0)
+      valor = "00,00";
+    else {
+      valor = valor.toString().replace(".",",");
+    }
+
+    if(valor.length == 1 || valor.length == 2)
+      valor += ',00';
+    else if(valor.length == 3)
+      valor += '0';
+
+    return valor;
+  }
   // Recupera todos os postos da base de dados
   $scope.recuperaPostos = function () {
     var responseRecuperaPostos1 = $http.get($scope.defaultURL+'/scgas/rest/postoservice/listaPostos/0/45/'+$scope.position.coords.latitude+'/'+$scope.position.coords.longitude, {timeout: 5000});
@@ -114,6 +134,9 @@ $ionicPopup, orderBy) {
 
         $scope.criaMarkers(data[counter]);
         data[counter].mostrar = true;
+        data[counter].precoFormatado = formataValor(data[counter].preco);
+        data[counter].distanciaFormatada = formataDistancia(data[counter].distanciaPosto);
+
         $scope.arrPostos.push(data[counter]);
       }
         //console.log($scope.arrPostos[0]);
@@ -142,6 +165,9 @@ $ionicPopup, orderBy) {
 
           $scope.criaMarkers(data[counter]);
           data[counter].mostrar = true;
+          data[counter].precoFormatado = formataValor(data[counter].preco);
+          data[counter].distanciaFormatada = formataDistancia(data[counter].distanciaPosto);
+
           $scope.arrPostos.push(data[counter]);
         }
         //alert('markers posicionados');
@@ -169,6 +195,9 @@ $ionicPopup, orderBy) {
 
           $scope.criaMarkers(data[counter]);
           data[counter].mostrar = true;
+          data[counter].precoFormatado = formataValor(data[counter].preco);
+          data[counter].distanciaFormatada = formataDistancia(data[counter].distanciaPosto);
+
           $scope.arrPostos.push(data[counter]);
         }
         //alert('markers posicionados');

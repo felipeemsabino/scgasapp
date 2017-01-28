@@ -33,7 +33,7 @@
               <div class="card" ng-repeat="posto in arrPostos" ng-click="carregaDetalhePosto(posto);" ng-show="posto.mostrar">
                 <div class="row" >
                   <div class="col col-25" style="text-align: center">
-                    <h3>{{posto.preco ? posto.preco : 'R$ 00,00'}}</h3>
+                    <h3 style='color:#2ECC71;'>{{'R$ '+posto.precoFormatado}}</h3>
                     {{posto.ultimaAtualizacao ? posto.ultimaAtualizacao : 'Sem atualizações'}}
                   </div>
                   <div class="col col-55" style="text-align: center">
@@ -42,7 +42,7 @@
                   </div>
                   <div class="col col-20" style="text-align: center">
                     <img src="img/map-icon.png" width="24px" height="24px" ng-click="carregaMapa();">
-                    <h6>{{posto.distanciaPosto}}</h6>
+                    <h6>{{posto.distanciaFormatada + ' KM'}}</h6>
                   </div>
                 </div>
               </div>

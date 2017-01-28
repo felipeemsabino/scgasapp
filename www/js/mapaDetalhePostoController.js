@@ -25,7 +25,8 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
 
   // Verificacao de preco
   $scope.novoPreco.preco = 'R$ 00,00';
-
+  $scope.distanciaFormatada = $scope.posto.distanciaPosto.match(/^-?\d+(?:\.\d{0,2})?/)[0].replace(".",",");
+  
   /* Eventos View */
   $scope.$on('$ionicView.afterEnter', function (e, data) {
     $ionicSideMenuDelegate.canDragContent(false)
