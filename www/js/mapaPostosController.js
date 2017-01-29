@@ -62,6 +62,8 @@ $ionicPopup, orderBy) {
 
   // Listener para após entrar na pagina
   $scope.$on('$ionicView.afterEnter', function (e, data) {
+    $scope.setNavigationMode(false); // reseta navigation mode flag
+
     $ionicSideMenuDelegate.canDragContent(false)
     $scope.$root.showMenuIcon = false;
     if($scope.map != null)
@@ -71,7 +73,7 @@ $ionicPopup, orderBy) {
 
   // Listener para antes de sair da pagina
   $scope.$on('$ionicView.beforeLeave', function (e, data) {
-
+    $scope.setNavigationMode(false); // reseta navigation mode flag
   });
 
   /* Metodos auxiliares */
@@ -259,6 +261,7 @@ $ionicPopup, orderBy) {
       $scope.habilitarPesquisaEnd = true;
     }
     if(!$scope.habilitarPesquisaEnd) {
+      $scope.setNavigationMode(false); // reseta navigation mode flag
       $scope.directionsDisplay.setMap(null);
     }
   };
@@ -266,6 +269,7 @@ $ionicPopup, orderBy) {
   // Deleta a rota desenhada no mapa
   $scope.limparRota = function () {
     $scope.show(0);
+    $scope.setNavigationMode(false); // reseta navigation mode flag 
     $scope.directionsDisplay.setMap(null);
     $("#destino").val("");
     $scope.hide();
@@ -290,7 +294,8 @@ $ionicPopup, orderBy) {
            $scope.directionsDisplay.setMap($scope.map);
            $scope.directionsDisplay.setDirections(result);
         }
-    $scope.hide();
+        $scope.hide();
+        $scope.setNavigationMode(true); // habilita modo navegação
      });
   };
 

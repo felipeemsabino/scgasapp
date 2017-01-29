@@ -9,9 +9,10 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
   $scope.defaultURL = 'http://ec2-52-67-135-39.sa-east-1.compute.amazonaws.com:8080';
-  
+
   //Coordenadas de SC
-  $scope.latlngInicial = new google.maps.LatLng(-27.590682, -48.547002);
+  $scope.latlngInicial;// = new google.maps.LatLng(-27.590682, -48.547002);
+  $scope.navigationMode = false;
   $scope.position;
   $scope.locationMarker;
   $scope.map = null;
@@ -21,6 +22,9 @@ angular.module('starter.controllers', [])
     $scope.map = mapa;
   };
 
+  $scope.setNavigationMode = function (enable) {
+    $scope.navigationMode = enable;
+  };
   /*
    * Altera o mapa que está sendo utilizado. Se é passado null, então o mapa da pagina mapa_postos esta sendo utilizado,
    * caso contrario o mapa da pagina mapa_detalhe_posto estará sendo utilizado
@@ -54,18 +58,25 @@ angular.module('starter.controllers', [])
       console.log('atualizou posicao e mapa n ta ok!');
       window.plugins.toast.show('atualizou posicao e mapa n ta ok!', 'long', 'center', function(a){}, function(b){});
     }*/
-
+    //window.plugins.toast.show('watching!'+$scope.navigationMode, 'short', 'center', function(a){}, function(b){});
     if($scope.map != null) {
 
-      if($scope.locationMarker == null) {
+      //if($scope.locationMarker == null) {
         $scope.locationMarker = new google.maps.Marker({
             map: $scope.map,
             //animation: google.maps.Animation.DROP,
             position: latLng,
             icon: 'img/map_pointer.png'
         });
-      } else {
-        $scope.locationMarker.setPosition(latLng);
+      //} else {
+      //  $scope.locationMarker.setPosition(latLng);
+      //}
+
+      if($scope.navigationMode) { // se estiver no modo de navegação então sempre centralizar o mapa na posição do usuário
+        var posicaoUsuario = {lat: position.coords.latitude, lng: position.coords.longitude};
+        $scope.map.setCenter(posicaoUsuario);
+        //window.plugins.toast.show('enquadrou mapa!', 'short', 'center', function(a){}, function(b){});
+
       }
     }
   });
@@ -74,8 +85,10 @@ angular.module('starter.controllers', [])
   var options = {timeout: 10000, enableHighAccuracy: true};
   $cordovaGeolocation.getCurrentPosition(options).then(
     function(position){
-      $scope.position = position; // Seta coordenadas do atual do usuário
-      console.log('Recuperou position');
+      $scope.position = position; // Seta coordenadas atual do usuário
+      console.log('Recuperou position' + position);
+      $scope.latlngInicial = new google.maps.LatLng(position.coords.latitude,
+        position.coords.longitude);
     },
     function(error){
       console.log('Erro ao recuperar position');

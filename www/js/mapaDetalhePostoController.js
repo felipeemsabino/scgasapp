@@ -29,6 +29,8 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
 
   /* Eventos View */
   $scope.$on('$ionicView.afterEnter', function (e, data) {
+    $scope.setNavigationMode(false); // reseta navigation mode flag
+
     $ionicSideMenuDelegate.canDragContent(false)
     $scope.$root.showMenuIcon = false;
 
@@ -37,6 +39,8 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
 
   $scope.$on('$ionicView.beforeLeave', function (e, data) {
     // Coloca o mapa do controller mapaPostosController.js como próximo a ser usado
+    $scope.setNavigationMode(false); // reseta navigation mode flag
+
     $scope.alteraMapa(null);
 
     console.log('saiu da view do detalhe');
@@ -233,6 +237,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
        $scope.directionsService.route(request, function(result, status) {
           if (status == google.maps.DirectionsStatus.OK) { // Se deu tudo certo
              $scope.directionsDisplay.setDirections(result);
+             $scope.setNavigationMode(true);  // habilita modo navegação
           } else {
             console.log(result);
           }
