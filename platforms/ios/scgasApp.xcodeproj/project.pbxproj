@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		038E5625B1154334941AC952 /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D18FBA17DB46A593C48B2F /* CDVViewController+SplashScreen.m */; };
@@ -49,6 +48,10 @@
 		F5EB5D23E83F43BDAD9F64E4 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 900ED13FDB07403A9B71F495 /* CDVStatusBar.m */; };
 		F77377631ACC4E97B4F95839 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB076C2727B34E8986F0E223 /* FBSDKLoginKit.framework */; };
 		FC098E1E47F54F909CC96F76 /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1221D7878FB5420A9E3368C5 /* GoogleSymbolUtilities.framework */; };
+		62151FD7D3924D38A6D42D98 /* ActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B4E58335BEE40739EA78094 /* ActionSheet.m */; };
+		6E660421C7C848CE985DE54B /* CMMapLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = E45A1451236D463795235136 /* CMMapLauncher.m */; };
+		46DEFD8196284124ACCAA069 /* LaunchNavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EA93FCB4BF47E2975331C0 /* LaunchNavigator.m */; };
+		DFA20C3DF33547C393B46B3F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E19A35696B944316AE0B4ADB /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +136,13 @@
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = scgasApp/config.xml; sourceTree = "<group>"; };
 		FB08968888824E6ABF68824F /* CDVViewController+SplashScreen.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "CDVViewController+SplashScreen.h"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.h"; sourceTree = "<group>"; };
 		FB7F042D10F14A43B985CB83 /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = GoogleNetworkingUtilities.framework; path = "scgasApp/Plugins/cordova-plugin-googleplus/GoogleNetworkingUtilities.framework"; sourceTree = "<group>"; };
+		7B4E58335BEE40739EA78094 /* ActionSheet.m */ = {isa = PBXFileReference; name = "ActionSheet.m"; path = "cordova-plugin-actionsheet/ActionSheet.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		C10F4600C510469480B1F965 /* ActionSheet.h */ = {isa = PBXFileReference; name = "ActionSheet.h"; path = "cordova-plugin-actionsheet/ActionSheet.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		E45A1451236D463795235136 /* CMMapLauncher.m */ = {isa = PBXFileReference; name = "CMMapLauncher.m"; path = "uk.co.workingedge.phonegap.plugin.launchnavigator/CMMapLauncher.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		F7EA93FCB4BF47E2975331C0 /* LaunchNavigator.m */ = {isa = PBXFileReference; name = "LaunchNavigator.m"; path = "uk.co.workingedge.phonegap.plugin.launchnavigator/LaunchNavigator.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		B23A2972C93B45FD86338B57 /* CMMapLauncher.h */ = {isa = PBXFileReference; name = "CMMapLauncher.h"; path = "uk.co.workingedge.phonegap.plugin.launchnavigator/CMMapLauncher.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		4244985133914AFA93513B67 /* LaunchNavigator.h */ = {isa = PBXFileReference; name = "LaunchNavigator.h"; path = "uk.co.workingedge.phonegap.plugin.launchnavigator/LaunchNavigator.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		E19A35696B944316AE0B4ADB /* MapKit.framework */ = {isa = PBXFileReference; name = "MapKit.framework"; path = "System/Library/Frameworks/MapKit.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +171,7 @@
 				69B8F76E551E40BCA09D46F5 /* libz.tbd in Frameworks */,
 				9A7D2503B4C146779332E6C4 /* libz.dylib in Frameworks */,
 				D50A20948A874F529D2E0290 /* QuartzCore.framework in Frameworks */,
+				DFA20C3DF33547C393B46B3F /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +262,7 @@
 				0B6AAFE61C8B4C1290F4D8D2 /* libz.tbd */,
 				5A9066A3EA3546A6A291D3DD /* libz.dylib */,
 				45DCA06E22094D939D00B6FE /* QuartzCore.framework */,
+				E19A35696B944316AE0B4ADB /* MapKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -300,6 +312,12 @@
 				35E557AC33384B7BBFD1C55C /* Toast.h */,
 				7CB3D4BACD554B4398908604 /* IonicKeyboard.m */,
 				6DB112B3146C4276822A0951 /* IonicKeyboard.h */,
+				7B4E58335BEE40739EA78094 /* ActionSheet.m */,
+				C10F4600C510469480B1F965 /* ActionSheet.h */,
+				E45A1451236D463795235136 /* CMMapLauncher.m */,
+				F7EA93FCB4BF47E2975331C0 /* LaunchNavigator.m */,
+				B23A2972C93B45FD86338B57 /* CMMapLauncher.h */,
+				4244985133914AFA93513B67 /* LaunchNavigator.h */,
 			);
 			name = Plugins;
 			path = scgasApp/Plugins;
@@ -435,6 +453,9 @@
 				273A25397A454D0DAA3583C6 /* Toast+UIView.m in Sources */,
 				763F67438952482A815CA90D /* Toast.m in Sources */,
 				999FEA9D88E44D709CCB8E05 /* IonicKeyboard.m in Sources */,
+				62151FD7D3924D38A6D42D98 /* ActionSheet.m in Sources */,
+				6E660421C7C848CE985DE54B /* CMMapLauncher.m in Sources */,
+				46DEFD8196284124ACCAA069 /* LaunchNavigator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

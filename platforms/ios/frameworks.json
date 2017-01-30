@@ -1,6 +1,6 @@
 {
     "AudioToolbox.framework": 1,
-    "CoreLocation.framework": 1,
+    "CoreLocation.framework": 2,
     "AddressBook.framework": 1,
     "CoreText.framework": 1,
     "SafariServices.framework": 1,
@@ -8,5 +8,6 @@
     "SystemConfiguration.framework": 1,
     "libz.tbd": 1,
     "libz.dylib": 1,
-    "QuartzCore.framework": 1
+    "QuartzCore.framework": 1,
+    "MapKit.framework": 1
 }

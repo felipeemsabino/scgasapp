@@ -42,7 +42,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
     delete $scope.newUserData.confirmacaoSenha;
 
     var response = $http.post(
-      'http://ec2-52-67-37-24.sa-east-1.compute.amazonaws.com:8080/scgas/rest/usuarioservice/cadastrarusuario',
+      $scope.defaultURL+'/scgas/rest/usuarioservice/cadastrarusuario',
       $scope.newUserData);
     response.success(function(data, status, headers, config) {
       //alert('Usuário cadastrado com sucesso!');

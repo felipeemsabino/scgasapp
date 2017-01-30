@@ -8,7 +8,7 @@ function($scope, $stateParams, $state, $http, $ionicSideMenuDelegate, $ionicLoad
     $ionicSideMenuDelegate.canDragContent(true);
 
     $scope.$root.showMenuIcon = true;
-   
+
     if(window.localStorage.getItem("dadosUsuario") === null || window.localStorage.getItem("dadosUsuario") === 'null'
       || window.localStorage.getItem("dadosUsuario") === '') {
         $state.go("app.user_login");
@@ -16,6 +16,11 @@ function($scope, $stateParams, $state, $http, $ionicSideMenuDelegate, $ionicLoad
         var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
     }
   });
+
+  $scope.carregaMapa = function() {
+    //$state.go("app.mapa");
+    $state.go("app.mapa_postos");
+  };
 
   $scope.init = function() {
 

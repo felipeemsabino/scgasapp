@@ -95,6 +95,14 @@ module.exports = [
         "merges": [
             "navigator.notification"
         ]
+    },
+    {
+        "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/common.js",
+        "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.Common",
+        "pluginId": "uk.co.workingedge.phonegap.plugin.launchnavigator",
+        "clobbers": [
+            "launchnavigator"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -111,7 +119,8 @@ module.exports.metadata =
     "cordova-plugin-geolocation": "2.4.0",
     "cordova-plugin-googleplus": "5.1.1",
     "cordova-plugin-x-toast": "2.5.2",
-    "cordova-plugin-dialogs": "1.3.0"
+    "cordova-plugin-dialogs": "1.3.0",
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.1"
 }
 // BOTTOM OF METADATA
 });

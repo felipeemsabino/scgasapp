@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\Users\Felipe\Desktop\Projeto-SCGAS\scgasapp\platforms\android\CordovaLib\src\main\jniLibs"/></dataSet><dataSet config="release"><source path="C:\Users\Felipe\Desktop\Projeto-SCGAS\scgasapp\platforms\android\CordovaLib\src\release\jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/nadal/Documents/Estrategos/meus_projetos/scgasapp/platforms/android/CordovaLib/src/main/jniLibs"/></dataSet><dataSet config="release"><source path="/Users/nadal/Documents/Estrategos/meus_projetos/scgasapp/platforms/android/CordovaLib/src/release/jniLibs"/></dataSet></merger>

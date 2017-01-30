@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-google-place'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -23,7 +23,9 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  $ionicConfigProvider.tabs.position('top');
+
   $stateProvider
 
    .state('app', {
@@ -53,11 +55,23 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
     }
   })
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.mapa_postos', {
+    url: '/mapa_postos',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/mapa_postos.html',
+        controller: 'MapaPostosCtrl'
+      }
+    }
+  })
+
+  .state('app.mapa_detalhe_posto', {
+    url: '/mapa_detalhe_posto',
+    params: {paramPosto: null},
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/mapa_detalhe_posto.html',
+        controller: 'MapaDetalhePostoCtrl'
       }
     }
   })
@@ -107,19 +121,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'])
 				controller: 'RecuperarSenhaCtrl'
 			}
 		}
-	})
-	
-	.state('app.mapa', {
-		url: '/mapa',
-		views: {
-		  'menuContent': {
-			templateUrl: 'templates/mapa.html',
-			controller: 'MapaCtrl'
-		  }
-		}
-});
+	});
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
 });
-
-

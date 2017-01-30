@@ -1,0 +1,39 @@
+<ion-view view-title="Detalhe Posto">
+  <ion-content>
+    <div class="card">
+      <div class="row">
+        <div class="col col-25" style="text-align: center">
+          <img ng-src="{{urlImagemx48}}" >
+        </div>
+        <div class="col col-55" style="text-align: center">
+          <h6>{{posto.endereco}}</h6>
+          <h6>{{posto.bandeiraPosto.nome}}</h6>
+        </div>
+        <div class="col col-20" style="text-align: center">
+          <img src="img/map-icon.png" width="24px" height="24px">
+          <h6>{{distanciaFormatada + ' KM'}}</h6>
+        </div>
+      </div>
+      <div id="map-container" class="row" style="height: 150px;">
+        <div id="map2" data-tap-disabled="true"></div>
+      </div>
+      <div class="row">
+        <div class="col col-33" style="text-align: center">
+          Preço do GNV
+          <h3 style='color:#2ECC71;'>{{'R$ '+posto.preco}}</h3>
+        </div>
+        <div class="col col-34" style="text-align: center">
+          <h6>Atualizado por:</h6>
+          <h6>{{posto.usuarioUltimaAtualizacao ? posto.usuarioUltimaAtualizacao : 'Nenhum usuário atualizou'}}</h6>
+        </div>
+        <div class="col col-33" style="text-align: center">
+          <label>
+            <button class="button button-block button-assertive" ng-click="showPopupPreco();">R$</button>
+          </label>
+        </div>
+      </div>
+      <button class="button button-block button-positive" ng-click="navegarPosto();">Ir até o posto</button>
+      <button class="button button-block button-assertive" ng-click="abrirNavegador();">Ir com navegador</button>
+    </div>
+  </ion-content>
+</ion-view>
