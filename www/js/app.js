@@ -112,7 +112,24 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
       }
     }
   })
-
+  .state('app.calculadora_economia', {
+    url: '/calculadora_economia',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/calculadora_economia.html',
+        controller: 'CalcEconomiaCtrl'
+      }
+    }
+  })
+  .state('app.retorno_investimento', {
+    url: '/retorno_investimento',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/retorno_investimento.html',
+        controller: 'CalcRetornoInvestimentoCtrl'
+      }
+    }
+  })
 	.state('app.recuperar_senha', {
 		url: '/recuperar_senha',
 		views: {

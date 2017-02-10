@@ -1,0 +1,49 @@
+<ion-view view-title="Calculadora de Economia">
+  <ion-content>
+    <div class="card">
+      <div class="item item-divider">
+        Parâmetros:
+      </div>
+      <label class="item item-input">
+        <span class="input-label">Preço do GNV</span>
+        <input type="number" placeholder="R$" ng-model="parametros.precoGNV"
+              value="{{parametros.precoGNV | currency}}">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">GNV Km/m3</span>
+        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioGNV"
+              value="{{parametros.consumoMedioGNV | currency}}">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Gasolina Km/l</span>
+        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioGasolina"
+              value="{{parametros.consumoMedioGasolina | currency}}">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Etanol Km/l</span>
+        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioEtanol"
+              value="{{parametros.consumoMedioEtanol | currency}}">
+      </label>
+      <label>
+        <button class="button button-block button-positive" ng-click="calcularEconomia();">Calcular</button>
+      </label>
+      <div ng-show="parametros.mostrarResultado">
+        <div class="item item-divider">
+          Resultado:
+        </div>
+        <label class="item item-input">
+          <span class="input-label">Se o GNV custa:</span>
+          <span>{{parametros.precoGNV}}</span>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Só vale etanol se:</span>
+          <span>{{parametros.resultadoEtanol}}</span>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Só vale gasolina se:</span>
+          <span>{{parametros.resultadoGasolina}}</span>
+        </label>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

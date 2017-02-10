@@ -17,6 +17,14 @@ function($scope, $stateParams, $state, $http, $ionicSideMenuDelegate, $ionicLoad
     }
   });
 
+  $scope.carregaRetornoInvestimento = function (){
+    $state.go("app.retorno_investimento");
+  };
+
+  $scope.carregaCalcEconomia = function (){
+    $state.go("app.calculadora_economia");
+  };
+
   $scope.carregaMapa = function() {
     //$state.go("app.mapa");
     $state.go("app.mapa_postos");
