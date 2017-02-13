@@ -7,25 +7,25 @@
       <div class="row">
         <div class="col">
           <label class="item item-input">
-            <span class="input-label">Gasolina</span>
-            <input type="number" placeholder="R$" ng-model="parametros.consumoMedioGNV"
-            value="{{parametros.consumoMedioGNV | currency}}">
-          </label>
-          <label class="item item-input">
-            <span class="input-label">Etanol</span>
-            <input type="number" placeholder="R$" ng-model="parametros.consumoMedioGNV"
-            value="{{parametros.consumoMedioGNV | currency}}">
-          </label>
-        </div>
-        <div class="col">
-          <label class="item item-input">
             <span class="input-label">GNV</span>
             <input type="number" placeholder="R$" ng-model="parametros.precoGNV"
             value="{{parametros.precoGNV | currency}}">
           </label>
           <label class="item item-input">
+            <span class="input-label">Gasolina</span>
+            <input type="number" placeholder="R$" ng-model="parametros.precoGasolina"
+            value="{{parametros.consumoMedioGNV | currency}}">
+          </label>
+        </div>
+        <div class="col">
+          <label class="item item-input">
+            <span class="input-label">Etanol</span>
+            <input type="number" placeholder="R$" ng-model="parametros.precoEtanol"
+            value="{{parametros.consumoMedioGNV | currency}}">
+          </label>
+          <label class="item item-input">
             <span class="input-label">Kit GNV</span>
-            <input type="number" placeholder="R$" ng-model="parametros.consumoMedioGNV"
+            <input type="number" placeholder="R$" ng-model="parametros.precoKitGNV"
                   value="{{parametros.consumoMedioGNV | currency}}">
           </label>
         </div>
@@ -35,48 +35,30 @@
       </div>
       <label class="item item-input">
         <span class="input-label">Km/mês</span>
-        <input type="number" placeholder="R$" ng-model="parametros.precoGNV"
+        <input type="number" placeholder="R$" ng-model="parametros.kmRodadoMes"
         value="{{parametros.precoGNV | currency}}">
       </label>
       <div class="item item-divider">
         Consumo médio:
       </div>
-
-          <label class="item item-input">
-            <span class="input-label">GNV</span>
-            <input type="number" placeholder="R$" ng-model="parametros.precoGNV"
-            value="{{parametros.precoGNV | currency}}">
-          </label>
-          <label class="item item-input">
-            <span class="input-label">Gasolina</span>
-            <input type="number" placeholder="R$" ng-model="parametros.consumoMedioGNV"
-            value="{{parametros.consumoMedioGNV | currency}}">
-          </label>
-          <label class="item item-input">
-            <span class="input-label">Etanol</span>
-            <input type="number" placeholder="R$" ng-model="parametros.consumoMedioGNV"
-            value="{{parametros.consumoMedioGNV | currency}}">
-          </label>
+      <label class="item item-input">
+        <span class="input-label">GNV</span>
+        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioGNV"
+        value="{{parametros.precoGNV | currency}}">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Gasolina</span>
+        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioGasolina"
+        value="{{parametros.consumoMedioGNV | currency}}">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Etanol</span>
+        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioEtanol"
+        value="{{parametros.consumoMedioGNV | currency}}">
+      </label>
       <label>
         <button class="button button-block button-positive" ng-click="calcularEconomia();">Calcular</button>
       </label>
-      <div ng-show="parametros.mostrarResultado">
-        <div class="item item-divider">
-          Resultado:
-        </div>
-        <label class="item item-input">
-          <span class="input-label">Se o GNV custa:</span>
-          <span>{{parametros.precoGNV}}</span>
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Só vale etanol se:</span>
-          <span>{{parametros.resultadoEtanol}}</span>
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Só vale gasolina se:</span>
-          <span>{{parametros.resultadoGasolina}}</span>
-        </label>
-      </div>
     </div>
   </ion-content>
 </ion-view>

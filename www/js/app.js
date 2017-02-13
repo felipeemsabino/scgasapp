@@ -130,6 +130,16 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
       }
     }
   })
+  .state('app.resultado_retorno_investimento', {
+      url: '/resultado_retorno_investimento',
+      params: {parametros: null},
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/resultado_retorno_investimento.html',
+          controller: 'ResultadoRetornoInvestimentoCtrl'
+        }
+      }
+    })
 	.state('app.recuperar_senha', {
 		url: '/recuperar_senha',
 		views: {

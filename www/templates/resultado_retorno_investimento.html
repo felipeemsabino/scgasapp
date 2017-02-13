@@ -1,0 +1,62 @@
+<ion-view view-title="Resultados">
+  <ion-header-bar class="bar-stable">
+    <h2 class="title">Resultado</h2>
+  </ion-header-bar>
+  <ion-content>
+    <div class="card">
+      <div class="item item-divider">
+        Resultados de consumo, gasto e custo:
+      </div>
+      <div class="row header">
+        <div class="col col-50"></div>
+        <div class="col">Gasolina</div>
+        <div class="col">GNV</div>
+        <div class="col">Etanol</div>
+      </div>
+      <div class="row">
+        <div class="col col-50">Consumo Mensal</div>
+        <div class="col">{{parametros.cmGasolina}}</div>
+        <div class="col">{{parametros.cmGNV}}</div>
+        <div class="col">{{parametros.cmEtanol}}</div>
+      </div>
+      <div class="row">
+        <div class="col col-50">Gasto Mensal</div>
+        <div class="col" >{{parametros.gmGasolina}}</div>
+        <div class="col" >{{parametros.gmGNV}}</div>
+        <div class="col" >{{parametros.gmEtanol}}</div>
+      </div>
+      <div class="row">
+        <div class="col col-50">Custo por Km</div>
+        <div class="col">{{parametros.cpkmGasolina}}</div>
+        <div class="col">{{parametros.cpkmGNV}}</div>
+        <div class="col">{{parametros.cpkmEtanol}}</div>
+      </div>
+      <div class="item item-divider">
+        Economia Mensal:
+      </div>
+      <label class="item item-input">
+        <span class="input-label">Gasolina</span>
+        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioEtanol"
+              value="{{parametros.emGasolina}}">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Etanol</span>
+        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioEtanol"
+              value="{{parametros.emEtanol}}">
+      </label>
+      <div class="item item-divider">
+        Tempo de Retorno:
+      </div>
+      <label class="item item-input">
+        <span class="input-label">Gasolina</span>
+        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioEtanol"
+              value="{{parametros.trGasolina}}">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Etanol</span>
+        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioEtanol"
+              value="{{parametros.trEtanol}}">
+      </label>
+    </div>
+  </ion-content>
+</ion-view>
