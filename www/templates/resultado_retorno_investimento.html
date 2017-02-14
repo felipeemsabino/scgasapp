@@ -15,47 +15,51 @@
       </div>
       <div class="row">
         <div class="col col-50">Consumo Mensal</div>
-        <div class="col">{{parametros.cmGasolina}}</div>
-        <div class="col">{{parametros.cmGNV}}</div>
-        <div class="col">{{parametros.cmEtanol}}</div>
+        <span class="col">{{parametros.cmGasolina | currency }}</span>
+        <span class="col">{{parametros.cmGNV | currency }}</span>
+        <span class="col">{{parametros.cmEtanol | currency }}</span>
       </div>
       <div class="row">
         <div class="col col-50">Gasto Mensal</div>
-        <div class="col" >{{parametros.gmGasolina}}</div>
-        <div class="col" >{{parametros.gmGNV}}</div>
-        <div class="col" >{{parametros.gmEtanol}}</div>
+        <span class="col" >{{parametros.gmGasolina | currency }}</span>
+        <span class="col" >{{parametros.gmGNV | currency }}</span>
+        <span class="col" >{{parametros.gmEtanol | currency }}</span>
       </div>
       <div class="row">
         <div class="col col-50">Custo por Km</div>
-        <div class="col">{{parametros.cpkmGasolina}}</div>
-        <div class="col">{{parametros.cpkmGNV}}</div>
-        <div class="col">{{parametros.cpkmEtanol}}</div>
+        <span class="col">{{parametros.cpkmGasolina | currency }}</span>
+        <span class="col">{{parametros.cpkmGNV | currency }}</span>
+        <span class="col">{{parametros.cpkmEtanol | currency }}</span>
       </div>
       <div class="item item-divider">
         Economia Mensal:
       </div>
       <label class="item item-input">
         <span class="input-label">Gasolina</span>
-        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioEtanol"
-              value="{{parametros.emGasolina}}">
+        <span>
+          {{parametros.emGasolina | currency }}
+          </span>
       </label>
       <label class="item item-input">
         <span class="input-label">Etanol</span>
-        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioEtanol"
-              value="{{parametros.emEtanol}}">
+        <span>
+           {{parametros.emEtanol | currency }}
+          </span>
       </label>
       <div class="item item-divider">
         Tempo de Retorno:
       </div>
       <label class="item item-input">
         <span class="input-label">Gasolina</span>
-        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioEtanol"
-              value="{{parametros.trGasolina}}">
+        <span>
+          {{parametros.trGasolina | currency }}
+          </span>
       </label>
       <label class="item item-input">
         <span class="input-label">Etanol</span>
-        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioEtanol"
-              value="{{parametros.trEtanol}}">
+        <span>
+          {{parametros.trEtanol | currency }}
+          </span>
       </label>
     </div>
   </ion-content>

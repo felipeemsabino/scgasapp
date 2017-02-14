@@ -33,15 +33,15 @@
         </div>
         <label class="item item-input">
           <span class="input-label">Se o GNV custa:</span>
-          <span>{{parametros.precoGNV}}</span>
+          <span>{{parametros.precoGNV | currency }}</span>
         </label>
         <label class="item item-input">
           <span class="input-label">Só vale etanol se:</span>
-          <span>{{parametros.resultadoEtanol}}</span>
+          <span>{{parametros.resultadoEtanol | currency }}</span>
         </label>
         <label class="item item-input">
           <span class="input-label">Só vale gasolina se:</span>
-          <span>{{parametros.resultadoGasolina}}</span>
+          <span>{{parametros.resultadoGasolina | currency }}</span>
         </label>
       </div>
     </div>
