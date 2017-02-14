@@ -30,6 +30,10 @@ function($scope, $stateParams, $state, $http, $ionicSideMenuDelegate, $ionicLoad
     $state.go("app.mapa_postos");
   };
     
+  $scope.loadNews = function() {
+    $state.go("app.lista_noticias");
+  };
+    
   $scope.openInstaladoresCordovaWebView = function()
   {
      // Open cordova webview if the url is in the whitelist otherwise opens in app browser
@@ -51,7 +55,7 @@ function($scope, $stateParams, $state, $http, $ionicSideMenuDelegate, $ionicLoad
   $scope.updateTokenFCM = function(){
        var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
        user.tokenNotificacao = '123456789';
-       var response = $http.post('http://192.168.191.36:8080/scgas/rest/usuarioservice/atualizaTokenNotificacao',user);
+       var response = $http.post($scope.defaultURL+'/scgas/rest/usuarioservice/atualizaTokenNotificacao',user);
 
         // Response retornado com sucesso
          response.success(function(data, status, headers, config) {});

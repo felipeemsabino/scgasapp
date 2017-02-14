@@ -1,0 +1,20 @@
+<ion-view view-title="Dicas e Novidades">
+    <ion-content>
+    </ion-content>
+        <ion-view>
+           <ion-content class="has-header" >
+            <ion-list>
+              <div class="card" ng-repeat="noticia in arrNoticias" >
+               <div class="row" >
+                  <div class="col col-55" style="text-align: center">
+                    <h6>{{noticia.titulo}}</h6>
+                    <h6>{{noticia.dataCadastro}}</h6>
+                    <h6>{{noticia.textoNoticia}}</h6>
+                  </div>
+                </div> 
+                </div>
+            </ion-list>
+           </ion-content>
+         </ion-view>
+      
+</ion-view>
