@@ -48,11 +48,30 @@ function($scope, $stateParams, $state, $http, $ionicSideMenuDelegate, $ionicLoad
         window.open('http://www.detran.sc.gov.br/index.php/institucional/endereco-ciretrans','_blank');    
   };
  
+  $scope.updateTokenFCM = function(){
+       var user = JSON.parse(window.localStorage.getItem("dadosUsuario"));
+       user.tokenNotificacao = '123456789';
+       var response = $http.post('http://192.168.191.36:8080/scgas/rest/usuarioservice/atualizaTokenNotificacao',user);
+
+        // Response retornado com sucesso
+         response.success(function(data, status, headers, config) {});
+
+        // Response retornado com erros
+         response.error(function(data, status, headers, config) {
+             
+              if(status == 500){
+                errorMessage = 'Problemas com o servidor. Tente novamente mais tarde.';
+                window.plugins.toast.show(errorMessage, 'long', 'center', function(a){}, function(b){});   
+              }
+               
+          });
+        
+  };
 
   $scope.init = function() {
 
     var customBackButton = function() {};
-
+    $scope.updateTokenFCM();
     // registerBackButtonAction() returns a function which can be used to deregister it
     var deregisterBackButtonAction = $ionicPlatform.registerBackButtonAction(
         customBackButton, 101
