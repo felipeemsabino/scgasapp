@@ -2,13 +2,16 @@
   <ion-content>
     <div class="card">
       <div class="item item-divider">
-        Parâmetros:
+        Informe as infomações abaixo:
       </div>
       <label class="item item-input">
-        <span class="input-label">Preço do GNV</span>
-        <input type="number" placeholder="R$" ng-model="parametros.precoGNV"
+
+        <input type="number" placeholder="Preço do GNV: R$" id="vlr" ng-model="parametros.precoGNV"
               value="{{parametros.precoGNV | currency}}">
       </label>
+      <div class="item item-divider">
+        Consumo Médio:
+      </div>
       <label class="item item-input">
         <span class="input-label">GNV Km/m3</span>
         <input type="number" placeholder="R$" ng-model="parametros.consumoMedioGNV"

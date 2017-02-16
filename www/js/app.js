@@ -10,7 +10,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-   
+
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
@@ -140,7 +140,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
         }
       }
     })
-  
+
     .state('app.lista_noticias', {
       url: '/lista_noticias',
       params: {parametros: null},
@@ -148,6 +148,16 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
         'menuContent': {
           templateUrl: 'templates/lista_noticias.html',
           controller: 'NoticiasCtrl'
+        }
+      }
+    })
+    .state('app.detalhe_noticia', {
+      url: '/detalhe_noticia',
+      params: {paramNoticia: null},
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/detalheNoticia.html',
+          controller: 'DetalheNoticiaCtrl'
         }
       }
     })
