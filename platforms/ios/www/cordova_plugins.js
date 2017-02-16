@@ -141,6 +141,23 @@ module.exports = [
         "merges": [
             "launchnavigator"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-firebase/www/firebase.js",
+        "id": "cordova-plugin-firebase.FirebasePlugin",
+        "pluginId": "cordova-plugin-firebase",
+        "clobbers": [
+            "FirebasePlugin"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -159,7 +176,9 @@ module.exports.metadata =
     "cordova-plugin-x-toast": "2.5.2",
     "ionic-plugin-keyboard": "2.2.1",
     "cordova-plugin-actionsheet": "2.3.3",
-    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.1"
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.1",
+    "cordova-plugin-inappbrowser": "1.6.1",
+    "cordova-plugin-firebase": "0.1.19"
 }
 // BOTTOM OF METADATA
 });

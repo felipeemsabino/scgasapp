@@ -29,9 +29,7 @@ function($scope, $stateParams, $state, $http, $ionicSideMenuDelegate, $ionicLoad
           });
 
           window.FirebasePlugin.grantPermission();
-          window.FirebasePlugin.hasPermission(function(data){
-              alert(data.isEnabled);
-          });
+          
     }
   });
 

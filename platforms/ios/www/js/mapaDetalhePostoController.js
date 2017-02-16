@@ -1,8 +1,8 @@
 angular.module('starter.controllers')
 
 .controller('MapaDetalhePostoCtrl', ['$scope', '$state', '$cordovaGeolocation', '$ionicLoading', '$http', '$stateParams', '$ionicPopup',
-'$rootScope', '$ionicHistory', '$ionicSideMenuDelegate',
-function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams, $ionicPopup, $rootScope, $ionicHistory, $ionicSideMenuDelegate) {
+'$rootScope', '$ionicHistory', '$ionicSideMenuDelegate','$cordovaLaunchNavigator',
+function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams, $ionicPopup, $rootScope, $ionicHistory, $ionicSideMenuDelegate,$cordovaLaunchNavigator) {
 
   /* Variaveis de controle */
 
@@ -131,8 +131,19 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   };
 
   // Traca rota da posicao do usuario ate o posto selecionado
-  $scope.abrirNavegador = function () {
+ /* $scope.abrirNavegador = function () {
     alert('Abrir no navegador');
+  };*/
+    
+   $scope.abrirNavegador = function() {
+   
+    var destination = [$scope.posto.coordenadaX.replace(',','.'), $scope.posto.coordenadaY.replace(',','.')];
+	var start = null;
+    $cordovaLaunchNavigator.navigate(destination, start).then(function() {
+    }, function (err) {
+       alert(err);
+      console.error(err);
+    });
   };
 
   // Traca rota da posicao do usuario ate o posto selecionado

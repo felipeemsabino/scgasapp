@@ -91,6 +91,14 @@
                         {
                             "xml": "<feature name=\"LaunchNavigator\"><param name=\"ios-package\" value=\"LaunchNavigator\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"FirebasePlugin\"><param name=\"ios-package\" value=\"FirebasePlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -142,6 +150,26 @@
                         }
                     ]
                 }
+            },
+            "*/Entitlements-Debug.plist": {
+                "parents": {
+                    "aps-environment": [
+                        {
+                            "xml": "<string>development</string>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "*/Entitlements-Release.plist": {
+                "parents": {
+                    "aps-environment": [
+                        {
+                            "xml": "<string>production</string>",
+                            "count": 1
+                        }
+                    ]
+                }
             }
         }
     },
@@ -189,6 +217,12 @@
             "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
         },
         "uk.co.workingedge.phonegap.plugin.launchnavigator": {
+            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
+        },
+        "cordova-plugin-firebase": {
             "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
         }
     },
@@ -335,6 +369,23 @@
             "merges": [
                 "launchnavigator"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+            "id": "cordova-plugin-inappbrowser.inappbrowser",
+            "pluginId": "cordova-plugin-inappbrowser",
+            "clobbers": [
+                "cordova.InAppBrowser.open",
+                "window.open"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-firebase/www/firebase.js",
+            "id": "cordova-plugin-firebase.FirebasePlugin",
+            "pluginId": "cordova-plugin-firebase",
+            "clobbers": [
+                "FirebasePlugin"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -351,6 +402,8 @@
         "cordova-plugin-x-toast": "2.5.2",
         "ionic-plugin-keyboard": "2.2.1",
         "cordova-plugin-actionsheet": "2.3.3",
-        "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.1"
+        "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.1",
+        "cordova-plugin-inappbrowser": "1.6.1",
+        "cordova-plugin-firebase": "0.1.19"
     }
 }
