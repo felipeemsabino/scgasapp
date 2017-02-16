@@ -48,6 +48,9 @@
         },
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
+        },
+        "cordova-plugin-firebase": {
+            "PACKAGE_NAME": "com.ionicframework.scgasapp734434"
         }
     },
     "dependent_plugins": {
