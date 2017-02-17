@@ -8,12 +8,14 @@
         <div class="col">
           <label class="item item-input">
             <span class="input-label">GNV</span>
-            <input type="number"    placeholder="R$" ng-model="parametros.precoGNV"
+            <input type="number" placeholder="R$" ng-model="parametros.precoGNV"
+            style="text-decoration: underline;"
             value="{{parametros.precoGNV | currency:'R$ '}}">
           </label>
           <label class="item item-input">
             <span class="input-label">Gasolina</span>
             <input type="number" placeholder="R$" ng-model="parametros.precoGasolina"
+            style="text-decoration: underline;"
             value="{{parametros.consumoMedioGNV | currency:'R$ '}}">
           </label>
         </div>
@@ -21,11 +23,13 @@
           <label class="item item-input">
             <span class="input-label">Etanol</span>
             <input type="number" placeholder="R$" ng-model="parametros.precoEtanol"
+            style="text-decoration: underline;"
             value="{{parametros.consumoMedioGNV | currency:'R$ '}}">
           </label>
           <label class="item item-input">
             <span class="input-label">Kit GNV</span>
             <input type="number" placeholder="R$" ng-model="parametros.precoKitGNV"
+            style="text-decoration: underline;"
                   value="{{parametros.consumoMedioGNV | currency:'R$ '}}">
           </label>
         </div>
@@ -36,6 +40,7 @@
       <label class="item item-input">
         <span class="input-label">Km/mês</span>
         <input type="number" placeholder="R$" ng-model="parametros.kmRodadoMes"
+        style="text-decoration: underline;"
         value="{{parametros.precoGNV | currency:'R$ '}}">
       </label>
       <div class="item item-divider">
@@ -44,16 +49,19 @@
       <label class="item item-input">
         <span class="input-label">GNV</span>
         <input type="number" placeholder="R$" ng-model="parametros.consumoMedioGNV"
+        style="text-decoration: underline;"
         value="{{parametros.precoGNV | currency:'R$ '}}">
       </label>
       <label class="item item-input">
         <span class="input-label">Gasolina</span>
         <input type="number" placeholder="R$" ng-model="parametros.consumoMedioGasolina"
+        style="text-decoration: underline;"
         value="{{parametros.consumoMedioGNV | currency:'R$ '}}">
       </label>
       <label class="item item-input">
         <span class="input-label">Etanol</span>
         <input type="number" placeholder="R$" ng-model="parametros.consumoMedioEtanol"
+        style="text-decoration: underline;"
         value="{{parametros.consumoMedioGNV | currency:'R$ '}}">
       </label>
       <label>
