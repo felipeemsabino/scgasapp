@@ -128,6 +128,7 @@ $ionicPopup, orderBy) {
       //alert('resultado de postos! -> '+JSON.stringify({data2: data}));
       //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
       //$scope.arrPostos = $scope.arrPostos.concat(data.splice(-1,1));
+
       for(var counter = 0;counter < data.length-1;counter++){ // sempre ignorar ultima posicao do array
 
         data[counter].preco = data[counter].listaPrecosGNV.length == 0 ? '0.000' :
@@ -154,11 +155,12 @@ $ionicPopup, orderBy) {
         window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
       });
 
-      var responseRecuperaPostos2 = $http.get($scope.defaultURL+'/scgas/rest/postoservice/listaPostos/45/90/'+$scope.position.coords.latitude+'/'+$scope.position.coords.longitude, {timeout: 5000});
+      var responseRecuperaPostos2 = $http.get($scope.defaultURL+'/scgas/rest/postoservice/listaPostos/45/45/'+$scope.position.coords.latitude+'/'+$scope.position.coords.longitude, {timeout: 5000});
       responseRecuperaPostos2.success(function(data, status, headers, config) {
         //alert('resultado de postos! -> '+JSON.stringify({data2: data}));
         //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
         //$scope.arrPostos = $scope.arrPostos.concat(data.splice(-1,1));
+
         for(var counter = 0;counter < data.length-1;counter++){ // sempre ignorar ultima posicao do array
 
           data[counter].preco = data[counter].listaPrecosGNV.length == 0 ? '0.000' :
@@ -184,11 +186,12 @@ $ionicPopup, orderBy) {
         window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
       });
 
-      var responseRecuperaPostos3 = $http.get($scope.defaultURL+'/scgas/rest/postoservice/listaPostos/90/150/'+$scope.position.coords.latitude+'/'+$scope.position.coords.longitude, {timeout: 5000});
+      var responseRecuperaPostos3 = $http.get($scope.defaultURL+'/scgas/rest/postoservice/listaPostos/90/45/'+$scope.position.coords.latitude+'/'+$scope.position.coords.longitude, {timeout: 5000});
       responseRecuperaPostos3.success(function(data, status, headers, config) {
         //alert('resultado de postos! -> '+JSON.stringify({data2: data}));
         //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
         //$scope.arrPostos = $scope.arrPostos.concat(data.splice(-1,1));
+        
         for(var counter = 0;counter < data.length-1;counter++){ // sempre ignorar ultima posicao do array
 
           data[counter].preco = data[counter].listaPrecosGNV.length == 0 ? '0.000' :
@@ -269,7 +272,7 @@ $ionicPopup, orderBy) {
   // Deleta a rota desenhada no mapa
   $scope.limparRota = function () {
     $scope.show(0);
-    $scope.setNavigationMode(false); // reseta navigation mode flag 
+    $scope.setNavigationMode(false); // reseta navigation mode flag
     $scope.directionsDisplay.setMap(null);
     $("#destino").val("");
     $scope.hide();
