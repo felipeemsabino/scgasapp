@@ -14,18 +14,21 @@
       </div>
       <label class="item item-input">
         <span class="input-label">GNV Km/m3</span>
-        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioGNV"
-              value="{{parametros.consumoMedioGNV | currency}}">
+        <input type="number"  ng-model="parametros.consumoMedioGNV"
+        style="text-decoration: underline;"
+            >
       </label>
       <label class="item item-input">
         <span class="input-label">Gasolina Km/l</span>
-        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioGasolina"
-              value="{{parametros.consumoMedioGasolina | currency}}">
+        <input type="number"  ng-model="parametros.consumoMedioGasolina"
+        style="text-decoration: underline;"
+              >
       </label>
       <label class="item item-input">
         <span class="input-label">Etanol Km/l</span>
-        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioEtanol"
-              value="{{parametros.consumoMedioEtanol | currency}}">
+        <input type="number"  ng-model="parametros.consumoMedioEtanol"
+        style="text-decoration: underline;"
+              >
       </label>
       <label>
         <button class="button button-block button-positive" ng-click="calcularEconomia();">Calcular</button>

@@ -12,6 +12,8 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     "destino": {"nome":"", "lat":"", "lng":""}
   };
 
+  $scope.flagResizeMapa = false;
+
   // Posto enviado via parametro
   $scope.posto = $stateParams.paramPosto;
   $scope.novoPreco = {'preco':''};
@@ -134,9 +136,9 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
  /* $scope.abrirNavegador = function () {
     alert('Abrir no navegador');
   };*/
-    
+
    $scope.abrirNavegador = function() {
-   
+
     var destination = [$scope.posto.coordenadaX.replace(',','.'), $scope.posto.coordenadaY.replace(',','.')];
 	var start = null;
     $cordovaLaunchNavigator.navigate(destination, start).then(function() {
@@ -254,6 +256,27 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
           }
        });
     };
+	$scope.resizeMaps = function () {
+		console.log($scope.flagResizeMapa);
+		if(!$scope.flagResizeMapa) {
+			$('.hide-row-when-map').css( "display", "none" );
 
+			$('#map2').css( "position", "fixed" );
+			$('#map2').css( "width", "100%" );
+			$('#map2').css( "height", "100%" );
+			google.maps.event.trigger($scope.map, 'resize');
+		} else {
+			//location.reload();
+
+			//$('#map2').remove();
+			$('#map2').css( "overflow", "hidden" );
+			$('#map2').css( "position", "relative" );
+			$('#map2').css( "height", "140px" );
+			google.maps.event.trigger($scope.map, 'resize');
+
+			$('.hide-row-when-map').css( "display", "" );
+		}
+		$scope.flagResizeMapa = !$scope.flagResizeMapa;
+	 };
   });
 }]);

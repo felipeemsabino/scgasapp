@@ -35,6 +35,17 @@ $ionicSideMenuDelegate, $locale) {
   $scope.$on('$ionicView.afterEnter', function() {
     $ionicSideMenuDelegate.canDragContent(false)
     $scope.$root.showMenuIcon = false;
+
+  /**  alert('Mascara valores');
+    $('#precoGNC').maskMoney();
+    $('#precoGasolina').maskMoney();
+    $('#prcEtanol').maskMoney();
+    $('#prcKitGnv').maskMoney();
+    $('#kmMes').maskMoney();
+    $('#csmMedioGnv').maskMoney();
+    $('#csmMedioGasolina').maskMoney();
+    $('#csmMedioEtanol').maskMoney();
+*/
   });
 
   $scope.calcularEconomia = function () {

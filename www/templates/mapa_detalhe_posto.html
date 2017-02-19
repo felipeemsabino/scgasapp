@@ -1,7 +1,7 @@
 <ion-view view-title="Detalhe Posto">
   <ion-content>
     <div class="card">
-      <div class="row">
+      <div class="row hide-row-when-map">
         <div class="col col-25" style="text-align: center">
           <img ng-src="{{urlImagemx48}}" >
         </div>
@@ -14,10 +14,10 @@
           <h6>{{distanciaFormatada + ' KM'}}</h6>
         </div>
       </div>
-      <div id="map-container" class="row" style="height: 150px;">
-        <div id="map2" data-tap-disabled="true"></div>
+      <div class="map-container" style="height: 140px;">
+		<div id="map2" data-tap-disabled="true" style="position: relative; overflow: visible; height: 140px;"></div>
       </div>
-      <div class="row">
+      <div class="row hide-row-when-map">
         <div class="col col-33" style="text-align: center">
           Preço do GNV
           <h3 style='color:#2ECC71;'>{{'R$ '+posto.preco}}</h3>
@@ -32,8 +32,11 @@
           </label>
         </div>
       </div>
-      <button class="button button-block button-positive" ng-click="navegarPosto();">Ir até o posto</button>
-      <button class="button button-block button-assertive" ng-click="abrirNavegador();">Ir com navegador</button>
+	  <div class="row hide-row-when-map">
+		  <button class="button button-block button-positive" ng-click="navegarPosto();">Ir até o posto</button>
+		  <button class="button button-block button-assertive" ng-click="abrirNavegador();">Ir com navegador</button>
+	  </div>
+	  <button class="button button-block button-assertive" ng-click="resizeMaps();">Resize maps</button>
     </div>
   </ion-content>
 </ion-view>

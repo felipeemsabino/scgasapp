@@ -9,12 +9,12 @@
           <label class="item item-input">
             <span class="input-label">GNV</span>
             <input type="number" placeholder="R$" ng-model="parametros.precoGNV"
-            style="text-decoration: underline;"
+            style="text-decoration: underline;" id="precoGNC"
             value="{{parametros.precoGNV | currency:'R$ '}}">
           </label>
           <label class="item item-input">
             <span class="input-label">Gasolina</span>
-            <input type="number" placeholder="R$" ng-model="parametros.precoGasolina"
+            <input type="number" placeholder="R$" id="precoGasolina" ng-model="parametros.precoGasolina"
             style="text-decoration: underline;"
             value="{{parametros.consumoMedioGNV | currency:'R$ '}}">
           </label>
@@ -23,13 +23,13 @@
           <label class="item item-input">
             <span class="input-label">Etanol</span>
             <input type="number" placeholder="R$" ng-model="parametros.precoEtanol"
-            style="text-decoration: underline;"
+            style="text-decoration: underline;" id="prcEtanol"
             value="{{parametros.consumoMedioGNV | currency:'R$ '}}">
           </label>
           <label class="item item-input">
             <span class="input-label">Kit GNV</span>
             <input type="number" placeholder="R$" ng-model="parametros.precoKitGNV"
-            style="text-decoration: underline;"
+            style="text-decoration: underline;" id="prcKitGnv"
                   value="{{parametros.consumoMedioGNV | currency:'R$ '}}">
           </label>
         </div>
@@ -39,30 +39,30 @@
       </div>
       <label class="item item-input">
         <span class="input-label">Km/mês</span>
-        <input type="number" placeholder="R$" ng-model="parametros.kmRodadoMes"
-        style="text-decoration: underline;"
-        value="{{parametros.precoGNV | currency:'R$ '}}">
+        <input type="number"  ng-model="parametros.kmRodadoMes"
+        style="text-decoration: underline;" id="kmMes"
+        >
       </label>
       <div class="item item-divider">
         Consumo médio:
       </div>
       <label class="item item-input">
         <span class="input-label">GNV</span>
-        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioGNV"
-        style="text-decoration: underline;"
-        value="{{parametros.precoGNV | currency:'R$ '}}">
+        <input type="number"  ng-model="parametros.consumoMedioGNV"
+        style="text-decoration: underline;" id="csmMedioGnv"
+        >
       </label>
       <label class="item item-input">
         <span class="input-label">Gasolina</span>
-        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioGasolina"
-        style="text-decoration: underline;"
-        value="{{parametros.consumoMedioGNV | currency:'R$ '}}">
+        <input type="number"  ng-model="parametros.consumoMedioGasolina"
+        style="text-decoration: underline;" id="csmMedioGasolina"
+        >
       </label>
       <label class="item item-input">
         <span class="input-label">Etanol</span>
-        <input type="number" placeholder="R$" ng-model="parametros.consumoMedioEtanol"
-        style="text-decoration: underline;"
-        value="{{parametros.consumoMedioGNV | currency:'R$ '}}">
+        <input type="number" ng-model="parametros.consumoMedioEtanol"
+        style="text-decoration: underline;" id="csmMedioEtanol"
+        >
       </label>
       <label>
         <button class="button button-block button-positive" ng-click="calcularEconomia();">Calcular</button>
