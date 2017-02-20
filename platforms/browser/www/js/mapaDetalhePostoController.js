@@ -1,8 +1,8 @@
 angular.module('starter.controllers')
 
 .controller('MapaDetalhePostoCtrl', ['$scope', '$state', '$cordovaGeolocation', '$ionicLoading', '$http', '$stateParams', '$ionicPopup',
-'$rootScope', '$ionicHistory', '$ionicSideMenuDelegate',
-function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams, $ionicPopup, $rootScope, $ionicHistory, $ionicSideMenuDelegate) {
+'$rootScope', '$ionicHistory', '$ionicSideMenuDelegate','$cordovaLaunchNavigator',
+function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams, $ionicPopup, $rootScope, $ionicHistory, $ionicSideMenuDelegate,$cordovaLaunchNavigator) {
 
   /* Variaveis de controle */
 
@@ -11,6 +11,8 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     "origem": {"nome":"", "lat":"", "lng":""},
     "destino": {"nome":"", "lat":"", "lng":""}
   };
+
+  $scope.flagResizeMapa = false;
 
   // Posto enviado via parametro
   $scope.posto = $stateParams.paramPosto;
@@ -131,8 +133,19 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   };
 
   // Traca rota da posicao do usuario ate o posto selecionado
-  $scope.abrirNavegador = function () {
+ /* $scope.abrirNavegador = function () {
     alert('Abrir no navegador');
+  };*/
+
+   $scope.abrirNavegador = function() {
+
+    var destination = [$scope.posto.coordenadaX.replace(',','.'), $scope.posto.coordenadaY.replace(',','.')];
+	var start = null;
+    $cordovaLaunchNavigator.navigate(destination, start).then(function() {
+    }, function (err) {
+       alert(err);
+      console.error(err);
+    });
   };
 
   // Traca rota da posicao do usuario ate o posto selecionado
@@ -243,6 +256,27 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
           }
        });
     };
+	$scope.resizeMaps = function () {
+		console.log($scope.flagResizeMapa);
+		if(!$scope.flagResizeMapa) {
+			$('.hide-row-when-map').css( "display", "none" );
 
+			$('#map2').css( "position", "fixed" );
+			$('#map2').css( "width", "100%" );
+			$('#map2').css( "height", "100%" );
+			google.maps.event.trigger($scope.map, 'resize');
+		} else {
+			//location.reload();
+
+			//$('#map2').remove();
+			$('#map2').css( "overflow", "hidden" );
+			$('#map2').css( "position", "relative" );
+			$('#map2').css( "height", "140px" );
+			google.maps.event.trigger($scope.map, 'resize');
+
+			$('.hide-row-when-map').css( "display", "" );
+		}
+		$scope.flagResizeMapa = !$scope.flagResizeMapa;
+	 };
   });
 }]);

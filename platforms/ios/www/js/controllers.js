@@ -9,6 +9,8 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
   $scope.defaultURL = 'http://ec2-52-67-135-39.sa-east-1.compute.amazonaws.com:8080';
+  //$scope.defaultURL = 'http://192.168.187.218:8080';
+
 
   //Coordenadas de SC
   $scope.latlngInicial;// = new google.maps.LatLng(-27.590682, -48.547002);

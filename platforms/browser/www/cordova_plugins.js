@@ -103,6 +103,31 @@ module.exports = [
         "clobbers": [
             "launchnavigator"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-inappbrowser/src/browser/InAppBrowserProxy.js",
+        "id": "cordova-plugin-inappbrowser.InAppBrowserProxy",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "merges": [
+            ""
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-firebase/www/firebase-browser.js",
+        "id": "cordova-plugin-firebase.FirebasePlugin",
+        "pluginId": "cordova-plugin-firebase",
+        "clobbers": [
+            "FirebasePlugin"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -120,7 +145,9 @@ module.exports.metadata =
     "cordova-plugin-googleplus": "5.1.1",
     "cordova-plugin-x-toast": "2.5.2",
     "cordova-plugin-dialogs": "1.3.0",
-    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.1"
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.1",
+    "cordova-plugin-inappbrowser": "1.6.1",
+    "cordova-plugin-firebase": "0.1.19"
 }
 // BOTTOM OF METADATA
 });

@@ -1,6 +1,6 @@
 <ion-view view-title="APP GNV" ng-init="init();" hide-back-button="true">
   <ion-content>
-		
+
     <div class="list card" >
       <div class="row">
         <div class="col col-50">
@@ -16,7 +16,7 @@
         <div class="col col-50">
           <div class="item">
             <div class="item-image">
-              <img src="img/ic_trending_down_black_24dp.png" width="90px" height="100px">
+              <img src="img/ic_trending_down_black_24dp.png" width="90px" height="100px" ng-click="carregaCalcEconomia();">
               <div class="caption">
                 <p>Calculadora de </br>economia</p>
               </div>
@@ -28,7 +28,7 @@
         <div class="col col-50">
           <div class="item">
             <div class="item-image">
-              <img src="img/ic_monetization_on_black_24dp.png" width="90px" height="100px">
+              <img src="img/ic_monetization_on_black_24dp.png" width="90px" height="100px" ng-click="carregaRetornoInvestimento();">
               <div class="caption">
                 <p>Retorno de </br>investimento</p>
               </div>
@@ -38,7 +38,7 @@
         <div class="col col-50">
           <div class="item">
             <div class="item-image">
-              <img src="img/ic_directions_car_black_24dp.png" width="90px" height="100px">
+              <img src="img/ic_directions_car_black_24dp.png" width="90px" height="100px" ng-click="openInstaladoresCordovaWebView()">
               <div class="caption">
                 <p>Instaladores</br> autorizados</p>
               </div>
@@ -50,7 +50,7 @@
         <div class="col col-50">
           <div class="item">
             <div class="item-image">
-              <img src="img/ic_build_black_24dp.png" width="90px" height="100px">
+              <img src="img/ic_build_black_24dp.png" width="90px" height="100px" ng-click="openInspecaoCordovaWebView()">
               <div class="caption">
                 <p>Inspeção veicular</p>
               </div>
@@ -60,7 +60,7 @@
         <div class="col col-50">
           <div class="item">
             <div class="item-image">
-              <img src="img/ic_description_black_24dp.png" width="90px" height="100px">
+              <img src="img/ic_description_black_24dp.png" width="90px" height="100px" ng-click="openLicenciamentoCordovaWebView()">
               <div class="caption">
                 <p>Licenciamento </br>veicular</p>
               </div>
@@ -72,7 +72,7 @@
         <div class="col col-50">
           <div class="item">
             <div class="item-image">
-              <img src="img/ic_fiber_new_black_24dp.png" width="90px" height="100px">
+              <img src="img/ic_fiber_new_black_24dp.png" width="90px" height="100px" ng-click="loadNews()" >
               <div class="caption">
                 <p>Dicas e novidades</p>
               </div>

@@ -37,8 +37,10 @@
                     {{posto.ultimaAtualizacao ? posto.ultimaAtualizacao : 'Sem atualizações'}}
                   </div>
                   <div class="col col-55" style="text-align: center">
+
                     <h6>{{posto.endereco}}</h6>
                     <h6>{{posto.bandeiraPosto.nome}}</h6>
+                    <img ng-src="{{defaultURL+'/images/'+posto.bandeiraPosto.urlImgBandeira}}" >
                   </div>
                   <div class="col col-20" style="text-align: center">
                     <img src="img/map-icon.png" width="24px" height="24px" ng-click="carregaMapa();">
