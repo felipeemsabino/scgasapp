@@ -6,7 +6,8 @@
       </div>
       <label class="item item-input">
 
-        <input type="number" placeholder="Preço do GNV: R$" id="vlr" ng-model="parametros.precoGNV"
+        <input  placeholder="Preço do GNV: R$" id="vlr" ng-model="parametros.precoGNV"
+        type="text" ui-money-mask
               value="{{parametros.precoGNV | currency}}">
       </label>
       <div class="item item-divider">

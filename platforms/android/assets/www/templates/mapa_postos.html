@@ -32,21 +32,31 @@
             <ion-list>
               <div class="card" ng-repeat="posto in arrPostos" ng-click="carregaDetalhePosto(posto);" ng-show="posto.mostrar">
                 <div class="row" >
-                  <div class="col col-25" style="text-align: center">
-                    <h3 style='color:#2ECC71;'>{{'R$ '+posto.precoFormatado}}</h3>
-                    {{posto.ultimaAtualizacao ? posto.ultimaAtualizacao : 'Sem atualizações'}}
-                  </div>
-                  <div class="col col-55" style="text-align: center">
 
-                    <h6>{{posto.endereco}}</h6>
-                    <h6>{{posto.bandeiraPosto.nome}}</h6>
+                  <div class="col col-50" style="text-align: center">
                     <img ng-src="{{defaultURL+'/images/'+posto.bandeiraPosto.urlImgBandeira}}" >
+                    <h6>{{posto.nome}}</h6>
                   </div>
-                  <div class="col col-20" style="text-align: center">
+                  <div class="col col-50" style="text-align: center">
                     <img src="img/map-icon.png" width="24px" height="24px" ng-click="carregaMapa();">
                     <h6>{{posto.distanciaFormatada + ' KM'}}</h6>
                   </div>
                 </div>
+
+                <div class="row" >
+                  <div class="col col-100" style="text-align: center">
+                    <h6>{{posto.endereco}}</h6>
+                  </div>
+                </div>
+
+                <div class="row" >
+                  <div class="col col-100" style="text-align: center">
+                    <h3 style='color:#2ECC71;'>{{'R$ '+posto.precoFormatado}}</h3>
+                    {{posto.ultimaAtualizacao ? posto.ultimaAtualizacao : 'Sem atualizações'}}
+                  </div>
+                </div>
+
+
               </div>
             </ion-list>
 

@@ -28,8 +28,16 @@ function($scope, $stateParams, $state, $http, $ionicSideMenuDelegate, $ionicLoad
               console.error(error);
           });
 
+
+          window.FirebasePlugin.subscribe("all");
           window.FirebasePlugin.grantPermission();
-          
+
+          window.FirebasePlugin.onNotificationOpen(function(notification) {
+            window.FirebasePlugin.setBadgeNumber(0);
+          }, function(error) {
+            //  console.error(error);
+          });
+
     }
   });
 
