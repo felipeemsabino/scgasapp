@@ -23,3 +23,9 @@ input[type=number]:focus {
   outline: none;
   box-shadow: -8px 10px 0px -7px #4EA6EA, 8px 10px 0px -7px #4EA6EA;
 } 
+
+.rodape {
+	position:absolute;
+	bottom:0;
+	width:100%;
+}

@@ -13,7 +13,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   };
 
   $scope.flagResizeMapa = false;
-
+  $scope.topResize = false;
   // Posto enviado via parametro
   $scope.posto = $stateParams.paramPosto;
   $scope.novoPreco = {'preco':''};
@@ -175,7 +175,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   jQuery(document).ready(function() {
 
     /* Inicio configurações do mapa */
-
+      $("#btnResizeLess").hide();
       var mapOptions = {
         center: $scope.latlngInicial,
         zoom: 15,
@@ -216,11 +216,13 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
         $scope.alteraMapa(mapa);
         $scope.resetLocationMarker();
         $scope.adicionaMarker($scope.posto);
+
       });
     /* Fim configurações do mapa */
 
     $scope.recuperaLocalizacaoAtual = function (lat, lng, origem) {
       var latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
+
       $scope.geocoder.geocode({'location': latlng}, function(results, status) {
         if (status === 'OK') {
           if (results[1]) {
@@ -265,6 +267,12 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
 			$('#map2').css( "width", "100%" );
 			$('#map2').css( "height", "100%" );
 			google.maps.event.trigger($scope.map, 'resize');
+      $("#btnResize").hide();
+      $("#btnResizeLess").css('background-color', 'rgba(0, 0, 0, 0.5)');
+      $("#btnResizeLess").css({ top: '-130px' });
+      $("#btnResizeLess").show();
+        $scope.map.setZoom(15);
+
 		} else {
 			//location.reload();
 
@@ -275,6 +283,9 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
 			google.maps.event.trigger($scope.map, 'resize');
 
 			$('.hide-row-when-map').css( "display", "" );
+      $("#btnResize").show();
+      $("#btnResizeLess").hide();
+
 		}
 		$scope.flagResizeMapa = !$scope.flagResizeMapa;
 	 };
