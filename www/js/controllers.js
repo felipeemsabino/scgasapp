@@ -40,6 +40,8 @@ angular.module('starter.controllers', [])
       $scope.mapAux = $scope.map;
       $scope.map = mapa;
     }
+
+    $scope.locationMarker = null; // sempre reseta marker ao alterar o mapa
     console.log($scope.map);
   };
 
@@ -63,16 +65,17 @@ angular.module('starter.controllers', [])
     //window.plugins.toast.show('watching!'+$scope.navigationMode, 'short', 'center', function(a){}, function(b){});
     if($scope.map != null) {
 
-      //if($scope.locationMarker == null) {
-        $scope.locationMarker = new google.maps.Marker({
-            map: $scope.map,
-            //animation: google.maps.Animation.DROP,
-            position: latLng,
-            icon: 'img/map_pointer.png'
-        });
-      //} else {
-      //  $scope.locationMarker.setPosition(latLng);
-      //}
+      if($scope.locationMarker == null) {
+
+      $scope.locationMarker = new google.maps.Marker({
+          map: $scope.map,
+          //animation: google.maps.Animation.DROP,
+          position: latLng,
+          icon: 'img/map_pointer.png'
+      });
+    } else { // apenas move o marker
+        $scope.locationMarker.setPosition(latLng);
+      }
 
       if($scope.navigationMode) { // se estiver no modo de navegação então sempre centralizar o mapa na posição do usuário
         var posicaoUsuario = {lat: position.coords.latitude, lng: position.coords.longitude};

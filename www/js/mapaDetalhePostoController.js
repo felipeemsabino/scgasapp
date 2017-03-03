@@ -171,6 +171,13 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     });
     $scope.map.setCenter(latLng);
   };
+
+  // Centraliza mapa na posição do usuario
+  $scope.centralizarMapaPosicaoUsuario = function () {
+      var posicaoUsuario = {lat: $scope.position.coords.latitude, lng: $scope.position.coords.longitude};
+      $scope.map.setCenter(posicaoUsuario);
+  };
+
   // Trecho para criar o Mapa e todas as configurações necessárias
   jQuery(document).ready(function() {
 
@@ -271,7 +278,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
       $("#btnResizeLess").css('background-color', 'rgba(0, 0, 0, 0.5)');
       $("#btnResizeLess").css({ top: '-130px' });
       $("#btnResizeLess").show();
-        $scope.map.setZoom(15);
+      $scope.map.setZoom(15);
 
 		} else {
 			//location.reload();
@@ -288,6 +295,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
 
 		}
 		$scope.flagResizeMapa = !$scope.flagResizeMapa;
+    $scope.centralizarMapaPosicaoUsuario();
 	 };
   });
 }]);
