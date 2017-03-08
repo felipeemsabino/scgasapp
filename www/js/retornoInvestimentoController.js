@@ -6,15 +6,28 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading,$ionicP
 $ionicSideMenuDelegate, $locale) {
 
   $scope.parametros = {
+    "consumoMedioGNV": 0.0,//13.2,      // parametro estatico
+    "consumoMedioGasolina": 0.0,//10.7, // parametro estatico
+    "consumoMedioEtanol": 0.0,//7.5,    // parametro estatico
+    "precoKitGNV": 0.0,//3500,
+    "valorInspecao": 0.0,//250,
+    "kmRodadoMes": 0.0,//200,
+    "precoGNV": 0.0,//2.8,
+    "precoGasolina": 0.0,//3.9,
+    "precoEtanol": 0.0//3.7
+  };
+  // valores para teste
+  /*$scope.parametros = {
     "consumoMedioGNV": 13.2,      // parametro estatico
     "consumoMedioGasolina": 10.7, // parametro estatico
     "consumoMedioEtanol": 7.5,    // parametro estatico
     "precoKitGNV": 3500,
+    "valorInspecao": 250,
     "kmRodadoMes": 200,
     "precoGNV": 2.8,
     "precoGasolina": 3.9,
     "precoEtanol": 3.7
-  };
+  };*/
 
   $scope.resultados = {
     "cmGasolina": 0.0,
@@ -77,8 +90,8 @@ $ionicSideMenuDelegate, $locale) {
         // economia mensal etanol
       $scope.resultados.emEtanol = ($scope.resultados.gmEtanol-$scope.resultados.gmGNV).toFixed(2);
         // tempo retorno gasolina
-      $scope.resultados.trGasolina = ($scope.parametros.precoKitGNV/$scope.resultados.emGasolina).toFixed(2);
+      $scope.resultados.trGasolina = (($scope.parametros.precoKitGNV + $scope.parametros.valorInspecao)/$scope.resultados.emGasolina).toFixed(2);
         // tempo retorno etanol
-      $scope.resultados.trEtanol = ($scope.parametros.precoKitGNV/$scope.resultados.emEtanol).toFixed(2);
+      $scope.resultados.trEtanol =   (($scope.parametros.precoKitGNV + $scope.parametros.valorInspecao)/$scope.resultados.emEtanol).toFixed(2);
   };
 }]);

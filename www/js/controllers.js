@@ -71,7 +71,7 @@ angular.module('starter.controllers', [])
           map: $scope.map,
           //animation: google.maps.Animation.DROP,
           position: latLng,
-          icon: 'img/map_pointer.png'
+          icon: 'img/car.png'
       });
     } else { // apenas move o marker
         $scope.locationMarker.setPosition(latLng);
