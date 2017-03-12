@@ -50,7 +50,7 @@ $ionicSideMenuDelegate, $locale) {
     $scope.$root.showMenuIcon = false;
 
   /**  alert('Mascara valores');
-    $('#precoGNC').maskMoney();
+    $('#precoGNV').maskMoney();
     $('#precoGasolina').maskMoney();
     $('#prcEtanol').maskMoney();
     $('#prcKitGnv').maskMoney();
