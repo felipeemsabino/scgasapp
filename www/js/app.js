@@ -88,7 +88,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
       url: '/playlists',
       views: {
         'menuContent': {
-          templateUrl: 'templates/playlists.html',
+          templateUrl: 'templates/playlists_atualizado.html',
           controller: 'TelaInicialCtrl'
         }
       }
