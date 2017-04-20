@@ -6,15 +6,15 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading,$ionicP
 $ionicSideMenuDelegate, $locale) {
 
   $scope.parametros = {
-    "consumoMedioGNV": 0.0,//13.2,      // parametro estatico
-    "consumoMedioGasolina": 0.0,//10.7, // parametro estatico
-    "consumoMedioEtanol": 0.0,//7.5,    // parametro estatico
-    "precoKitGNV": 0.0,//3500,
-    "valorInspecao": 0.0,//250,
-    "kmRodadoMes": 0.0,//200,
-    "precoGNV": 0.0,//2.8,
-    "precoGasolina": 0.0,//3.9,
-    "precoEtanol": 0.0//3.7
+    "consumoMedioGNV": 13.2,      // parametro estatico
+    "consumoMedioGasolina":10.7, // parametro estatico
+    "consumoMedioEtanol": 7.5,    // parametro estatico
+    "precoKitGNV": 3500.00,
+    "valorInspecao": 250.00,
+    "kmRodadoMes": 200.00,
+    "precoGNV": 2.8,
+    "precoGasolina": 3.9,
+    "precoEtanol": 3.7
   };
   // valores para teste
   /*$scope.parametros = {
@@ -68,30 +68,30 @@ $ionicSideMenuDelegate, $locale) {
   $scope.calculaResultados = function () {
 
         // consumo mensal gasolina
-      $scope.resultados.cmGasolina = ($scope.parametros.kmRodadoMes/$scope.parametros.consumoMedioGasolina).toFixed(2);
+      $scope.resultados.cmGasolina = ($scope.parametros.kmRodadoMes/$scope.parametros.consumoMedioGasolina).toFixed(3);
         // consumo mensal GNV
-      $scope.resultados.cmGNV = ($scope.parametros.kmRodadoMes/$scope.parametros.consumoMedioGNV).toFixed(2);
+      $scope.resultados.cmGNV = ($scope.parametros.kmRodadoMes/$scope.parametros.consumoMedioGNV).toFixed(3);
        // consumo mensal etanol
-      $scope.resultados.cmEtanol = ($scope.parametros.kmRodadoMes/$scope.parametros.consumoMedioEtanol).toFixed(2);
+      $scope.resultados.cmEtanol = ($scope.parametros.kmRodadoMes/$scope.parametros.consumoMedioEtanol).toFixed(3);
         // gasto mensal gasolina
-      $scope.resultados.gmGasolina = ($scope.resultados.cmGasolina*$scope.parametros.precoGasolina).toFixed(2);
+      $scope.resultados.gmGasolina = ($scope.resultados.cmGasolina*$scope.parametros.precoGasolina).toFixed(3);
         // gasto mensal GNV
-      $scope.resultados.gmGNV = ($scope.resultados.cmGNV*$scope.parametros.precoGNV).toFixed(2);
+      $scope.resultados.gmGNV = ($scope.resultados.cmGNV*$scope.parametros.precoGNV).toFixed(3);
         // gasto mensal etanol
-      $scope.resultados.gmEtanol = ($scope.resultados.cmEtanol*$scope.parametros.precoEtanol).toFixed(2);
+      $scope.resultados.gmEtanol = ($scope.resultados.cmEtanol*$scope.parametros.precoEtanol).toFixed(3);
         // custo por km gasolina
-      $scope.resultados.cpkmGasolina = ($scope.resultados.gmGasolina/$scope.parametros.kmRodadoMes).toFixed(2);
+      $scope.resultados.cpkmGasolina = ($scope.resultados.gmGasolina/$scope.parametros.kmRodadoMes).toFixed(3);
         // custo por km GNV
-      $scope.resultados.cpkmGNV = ($scope.resultados.gmGNV/$scope.parametros.kmRodadoMes).toFixed(2);
+      $scope.resultados.cpkmGNV = ($scope.resultados.gmGNV/$scope.parametros.kmRodadoMes).toFixed(3);
         // custo por km etanol
-      $scope.resultados.cpkmEtanol = ($scope.resultados.gmEtanol/$scope.parametros.kmRodadoMes).toFixed(2);
+      $scope.resultados.cpkmEtanol = ($scope.resultados.gmEtanol/$scope.parametros.kmRodadoMes).toFixed(3);
         // economia mensal gasolina
-      $scope.resultados.emGasolina = ($scope.resultados.gmGasolina-$scope.resultados.gmGNV).toFixed(2);
+      $scope.resultados.emGasolina = ($scope.resultados.gmGasolina-$scope.resultados.gmGNV).toFixed(3);
         // economia mensal etanol
-      $scope.resultados.emEtanol = ($scope.resultados.gmEtanol-$scope.resultados.gmGNV).toFixed(2);
+      $scope.resultados.emEtanol = ($scope.resultados.gmEtanol-$scope.resultados.gmGNV).toFixed(3);
         // tempo retorno gasolina
-      $scope.resultados.trGasolina = (($scope.parametros.precoKitGNV + $scope.parametros.valorInspecao)/$scope.resultados.emGasolina).toFixed(2);
+      $scope.resultados.trGasolina = (($scope.parametros.precoKitGNV + $scope.parametros.valorInspecao)/$scope.resultados.emGasolina).toFixed(3);
         // tempo retorno etanol
-      $scope.resultados.trEtanol =   (($scope.parametros.precoKitGNV + $scope.parametros.valorInspecao)/$scope.resultados.emEtanol).toFixed(2);
+      $scope.resultados.trEtanol =   (($scope.parametros.precoKitGNV + $scope.parametros.valorInspecao)/$scope.resultados.emEtanol).toFixed(3);
   };
 }]);

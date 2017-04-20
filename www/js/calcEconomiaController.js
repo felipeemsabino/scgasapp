@@ -19,7 +19,7 @@ $ionicSideMenuDelegate, $locale) {
   $scope.$on('$ionicView.afterEnter', function() {
     $ionicSideMenuDelegate.canDragContent(false)
     $scope.$root.showMenuIcon = false;
-  
+
   });
 
   $scope.calcularEconomia = function () {
