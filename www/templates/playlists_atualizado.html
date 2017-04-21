@@ -1,82 +1,78 @@
-<ion-view ng-init="init();" hide-nav-bar="true" style="background-color: #083578;background-image: url(img/MAPA.png);background-size:100%;">
-  <ion-header-bar align-title="left" class="bar-positive" style="background-color:#082045;opacity:0.6;">
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"
-        style="color: white;"></button>
+<ion-view ng-init="init();" hide-nav-bar="true" class="scgas-ion-view">
+  <ion-header-bar align-title="left" class="scgas-ion-header-bar">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon scgas-text-white"></button>
   </ion-header-bar>
   <ion-content>
-    <div class="list card" ng-class="true" style="border-radius: 20px;background-color: #082045;opacity:0.6;">
+    <div class="list card list-card-menu-scgas" ng-class="true">
       <div class="row">
-        <div class="col col-50" style="background-color:#082045;">
-              <div style="display: flex; justify-content: center;margin: 0 auto;border-radius:
-              50%;border: 3px solid #35FFAB; width:100px;height:100px">
-                <div ng-click="carregaMapa();" style="align-self: center;background-color:
-                #35FFAB;-webkit-mask-box-image: url(img/ICONE_02_BUSCAR_POSTOS.png);
-                width:60px;height:60px">
-                </div>
-              </div>
-              <div class="caption" style="-webkit-text-fill-color:white;text-align: center;">
-                <p>Buscar postos</p>
-              </div>
+        <div class="col col-50 list-card-menu-column">
+          <div class="list-card-menu-div">
+            <div ng-click="carregaMapa();" class="list-card-menu-img menu-img-buscar-posto">
+            </div>
+          </div>
+          <div class="caption list-card-menu-caption">
+            <p>Buscar postos</p>
+          </div>
         </div>
-        <div class="col col-50" style="background-color:#082045;">
-              <div style="display: flex; justify-content: center;margin: 0 auto;border-radius: 50%;border: 3px solid #35FFAB; width:100px;height:100px">
-                <div ng-click="carregaCalcEconomia();" style="align-self: center;background-color: #35FFAB;-webkit-mask-box-image: url(img/ICONE_02_CALCULADORA.png);width:60px;height:60px">
-                </div>
-              </div>
-              <div class="caption" style="-webkit-text-fill-color:white;text-align: center;">
-                <p>Calculadora de </br>economia</p>
-              </div>
+        <div class="col col-50 list-card-menu-column">
+          <div class="list-card-menu-div">
+            <div ng-click="carregaCalcEconomia();" class="list-card-menu-img menu-img-calculadora">
+            </div>
+          </div>
+          <div class="caption list-card-menu-caption">
+            <p>Calculadora de </br>economia</p>
+          </div>
         </div>
       </div>
       <div class="row">
-        <div class="col col-50">
-              <div style="display: flex; justify-content: center;margin: 0 auto;border-radius: 50%;border: 3px solid #35FFAB; width:100px;height:100px">
-                <div ng-click="carregaRetornoInvestimento();" style="align-self: center;background-color: #35FFAB;-webkit-mask-box-image: url(img/ICONE_02_RETORNO_INVESTIMENTO.png);width:60px;height:60px">
-                </div>
-              </div>
-              <div class="caption" style="-webkit-text-fill-color:white;text-align: center;">
-                <p>Retorno de </br>investimento</p>
-              </div>
+        <div class="col col-50 list-card-menu-column">
+          <div class="list-card-menu-div">
+            <div ng-click="carregaRetornoInvestimento();" class="list-card-menu-img menu-img-retorno-invest">
+            </div>
+          </div>
+          <div class="caption list-card-menu-caption">
+            <p>Retorno de </br>investimento</p>
+          </div>
         </div>
-        <div class="col col-50">
-              <div style="display: flex; justify-content: center;margin: 0 auto;border-radius: 50%;border: 3px solid #35FFAB; width:100px;height:100px">
-                <div ng-click="openInstaladoresCordovaWebView();" style="align-self: center;background-color: #35FFAB;-webkit-mask-box-image: url(img/ICONE_02_INSTALADORAS_AUTORIZADAS.png);width:60px;height:60px">
-                </div>
-              </div>
-              <div class="caption" style="-webkit-text-fill-color:white;text-align: center;">
-                <p>Instaladores</br> autorizados</p>
-              </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col col-50">
-              <div style="display: flex; justify-content: center;margin: 0 auto;border-radius: 50%;border: 3px solid #35FFAB; width:100px;height:100px">
-                <div ng-click="openInspecaoCordovaWebView();" style="align-self: center;background-color: #35FFAB;-webkit-mask-box-image: url(img/ICONE_02_INSPECAO_VEICULAR.png);width:60px;height:60px">
-                </div>
-              </div>
-              <div class="caption" style="-webkit-text-fill-color:white;text-align: center;">
-                <p>Inspeção veicular</p>
-              </div>
-        </div>
-        <div class="col col-50">
-              <div style="display: flex; justify-content: center;margin: 0 auto;border-radius: 50%;border: 3px solid #35FFAB; width:100px;height:100px">
-                <div ng-click="openLicenciamentoCordovaWebView();" style="align-self: center;background-color: #35FFAB;-webkit-mask-box-image: url(img/ICONE_02_LICENCIAMENTO.png);width:60px;height:60px">
-                </div>
-              </div>
-              <div class="caption" style="-webkit-text-fill-color:white;text-align: center;">
-                <p>Licenciamento </br>veicular</p>
-              </div>
+        <div class="col col-50 list-card-menu-column">
+          <div class="list-card-menu-div">
+            <div ng-click="openInstaladoresCordovaWebView();" class="list-card-menu-img menu-img-instaladoras-aut">
+            </div>
+          </div>
+          <div class="caption list-card-menu-caption">
+            <p>Instaladores</br> autorizados</p>
+          </div>
         </div>
       </div>
       <div class="row">
-        <div class="col col-50">
-              <div style="display: flex; justify-content: center;margin: 0 auto;border-radius: 50%;border: 3px solid #35FFAB; width:100px;height:100px">
-                <div ng-click="loadNews();" style="align-self: center;background-color: #35FFAB;-webkit-mask-box-image: url(img/ICONE_02_DICAS_E_NOVIDADES.png);width:60px;height:60px">
-                </div>
-              </div>
-              <div class="caption" style="-webkit-text-fill-color:white;text-align: center;">
-                <p>Dicas e novidades</p>
-              </div>
+        <div class="col col-50 list-card-menu-column">
+          <div class="list-card-menu-div">
+            <div ng-click="openInspecaoCordovaWebView();" class="list-card-menu-img menu-img-inpecao-veic">
+            </div>
+          </div>
+          <div class="caption list-card-menu-caption">
+            <p>Inspeção veicular</p>
+          </div>
+        </div>
+        <div class="col col-50 list-card-menu-column">
+          <div class="list-card-menu-div">
+            <div ng-click="openLicenciamentoCordovaWebView();" class="list-card-menu-img menu-img-licenciamento">
+            </div>
+          </div>
+          <div class="caption list-card-menu-caption">
+            <p>Licenciamento </br>veicular</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-50 list-card-menu-column">
+          <div class="list-card-menu-div">
+            <div ng-click="loadNews();" class="list-card-menu-img menu-img-dicas">
+            </div>
+          </div>
+          <div class="caption list-card-menu-caption">
+            <p>Dicas e novidades</p>
+          </div>
         </div>
       </div>
     </div>

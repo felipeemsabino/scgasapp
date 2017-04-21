@@ -29,3 +29,69 @@ input[type=number]:focus {
 	bottom:0;
 	width:100%;
 }
+
+
+/* CSS para novo layout */
+
+ /* Menu principal */
+.scgas-ion-view {
+  background-color: #083578;
+  background-image: url(../img/MAPA.png);
+  background-size:100%;
+}
+.scgas-ion-header-bar {
+  background-color:#082045;
+  opacity:0.6;
+}
+.scgas-text-white {
+  color: white;
+}
+.list-card-menu-scgas {
+  border-radius: 20px;
+  background-color: #082045;
+  opacity:0.6;
+}
+.list-card-menu-column {
+  background-color:#082045;
+}
+.list-card-menu-div {
+  display:flex;
+  justify-content:center;
+  margin:0 auto;
+  border-radius:50%;
+  border:3px solid #35FFAB;
+  width:100px;
+  height:100px;
+}
+.list-card-menu-img {
+  align-self:center;
+  background-color:#35FFAB;
+  -webkit-mask-box-image:url(../img/ICONE_02_BUSCAR_POSTOS.png);
+  width:60px;
+  height:60px;
+}
+.menu-img-buscar-posto {
+  -webkit-mask-box-image:url(../img/ICONE_02_BUSCAR_POSTOS.png);
+}
+.menu-img-calculadora {
+  -webkit-mask-box-image:url(../img/ICONE_02_CALCULADORA.png);
+}
+.menu-img-retorno-invest {
+  -webkit-mask-box-image:url(../img/ICONE_02_RETORNO_INVESTIMENTO.png);
+}
+.menu-img-instaladoras-aut {
+  -webkit-mask-box-image:url(../img/ICONE_02_INSTALADORAS_AUTORIZADAS.png);
+}
+.menu-img-inpecao-veic {
+  -webkit-mask-box-image:url(../img/ICONE_02_INSPECAO_VEICULAR.png);
+}
+.menu-img-licenciamento {
+  -webkit-mask-box-image:url(../img/ICONE_02_LICENCIAMENTO.png);
+}
+.menu-img-dicas {
+  -webkit-mask-box-image:url(../img/ICONE_02_DICAS_E_NOVIDADES.png);
+}
+.list-card-menu-caption {
+  -webkit-text-fill-color:white;
+  text-align:center;
+}
