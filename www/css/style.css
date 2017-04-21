@@ -1,9 +1,4 @@
 /* Empty. Add your own CSS if you like */
-.scgas-nav-bar{
-  height: 50px !important;
-}
-
-
 .scgas-center-image{
       margin:0 auto;
       max-width: 80px !important;
@@ -41,6 +36,7 @@ input[type=number]:focus {
 }
 .scgas-ion-header-bar {
   background-color:#082045;
+  border-color:#082045;
   opacity:0.6;
 }
 .scgas-text-white {
@@ -66,7 +62,6 @@ input[type=number]:focus {
 .list-card-menu-img {
   align-self:center;
   background-color:#35FFAB;
-  -webkit-mask-box-image:url(../img/ICONE_02_BUSCAR_POSTOS.png);
   width:60px;
   height:60px;
 }
@@ -94,4 +89,33 @@ input[type=number]:focus {
 .list-card-menu-caption {
   -webkit-text-fill-color:white;
   text-align:center;
+}
+
+/* Menu lateral */
+.scgas-nav-bar{
+  background-color:#35FFAB;
+  border-color:#35FFAB;
+}
+.side-menu-item {
+  width:40px;
+  height:30px;
+  margin-right:10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.side-menu-buscar-postos {
+  -webkit-mask-box-image:url(../img/ICONE_03_HOME.png);
+  background-color:#35FFAB;
+}
+.side-menu-sair {
+  -webkit-mask-box-image: url(../img/ICONE_03_EXIT.png);
+  background-color:red;
+}
+.side-menu-fale-conosco {
+  -webkit-mask-box-image: url(../img/ICONE_03_SPEAK.png);
+  background-color:blue;
+}
+.text{
+  display: inline-block;
+  vertical-align: middle;
 }
