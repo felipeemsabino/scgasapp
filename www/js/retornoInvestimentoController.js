@@ -62,10 +62,70 @@ $ionicSideMenuDelegate, $locale) {
   });
 
   $scope.calcularEconomia = function () {
-    $scope.calculaResultados();
-    $state.go("app.resultado_retorno_investimento", {parametros: $scope.resultados});
+    if($scope.validaParametros() == true){
+      $scope.calculaResultados();
+      $state.go("app.resultado_retorno_investimento", {parametros: $scope.resultados});
+    }
   };
+
+  $scope.validaParametros = function () {
+    if($scope.parametros.kmRodadoMes <= 0.00){
+      window.plugins.toast.show('Valor para KM rodado mês é inválido!', 'long', 'center', function(a){}, function(b){});
+      return false;
+    }
+    if($scope.parametros.consumoMedioGasolina <= 0.00){
+      window.plugins.toast.show('Valor para consumo médio gasolina é inválido!', 'long', 'center', function(a){}, function(b){});
+      return false;
+    }
+    if($scope.parametros.consumoMedioGNV <= 0.00){
+      window.plugins.toast.show('Valor para consumo médio GNV é inválido!', 'long', 'center', function(a){}, function(b){});
+      return false;
+    }
+
+    if($scope.parametros.precoGasolina <= 0.00){
+      window.plugins.toast.show('Valor para preço de gasolina é inválido!', 'long', 'center', function(a){}, function(b){});
+      return false;
+    }
+
+    if($scope.parametros.precoGNV <= 0.00){
+      window.plugins.toast.show('Valor para preço de GNV é inválido!', 'long', 'center', function(a){}, function(b){});
+      return false;
+    }
+    if($scope.parametros.precoEtanol <= 0.00){
+      window.plugins.toast.show('Valor para preço de etanol é inválido!', 'long', 'center', function(a){}, function(b){});
+      return false;
+    }
+
+    if($scope.parametros.gmGNV <= 0.00){
+      window.plugins.toast.show('Valor GNV é inválido!', 'long', 'center', function(a){}, function(b){});
+      return false;
+    }
+
+    if($scope.parametros.valorInspecao <= 0.00){
+      window.plugins.toast.show('Valor para inspeção é inválido!', 'long', 'center', function(a){}, function(b){});
+      return false;
+    }
+
+//Etanol falta validar
+    if($scope.parametros.precoKitGNV <= 0.00){
+      window.plugins.toast.show('Valor para Kit GNV é inválido!', 'long', 'center', function(a){}, function(b){});
+      return false;
+    }
+
+
+    if($scope.parametros.consumoMedioEtanol <= 0.00){
+      window.plugins.toast.show('Valor para Etanol é inválido!', 'long', 'center', function(a){}, function(b){});
+      return false;
+    }
+
+
+    return true;
+  }
+
+
   $scope.calculaResultados = function () {
+
+
 
         // consumo mensal gasolina
       $scope.resultados.cmGasolina = ($scope.parametros.kmRodadoMes/$scope.parametros.consumoMedioGasolina).toFixed(3);

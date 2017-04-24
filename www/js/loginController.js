@@ -191,6 +191,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
         });
       },
       function (msg) {
+        
         window.plugins.toast.show('Erro ao recuperar dados do Google+!', 'long', 'center', function(a){}, function(b){});
         //alert('Erro ao trazer dados do Google+, ' + JSON.stringify({data: msg}));
       }
