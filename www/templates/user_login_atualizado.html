@@ -1,0 +1,44 @@
+<ion-view view-title="Login" hide-back-button="true" class="scgas-ion-view">
+  <ion-nav-bar class="hide-header-bar"></ion-nav-bar>
+    <h3 class="login-title">Login</h3>
+  <ion-content scroll="false">
+    <div class="row login-row-top">
+    </div>
+
+    <div class="row login-row-bottom">
+      <div class="list list-card-login-scgas">
+        <div class="item logo-img-border">
+          <div class="item-image">
+            <img src="img/logo_scgas.png" class="logo-img-width">
+          </div>
+        </div>
+        <label class="item item-input">
+          <input type="email" placeholder="Email" ng-model="user.email">
+        </label>
+        <label class=" item item-input">
+          <input type="password" placeholder="Senha" ng-model="user.senha">
+        </label>
+        <div class="forgot-pass-align">
+          <a ng-click="recuperarSenha();">Esqueceu a senha?</a>
+        </div>
+        <div class="center-align">
+          <button class="button button-light" ng-click="cadastrarUsuario();"
+            style="border:2px solid;border-color:#082045;border-radius:5px;width:49%;line-height: 100%;">
+            Cadastre-se </br>agora
+          </button>
+          <button class="button button-light signin-text" ng-click="submitLogin();"
+            style="background-color:#082045;color:#35FFAB;border-radius:5px;;width:49%;">
+            Entrar
+          </button>
+        </div>
+        <div class="text-align">
+          <p>-ou-</p>
+        </div>
+        <div class="center-align">
+          <img align="center" src="img/LOGO_G+.png" class="logo-social-media" ng-click="doGoogleLogin();" >
+          <img align="center" src="img/LOGO_FACEBOOK.png" class="logo-social-media" ng-click="doFacebookLogin();" >
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

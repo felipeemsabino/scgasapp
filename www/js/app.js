@@ -39,7 +39,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
     url: '/user_login',
     views: {
       'menuContent': {
-        templateUrl: 'templates/user_login.html',
+        templateUrl: 'templates/user_login_atualizado.html',
         controller: 'LoginCtrl'
       }
     }
