@@ -191,7 +191,7 @@ $ionicPopup, orderBy) {
         //alert('resultado de postos! -> '+JSON.stringify({data2: data}));
         //window.plugins.toast.show('Ocorreram erros ao carregar o mapa. Verifique se a localização está ativada e tente novamente!', 'long', 'center', function(a){}, function(b){});
         //$scope.arrPostos = $scope.arrPostos.concat(data.splice(-1,1));
-        
+
         for(var counter = 0;counter < data.length-1;counter++){ // sempre ignorar ultima posicao do array
 
           data[counter].preco = data[counter].listaPrecosGNV.length == 0 ? '0.000' :
@@ -344,6 +344,7 @@ $ionicPopup, orderBy) {
      title: 'Filtrar por bandeira',
      subTitle: 'Selecione a(s) bandeira(s):',
      scope: $scope,
+     cssClass: 'popup-filter',
      buttons: [
        { text: 'Cancelar' },
        {

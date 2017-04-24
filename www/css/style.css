@@ -183,3 +183,21 @@ input[type=number]:focus {
   width:80%;
   height:80%;
 }
+/* Popup filter */
+.popup-container.active .popup {
+  border-radius: 8px;
+}
+.popup-filter .button-positive{
+  background-color:#082045;
+  color:#35FFAB;
+  border-radius: 5px;
+}
+.popup-filter .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before{
+  background:#082045;
+  border-color:#082045;
+  border-radius: 8px;
+}
+.popup-filter .checkbox input:checked:after, input:checked + .checkbox-icon:after {
+  opacity: 1;
+  border-color:#35FFAB;
+}
