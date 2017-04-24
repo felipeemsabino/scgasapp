@@ -201,3 +201,13 @@ input[type=number]:focus {
   opacity: 1;
   border-color:#35FFAB;
 }
+/* popup update price */
+.popup-update-price .button-positive{
+  background-color:#082045;
+  color:#35FFAB;
+  border-radius: 5px;
+}
+.popup-update-price .dinheiro{
+  border: 2px solid #35FFAB;
+  border-radius: 5px;
+}

@@ -107,6 +107,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
       title: 'Atualizar preço do posto',
       subTitle: 'Entre com o valor do preço do posto!',
       scope: $scope,
+      cssClass: 'popup-update-price',
       buttons: [
         { text: 'Cancelar' },
         {
