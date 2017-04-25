@@ -63,8 +63,10 @@
 		  <button class="button gas-station-go-to" ng-click="navegarPosto();">Ir até o posto</button>
 		  <button class="button gas-station-navigate-to" ng-click="abrirNavegador();">Ir com navegador</button>
 	  </div>
-	  <button class="rodape button gas-station-go-to "  style="width: 100%" id="btnResize" ng-click="resizeMaps();">Full screen</button>
-    <button class="rodape button gas-station-navigate-to "  style="width: 100%" id="btnResizeLess" ng-click="resizeMaps();">Normal screen</button>
+    <div class="row" style="margin-top:5px" ng-show="isIOS">
+      <button class="rodape button gas-station-go-to"  style="width: 100%" id="btnResize" ng-click="resizeMaps();">Full screen</button>
+      <button class="rodape button gas-station-navigate-to"  style="width: 100%" id="btnResizeLess" ng-click="resizeMaps();">Normal screen</button>
     </div>
+	  </div>
   </ion-content>
 </ion-view>

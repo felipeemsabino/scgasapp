@@ -29,13 +29,17 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   $scope.novoPreco.preco = 'R$ 00,00';
   $scope.distanciaFormatada = $scope.posto.distanciaPosto.match(/^-?\d+(?:\.\d{0,2})?/)[0].replace(".",",");
 
+  // Variavel para verificar se é iOS
+  $scope.isIOS = true;
+
   /* Eventos View */
   $scope.$on('$ionicView.afterEnter', function (e, data) {
     $scope.setNavigationMode(false); // reseta navigation mode flag
 
     $ionicSideMenuDelegate.canDragContent(false)
     $scope.$root.showMenuIcon = false;
-
+    $scope.isIOS = ionic.Platform.isIOS();
+    
     console.log('entrou na view de detalhe');
   });
 
@@ -271,7 +275,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
 		if(!$scope.flagResizeMapa) {
 			$('.hide-row-when-map').css( "display", "none" );
 
-			$('#map2').css( "position", "fixed" );
+			$('#map2').css( "position", "" );
 			$('#map2').css( "width", "100%" );
 			$('#map2').css( "height", "100%" );
 			google.maps.event.trigger($scope.map, 'resize');
