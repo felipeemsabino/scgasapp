@@ -286,3 +286,34 @@ input[type=number]:focus {
   background-image: url(../img/ICONE_06_CENTRALIZAR.png);
   background-size:contain;
 }
+
+/* gas station details*/
+.gas-station-detail-card {
+  border-radius: 20px;
+  background-color:white;
+  width:90%;
+  height:140%;
+  margin:auto;
+  margin-top:50px;
+}
+
+.gas-station-update-price{
+  background-color:#082045;
+  color:#35FFAB;
+  border-radius:5px;
+  width:100%;
+}
+
+.gas-station-go-to{
+  background-color:#082045;
+  color:#35FFAB;
+  border-radius:5px;
+  width:50%;
+}
+
+.gas-station-navigate-to{
+  border: 2px solid #082045;
+  color:#082045;
+  border-radius:5px;
+  width:50%;
+}

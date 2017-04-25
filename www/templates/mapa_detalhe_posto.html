@@ -1,43 +1,70 @@
-<ion-view view-title="Detalhe Posto">
-  <ion-content>
-    <div class="card">
+<ion-view class="scgas-ion-view">
+  <ion-nav-bar class="scgas-ion-header-bar">
+    <ion-nav-back-button class="button-clear" style="color:black;display:inline-flex;">
+      <i class="ion-arrow-left-c" style="color:white;"></i>
+      <p class="buscar-postos-title">Detalhe Posto</p>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content scroll="false">
+    <div class="card gas-station-detail-card">
       <div class="row hide-row-when-map">
-        <div class="col col-25" style="text-align: center">
-          <img ng-src="{{urlImagemx48}}" >
+        <div class="col col-33" style="margin:auto;text-align:center;">
+           <img ng-src="{{urlImagemx48}}" >
         </div>
-        <div class="col col-55" style="text-align: center">
-          <h6>{{posto.endereco}}</h6>
-          <h6>{{posto.nome}}</h6>
+        <div class="col col-33">
+          <div class="row">
+            <h6 style="color:dimgrey;font-weight:400;">{{posto.endereco}}</h6>
+          </div>
+          <div class="row">
+            <h6 style="color:dimgrey;font-weight:400;">{{posto.bandeiraPosto.nome}}</h6>
+          </div>
         </div>
-        <div class="col col-20" style="text-align: center">
-          <img src="img/map-icon.png" width="24px" height="24px">
-          <h6>{{distanciaFormatada + ' KM'}}</h6>
+        <div class="col col-33">
+          <div class="row">
+            <div class="gas-station-icon">
+            </div>
+          </div>
+          <div class="row">
+            <h3 style="margin:auto;color:dimgrey;font-weight:bold;">{{posto.distanciaFormatada + ' km'}}</h3>
+          </div>
         </div>
       </div>
+
       <div class="map-container" style="height: 140px;">
-		<div id="map2" data-tap-disabled="true" style="position: relative; overflow: visible; height: 140px;"></div>
+        <div id="map2" data-tap-disabled="true" style="position: relative; overflow: visible; height: 140px;"></div>
       </div>
+
       <div class="row hide-row-when-map">
-        <div class="col col-33" style="text-align: center">
-          Preço do GNV
-          <h3 style='color:#2ECC71;'>{{'R$ '+posto.preco}}</h3>
+        <div class="col col-33">
+          <div class="row">
+             <h4 style="color:dimgrey;margin:0px;font-weight:lighter;">Preço do GNV</h4>
+          </div>
+          <div class="row">
+            <h1 style="color:dimgrey;margin:0px;font-weight:bold;">{{posto.precoFormatado}}</h1>
+          </div>
         </div>
-        <div class="col col-34" style="text-align: center">
-          <h6>Atualizado por:</h6>
-          <h6>{{posto.usuarioUltimaAtualizacao ? posto.usuarioUltimaAtualizacao : 'Nenhum usuário atualizou'}}</h6>
+        <div class="col col-34">
+          <div class="row">
+             <h4 style="color:dimgrey;margin:0px;font-weight:lighter;">Atualizado por:</h4>
+          </div>
+          <div class="row">
+            <h4 style="color:dimgrey;margin:0px;font-weight:lighter;">
+              {{posto.usuarioUltimaAtualizacao ? posto.usuarioUltimaAtualizacao :
+                  'Nenhum usuário atualizou'}}</h4>
+          </div>
         </div>
         <div class="col col-33" style="text-align: center">
           <label>
-            <button class="button button-block button-assertive" ng-click="showPopupPreco();">R$</button>
+            <button class="button gas-station-update-price" ng-click="showPopupPreco();">R$</button>
           </label>
         </div>
       </div>
 	  <div class="row hide-row-when-map">
-		  <button class="button button-block button-positive" ng-click="navegarPosto();">Ir até o posto</button>
-		  <button class="button button-block button-assertive" ng-click="abrirNavegador();">Ir com navegador</button>
+		  <button class="button gas-station-go-to" ng-click="navegarPosto();">Ir até o posto</button>
+		  <button class="button gas-station-navigate-to" ng-click="abrirNavegador();">Ir com navegador</button>
 	  </div>
-	  <button class="rodape button button-block button-assertive "  id="btnResize" ng-click="resizeMaps();">Full screen</button>
-    <button class="rodape button button-block button-assertive "  id="btnResizeLess" ng-click="resizeMaps();">Normal screen</button>
+	  <button class="rodape button gas-station-go-to "  style="width: 100%" id="btnResize" ng-click="resizeMaps();">Full screen</button>
+    <button class="rodape button gas-station-navigate-to "  style="width: 100%" id="btnResizeLess" ng-click="resizeMaps();">Normal screen</button>
     </div>
   </ion-content>
 </ion-view>
