@@ -317,3 +317,17 @@ input[type=number]:focus {
   border-radius:5px;
   width:50%;
 }
+
+/* gas station details*/
+.calculators-detail-card {
+  border-radius: 20px;
+  background-color:white;
+  width:90%;
+  height:110%;
+  margin:auto;
+  margin-top:50px;
+}
+
+.resultado-ri-small {
+  font-size: x-small;
+}

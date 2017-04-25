@@ -1,6 +1,12 @@
-<ion-view view-title="Calculadora de Economia">
+<ion-view class="scgas-ion-view">
+  <ion-nav-bar class="scgas-ion-header-bar">
+    <ion-nav-back-button class="button-clear" style="color:black;display:inline-flex;">
+      <i class="ion-arrow-left-c" style="color:white;"></i>
+      <p class="buscar-postos-title">Calculadora de Economia</p>
+    </ion-nav-back-button>
+  </ion-nav-bar>
   <ion-content>
-    <div class="card">
+    <div class="card calculators-detail-card">
       <div class="item item-divider">
         Preencha as informações abaixo:
       </div>
@@ -31,9 +37,9 @@
         style="text-decoration: underline;"
               >
       </label>
-      <label>
-        <button class="button button-block button-positive" ng-click="calcularEconomia();">Calcular</button>
-      </label>
+      <div class="row">
+        <button class="button button-block gas-station-navigate-to" ng-click="calcularEconomia();">Calcular</button>
+      </div>
       <div ng-show="parametros.mostrarResultado">
         <div class="item item-divider">
           Resultado:

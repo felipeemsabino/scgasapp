@@ -1,65 +1,68 @@
-<ion-view view-title="Resultados">
-  <ion-header-bar class="bar-stable">
-    <h2 class="title">Resultado</h2>
-  </ion-header-bar>
-  <ion-content>
-    <div class="card">
+<ion-view class="scgas-ion-view">
+  <ion-nav-bar class="scgas-ion-header-bar">
+    <ion-nav-back-button class="button-clear" style="color:black;display:inline-flex;">
+      <i class="ion-arrow-left-c" style="color:white;"></i>
+      <p class="buscar-postos-title">Resultado</p>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content scroll="false">
+    <div class="card calculators-detail-card">
       <div class="item item-divider">
         Tempo de Retorno:
       </div>
-      <label class="item item-input">
-        <span class="input-label">Gasolina</span>
-        <span>
-          {{parametros.trGasolina | number : 1}}
-          meses</span>
+      <label class="item-input">
+        <span class="input-label resultado-ri-small">Gasolina</span>
+        <span class="resultado-ri-small">
+          {{parametros.trGasolina | number : 1}} meses
+        </span>
       </label>
-      <label class="item item-input">
-        <span class="input-label">Etanol</span>
-        <span>
-          {{parametros.trEtanol | number : 1}}
-        meses</span>
+      <label class="item-input">
+        <span class="input-label resultado-ri-small">Etanol</span>
+        <span class="resultado-ri-small">
+          {{parametros.trEtanol | number : 1}} meses
+        </span>
       </label>
       <div class="item item-divider">
         Resultados de consumo, gasto e custo:
       </div>
       <div class="row header">
-        <div class="col col-30"></div>
-        <div class="col">Gasolina</div>
-        <div class="col">GNV</div>
-        <div class="col">Etanol</div>
+        <div class="col col-30 resultado-ri-small"></div>
+        <div class="col resultado-ri-small">Gasolina</div>
+        <div class="col resultado-ri-small">GNV</div>
+        <div class="col resultado-ri-small">Etanol</div>
       </div>
       <div class="row">
-        <div class="col col-30">Consumo Mensal</div>
-        <span  class="col">{{parametros.cmGasolina + " litros"}}</span>
-        <span class="col">{{parametros.cmGNV + " m³"}}</span>
-        <span class="col">{{parametros.cmEtanol + " litros"}}</span>
+        <div class="col col-30 resultado-ri-small">Consumo Mensal</div>
+        <span  class="col resultado-ri-small">{{parametros.cmGasolina + " litros"}}</span>
+        <span class="col resultado-ri-small">{{parametros.cmGNV + " m³"}}</span>
+        <span class="col resultado-ri-small">{{parametros.cmEtanol + " litros"}}</span>
       </div>
       <div class="row">
-        <div class="col col-30">Gasto Mensal</div>
-        <span class="col" >{{parametros.gmGasolina | currency }}</span>
-        <span class="col" >{{parametros.gmGNV | currency }}</span>
-        <span class="col" >{{parametros.gmEtanol | currency }}</span>
+        <div class="col col-30 resultado-ri-small">Gasto Mensal</div>
+        <span class="col resultado-ri-small" >{{parametros.gmGasolina | currency }}</span>
+        <span class="col resultado-ri-small" >{{parametros.gmGNV | currency }}</span>
+        <span class="col resultado-ri-small" >{{parametros.gmEtanol | currency }}</span>
       </div>
       <div class="row">
-        <div class="col col-30">Custo/Km</div>
-        <span class="col">{{parametros.cpkmGasolina | currency }}</span>
-        <span class="col">{{parametros.cpkmGNV | currency }}</span>
-        <span class="col">{{parametros.cpkmEtanol | currency }}</span>
+        <div class="col col-30 resultado-ri-small">Custo/Km</div>
+        <span class="col resultado-ri-small">{{parametros.cpkmGasolina | currency }}</span>
+        <span class="col resultado-ri-small">{{parametros.cpkmGNV | currency }}</span>
+        <span class="col resultado-ri-small">{{parametros.cpkmEtanol | currency }}</span>
       </div>
       <div class="item item-divider">
         Economia Mensal:
       </div>
-      <label class="item item-input">
-        <span class="input-label">Gasolina</span>
-        <span>
+      <label class="item-input">
+        <span class="input-label resultado-ri-small">Gasolina</span>
+        <span class="resultado-ri-small">
           {{parametros.emGasolina | currency }}
-          </span>
+        </span>
       </label>
-      <label class="item item-input">
-        <span class="input-label">Etanol</span>
-        <span>
+      <label class="item-input">
+        <span class="input-label resultado-ri-small">Etanol</span>
+        <span class="resultado-ri-small">
            {{parametros.emEtanol | currency }}
-          </span>
+        </span>
       </label>
     </div>
   </ion-content>
