@@ -211,3 +211,78 @@ input[type=number]:focus {
   border: 2px solid #35FFAB;
   border-radius: 5px;
 }
+.tab-nav{
+  background:none;
+  border:0px;
+}
+.buscar-postos-title {
+  color:#35FFAB;
+  margin-left:15px;
+}
+.ion-ios-location {
+  color:#35FFAB;
+}
+.ion-ios-location-outline {
+  color:#35FFAB;
+}
+.ion-ios-list {
+  color:#35FFAB;
+}
+.ion-ios-list-outline {
+  color:#35FFAB;
+}
+.tab-title {
+  color:#35FFAB;
+}
+.gas-station-card{
+  border-bottom: 3px solid lightgrey;
+  box-shadow: none;
+}
+.gas-station-icon {
+  -webkit-mask-box-image: url(../img/ICONE_06_MAPS.png);
+  margin:auto;
+  background-color:#35FFAB;
+  width:30px;
+  height:30px;
+}
+.filter-icon {
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-image: url(../img/ICONE_06_FILTRO.png);
+  background-size:contain;
+}
+
+.filter-scgas-icon {
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-image: url(../img/ICONE_06_FILTRO.png);
+  background-size:contain;
+}
+
+.sort-scgas-icon {
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-image: url(../img/ICONE_MENU_02.png);
+  background-size:contain;
+}
+
+.update-scgas-icon {
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-image: url(../img/ICONE_06_ATUALIZAR.png);
+  background-size:contain;
+}
+
+.route-scgas-icon {
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-image: url(../img/ICONE_06_ROTA.png);
+  background-size:contain;
+}
+
+.center-scgas-icon {
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-image: url(../img/ICONE_06_CENTRALIZAR.png);
+  background-size:contain;
+}

@@ -1,9 +1,15 @@
-<ion-view view-title="Buscar Postos">
-    <ion-content>
-    </ion-content>
-    <ion-tabs class="tabs-positive tabs-icon-top">
-      <ion-tab title="Mapa" icon-on="ion-ios-location" icon-off="ion-ios-location-outline" on-select="alteraTab();">
-        <ion-view>
+<ion-view class="scgas-ion-view">
+  <ion-nav-bar class="bar-clear">
+    <ion-nav-back-button class="button-clear" style="color:black;display:inline-flex;">
+      <i class="ion-arrow-left-c" style="color:white;"></i>
+      <p class="buscar-postos-title">Buscar Postos</p>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content style="top:0px;">
+    <ion-tabs class="tabs-clear tabs-icon-top" >
+      <ion-tab title="Mapa" icon-on="ion-ios-location" icon-off="ion-ios-location-outline"
+        on-select="alteraTab();" >
+        <ion-view class="scgas-ion-view">
           <ion-content class="has-header" >
             <div class="row" ng-show="habilitarPesquisaEnd">
               <div class="col col-80">
@@ -11,11 +17,11 @@
                 <label class="item item-input"><input type="text" id="destino" placeholder="Escolher o destino" ng-model="rota.destino.nome"></label>
               </div>
               <div class="col col-20">
-                <button class="button button-icon" style="margin-left:auto;margin-right:auto;display:block;"
+                <button class="button button-icon" style="color:#35FFAB;margin-left:auto;margin-right:auto;display:block;"
                   ng-click="tracarRota();">
                   <i class="icon ion-android-search"></i>
                 </button>
-                <button class="button button-icon" style="margin-left:auto;margin-right:auto;display:block;"
+                <button class="button button-icon" style="color:#35FFAB;margin-left:auto;margin-right:auto;display:block;"
                   ng-click="limparRota();">
                   <i class="icon ion-minus-circled"></i>
                 </button>
@@ -26,37 +32,45 @@
         </ion-view>
       </ion-tab>
 
-      <ion-tab title="Lista" icon-on="ion-ios-list" icon-off="ion-ios-list-outline" on-select="alteraTab();">
-        <ion-view>
+      <ion-tab title="Lista" icon-on="ion-ios-list" icon-off="ion-ios-list-outline"
+        on-select="alteraTab();">
+        <ion-view class="scgas-ion-view">
            <ion-content class="has-header" >
             <ion-list>
-              <div class="card" ng-repeat="posto in arrPostos" ng-click="carregaDetalhePosto(posto);" ng-show="posto.mostrar">
-                <div class="row" >
-
-                  <div class="col col-50" style="text-align: center">
-                    <img ng-src="{{defaultURL+'/images/'+posto.bandeiraPosto.urlImgBandeira}}" >
-                    <h6>{{posto.nome}}</h6>
-                  </div>
-                  <div class="col col-50" style="text-align: center">
-                    <img src="img/map-icon.png" width="24px" height="24px" ng-click="carregaMapa();">
-                    <h6>{{posto.distanciaFormatada + ' KM'}}</h6>
-                  </div>
+              <div class="card">
+                <div class="gas-station-card card" ng-repeat="posto in arrPostos"
+                     ng-click="carregaDetalhePosto(posto);" ng-show="posto.mostrar">
+                     <div class="row">
+                       <div class="col col-33">
+                         <div class="row">
+                            <h4 style="color:dimgrey;margin:0px;font-weight:lighter;">R$</h4>
+                         </div>
+                         <div class="row">
+                           <h1 style="color:dimgrey;margin:0px;font-weight:bold;">{{posto.precoFormatado}}</h1>
+                         </div>
+                         <div class="row">
+                          <h4 style="color:dimgrey;margin:0px;font-weight:lighter;">{{posto.ultimaAtualizacao ? posto.ultimaAtualizacao : 'Sem Atualização'}}</h3>
+                         </div>
+                       </div>
+                       <div class="col col-33">
+                         <div class="row">
+                           <h6 style="color:dimgrey;font-weight:400;">{{posto.endereco}}</h6>
+                         </div>
+                         <div class="row">
+                           <h6 style="color:dimgrey;font-weight:400;">{{posto.bandeiraPosto.nome}}</h6>
+                         </div>
+                       </div>
+                       <div class="col col-33">
+                        <div class="row">
+                          <div class="gas-station-icon">
+                          </div>
+                        </div>
+                        <div class="row">
+                          <h3 style="margin:auto;color:dimgrey;font-weight:bold;">{{posto.distanciaFormatada + ' km'}}</h3>
+                        </div>
+                       </div>
+                    </div>
                 </div>
-
-                <div class="row" >
-                  <div class="col col-100" style="text-align: center">
-                    <h6>{{posto.endereco}}</h6>
-                  </div>
-                </div>
-
-                <div class="row" >
-                  <div class="col col-100" style="text-align: center">
-                    <h3 style='color:#2ECC71;'>{{'R$ '+posto.precoFormatado}}</h3>
-                    {{posto.ultimaAtualizacao ? posto.ultimaAtualizacao : 'Sem atualizações'}}
-                  </div>
-                </div>
-
-
               </div>
             </ion-list>
 
@@ -69,27 +83,28 @@
            </ion-content>
          </ion-view>
       </ion-tab>
-    </ion-tabs>
-    <div class="tabs tabs-icon-top">
-      <a class="tab-item">
-        <i class="icon ion-ios-color-filter-outline" ng-click="filtrarPostosBandeira();"></i>
-        Filtrar
-      </a>
-      <a class="tab-item" ng-show="habilitarBotaoRota">
-        <i class="icon ion-ios-navigate-outline" ng-click="habilitarPesquisaEndereco();"></i>
-        Rota
-      </a>
-      <a class="tab-item" ng-show="habilitarBotaoOrdenar">
-        <i class="icon ion-ios-drag" ng-click="ordenarListaPostos();"></i>
-        Ordenar Postos
-      </a>
-      <a class="tab-item">
-        <i class="icon ion-ios-cloud-download-outline" ng-click="atualizarInformacoesPostos();"></i>
-        Atualizar
-      </a>
-      <a class="tab-item" ng-show="habilitarBotaoRota">
-        <i class="icon ion-android-locate" ng-click="centralizarMapaPosicaoUsuario();"></i>
-        Centralizar
-      </a>
-    </div>
+      </ion-tabs>
+      <div class="tabs tabs-icon-top">
+        <a class="tab-item">
+          <i class="icon filter-scgas-icon" ng-click="filtrarPostosBandeira();"></i>
+          Filtro
+        </a>
+        <a class="tab-item" ng-show="habilitarBotaoRota">
+          <i class="icon route-scgas-icon" ng-click="habilitarPesquisaEndereco();"></i>
+          Rota
+        </a>
+        <a class="tab-item" ng-show="habilitarBotaoOrdenar">
+          <i class="icon sort-scgas-icon" ng-click="ordenarListaPostos();"></i>
+          Ordenar Postos
+        </a>
+        <a class="tab-item">
+          <i class="icon update-scgas-icon" ng-click="atualizarInformacoesPostos();"></i>
+          Atualizar
+        </a>
+        <a class="tab-item" ng-show="habilitarBotaoRota">
+          <i class="icon center-scgas-icon" ng-click="centralizarMapaPosicaoUsuario();"></i>
+          Centralizar
+        </a>
+      </div>
+  </ion-content>
 </ion-view>

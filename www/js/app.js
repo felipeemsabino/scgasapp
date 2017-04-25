@@ -25,6 +25,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   $ionicConfigProvider.tabs.position('top');
+  $ionicConfigProvider.backButton.previousTitleText(false).text('');
 
   $stateProvider
 
