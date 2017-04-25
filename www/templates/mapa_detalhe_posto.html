@@ -5,13 +5,13 @@
       <p class="buscar-postos-title">Detalhe Posto</p>
     </ion-nav-back-button>
   </ion-nav-bar>
-  <ion-content scroll="false">
-    <div class="card gas-station-detail-card">
+  <ion-content>
+    <div class="card calculators-detail-card">
       <div class="row hide-row-when-map">
-        <div class="col col-33" style="margin:auto;text-align:center;">
+        <div class="col col-25" style="margin:auto;text-align:center;">
            <img ng-src="{{urlImagemx48}}" >
         </div>
-        <div class="col col-33">
+        <div class="col col-50">
           <div class="row">
             <h6 style="color:dimgrey;font-weight:400;">{{posto.endereco}}</h6>
           </div>
@@ -19,13 +19,13 @@
             <h6 style="color:dimgrey;font-weight:400;">{{posto.bandeiraPosto.nome}}</h6>
           </div>
         </div>
-        <div class="col col-33">
+        <div class="col col-25">
           <div class="row">
             <div class="gas-station-icon">
             </div>
           </div>
           <div class="row">
-            <h3 style="margin:auto;color:dimgrey;font-weight:bold;">{{posto.distanciaFormatada + ' km'}}</h3>
+            <h3 style="margin:auto;color:dimgrey;font-size:large;">{{posto.distanciaFormatada + ' km'}}</h3>
           </div>
         </div>
       </div>
@@ -37,18 +37,18 @@
       <div class="row hide-row-when-map">
         <div class="col col-33">
           <div class="row">
-             <h4 style="color:dimgrey;margin:0px;font-weight:lighter;">Preço do GNV</h4>
+             <h4 style="color:dimgrey;margin:0px;font-size:x-small;">Preço do GNV</h4>
           </div>
           <div class="row">
-            <h1 style="color:dimgrey;margin:0px;font-weight:bold;">{{posto.precoFormatado}}</h1>
+            <h1 style="color:dimgrey;margin:0px;font-size:large;">{{posto.precoFormatado}}</h1>
           </div>
         </div>
         <div class="col col-34">
           <div class="row">
-             <h4 style="color:dimgrey;margin:0px;font-weight:lighter;">Atualizado por:</h4>
+             <h4 style="color:dimgrey;margin:0px;font-size:x-small;">Atualizado por:</h4>
           </div>
           <div class="row">
-            <h4 style="color:dimgrey;margin:0px;font-weight:lighter;">
+            <h4 style="color:dimgrey;margin:0px;font-size:x-small;">
               {{posto.usuarioUltimaAtualizacao ? posto.usuarioUltimaAtualizacao :
                   'Nenhum usuário atualizou'}}</h4>
           </div>

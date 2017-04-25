@@ -41,18 +41,18 @@
                 <div class="gas-station-card card" ng-repeat="posto in arrPostos"
                      ng-click="carregaDetalhePosto(posto);" ng-show="posto.mostrar">
                      <div class="row">
-                       <div class="col col-33">
+                       <div class="col col-30">
                          <div class="row">
-                            <h4 style="color:dimgrey;margin:0px;font-weight:lighter;">R$</h4>
+                            <h4 style="color:dimgrey;margin:0px;font-size:large;">R$</h4>
                          </div>
                          <div class="row">
-                           <h1 style="color:dimgrey;margin:0px;font-weight:bold;">{{posto.precoFormatado}}</h1>
+                           <h1 style="color:dimgrey;margin:0px;font-size:large;">{{posto.precoFormatado}}</h1>
                          </div>
                          <div class="row">
-                          <h4 style="color:dimgrey;margin:0px;font-weight:lighter;">{{posto.ultimaAtualizacao ? posto.ultimaAtualizacao : 'Sem Atualização'}}</h3>
+                          <h4 style="color:dimgrey;margin:0px;font-size:inherit;">{{posto.ultimaAtualizacao ? posto.ultimaAtualizacao : 'Sem Atualização'}}</h3>
                          </div>
                        </div>
-                       <div class="col col-33">
+                       <div class="col col-45">
                          <div class="row">
                            <h6 style="color:dimgrey;font-weight:400;">{{posto.endereco}}</h6>
                          </div>
@@ -60,13 +60,13 @@
                            <h6 style="color:dimgrey;font-weight:400;">{{posto.bandeiraPosto.nome}}</h6>
                          </div>
                        </div>
-                       <div class="col col-33">
+                       <div class="col col-25">
                         <div class="row">
                           <div class="gas-station-icon">
                           </div>
                         </div>
                         <div class="row">
-                          <h3 style="margin:auto;color:dimgrey;font-weight:bold;">{{posto.distanciaFormatada + ' km'}}</h3>
+                          <h3 style="margin:auto;color:dimgrey;font-size:large;">{{posto.distanciaFormatada + ' km'}}</h3>
                         </div>
                        </div>
                     </div>
