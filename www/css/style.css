@@ -340,3 +340,13 @@ input[type=number]:focus {
   margin:auto;
   margin-top:50px;
 }
+
+/*bug na tela buscar postos*/
+div.tab-nav.tabs {
+  border:0px;
+  background: transparent;
+}
+/*
+a.tab-item.tab-item-active {
+    border-color:#35FFAB;
+}*/

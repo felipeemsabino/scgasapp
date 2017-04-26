@@ -9,7 +9,6 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading,
     $ionicSideMenuDelegate.canDragContent(false)
     $scope.$root.showMenuIcon = false;
     $scope.termosCondicoes = false;
-    alert($scope.termosCondicoes);
   });
 
   $scope.init = function () {
@@ -135,6 +134,5 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading,
   };
   $scope.atualizaTermoCondicoes = function () {
     $scope.termosCondicoes = !$scope.termosCondicoes;
-    alert($scope.termosCondicoes);
   };
 }]);
