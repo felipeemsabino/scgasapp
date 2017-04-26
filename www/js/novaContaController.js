@@ -1,7 +1,16 @@
 angular.module('starter.controllers')
 
-.controller('NovaContaCtrl', ['$scope', '$stateParams', '$state', '$http', '$ionicPopup', '$ionicLoading',
-function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
+.controller('NovaContaCtrl', ['$scope', '$stateParams', '$state', '$http',
+'$ionicPopup', '$ionicLoading', '$ionicSideMenuDelegate',
+function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading,
+  $ionicSideMenuDelegate) {
+
+  $scope.$on('$ionicView.afterEnter', function() {
+    $ionicSideMenuDelegate.canDragContent(false)
+    $scope.$root.showMenuIcon = false;
+    $scope.termosCondicoes = false;
+    alert($scope.termosCondicoes);
+  });
 
   $scope.init = function () {
     //alert('init tela nova conta');
@@ -26,6 +35,10 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
       $ionicLoading.hide();
   };
   $scope.createNewUser = function() {
+    if(!$scope.termosCondicoes) {
+      window.plugins.toast.show('Antes de prosseguir leia e aceite os termos e condições!', 'long', 'center', function(a){}, function(b){});
+      return;
+    }
     //alert('criar conta para -> ' + JSON.stringify({data2: $scope.newUserData}));
     //alert('criar conta para -> ' + $scope.newUserData.id);
 
@@ -117,5 +130,11 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
       }
     });
   };
-
+  $scope.abrirTermosCondicoes = function () {
+    $state.go("app.termos_condicoes");
+  };
+  $scope.atualizaTermoCondicoes = function () {
+    $scope.termosCondicoes = !$scope.termosCondicoes;
+    alert($scope.termosCondicoes);
+  };
 }]);

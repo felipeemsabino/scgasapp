@@ -1,34 +1,41 @@
-<ion-view view-title="Dados do perfil">
-  <ion-content class="card">
+<ion-view class="scgas-ion-view">
+  <ion-nav-bar class="scgas-ion-header-bar">
+    <ion-nav-back-button class="button-clear" style="color:black;display:inline-flex;">
+      <i class="ion-arrow-left-c" style="color:white;"></i>
+      <p class="buscar-postos-title">Dados do Perfil</p>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content scroll="false">
+    <div class="card calculators-detail-card">
       <div class="item item-image" >
-			<img src="img/logo_scgas.png" class="full-image item">
-		</div>
-    <form class="item" ng-submit="createNewUser()" data-ng-init="init()">
-      <div class="list">
-        <label class="item item-input">
-
-          <input type="text" placeholder="Nome" ng-model="newUserData.nome">
-        </label>
-		<label class="item item-input">
-
-          <input type="email" placeholder="Email" ng-model="newUserData.email">
-        </label>
-        <label class="item item-input">
-
-          <input type="password" placeholder="Senha" ng-model="newUserData.senha">
-        </label>
-		<label class="item item-input">
-
-          <input type="password" placeholder="Repita a senha" ng-model="newUserData.confirmacaoSenha">
-      </label>
-        <label>
-          <button class="button button-block button-positive" type="submit">Salvar</button>
-        </label>
-        <!--div class="button-bar ">
-          <a class="button button-assertive" ng-click="cadastrarGoogle();">Google+</a>
-          <a class="button button-positive" ng-click="cadastrarFacebook();">Facebook</a>
-        </div-->
+        <img src="img/logo_scgas.png" class="full-image item">
       </div>
-    </form>
+      <form ng-submit="createNewUser()" data-ng-init="init()">
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" placeholder="Nome" ng-model="newUserData.nome">
+          </label>
+          <label class="item item-input">
+            <input type="email" placeholder="Email" ng-model="newUserData.email">
+          </label>
+          <label class="item item-input">
+            <input type="password" placeholder="Senha" ng-model="newUserData.senha">
+          </label>
+          <label class="item item-input">
+            <input type="password" placeholder="Repita a senha" ng-model="newUserData.confirmacaoSenha">
+          </label>
+          <div class="row">
+            <button class="button gas-station-go-to" style="width:100%" type="submit">Salvar</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="row">
+        <button class="button gas-station-navigate-to" style="width:100%" ng-click="abrirTermosCondicoes();">Termos e condições</button>
+      </div>
+      <div class="row">
+        <ion-checkbox ng-checked="termosCondicoes == true" ng-click="atualizaTermoCondicoes();">Declaro que li e aceito os termos e condições.</ion-checkbox>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

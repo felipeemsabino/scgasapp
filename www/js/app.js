@@ -162,6 +162,15 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
         }
       }
     })
+    .state('app.termos_condicoes', {
+      url: '/termos_condicoes',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/tela_termos_condicoes.html',
+          controller: 'TermosCondicoesCtrl'
+        }
+      }
+    })
 	.state('app.recuperar_senha', {
 		url: '/recuperar_senha',
 		views: {

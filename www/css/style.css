@@ -331,3 +331,12 @@ input[type=number]:focus {
 .resultado-ri-small {
   font-size: x-small;
 }
+
+/*termos e condições*/
+.termos-condicoes-detail-card {
+  border-radius: 20px;
+  background-color:white;
+  width:90%;
+  margin:auto;
+  margin-top:50px;
+}
