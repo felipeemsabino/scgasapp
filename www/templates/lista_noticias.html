@@ -1,20 +1,21 @@
-<ion-view view-title="Dicas e Novidades">
+<ion-view class="scgas-ion-view">
+  <ion-nav-bar class="scgas-ion-header-bar">
+    <ion-nav-back-button class="button-clear" style="color:black;display:inline-flex;">
+      <i class="ion-arrow-left-c" style="color:white;"></i>
+      <p class="buscar-postos-title">Dicas e Novidades</p>
+    </ion-nav-back-button>
+  </ion-nav-bar>
     <ion-content>
+      <ion-list>
+        <div class="card" style="border-radius:5px;"ng-repeat="noticia in arrNoticias" ng-click="detalhaNoticia(noticia);" >
+         <div class="row" >
+            <div class="col col-55" style="text-align: left">
+              <h6>{{noticia.titulo}}</h6>
+              <h6>{{noticia.dataCadastro}}</h6>
+              <h6>{{noticia.textoNoticia | limitTo:50:0}}</h6>
+            </div>
+          </div>
+          </div>
+      </ion-list>
     </ion-content>
-        <ion-view>
-           <ion-content class="has-header" >
-            <ion-list>
-              <div class="card" ng-repeat="noticia in arrNoticias" ng-click="detalhaNoticia(noticia);" >
-               <div class="row" >
-                  <div class="col col-55" style="text-align: left">
-                    <h6>{{noticia.titulo}}</h6>
-                    <h6>{{noticia.dataCadastro}}</h6>
-                    <h6>{{noticia.textoNoticia | limitTo:50:0}}</h6>
-                  </div>
-                </div>
-                </div>
-            </ion-list>
-           </ion-content>
-         </ion-view>
-
 </ion-view>
