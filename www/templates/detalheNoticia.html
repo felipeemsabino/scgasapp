@@ -1,20 +1,15 @@
-<ion-view view-title="Detalhe notícia">
+<ion-view class="scgas-ion-view">
+  <ion-nav-bar class="scgas-ion-header-bar">
+    <ion-nav-back-button class="button-clear" style="color:black;display:inline-flex;">
+      <i class="ion-arrow-left-c" style="color:white;"></i>
+      <p class="buscar-postos-title">Detalhe notícia</p>
+    </ion-nav-back-button>
+  </ion-nav-bar>
     <ion-content>
+      <div class="card" style="text-align: left;border-radius:20px;padding:10px;height:100%">
+        <h6>{{objNoticia.titulo}}</h6>
+        <h6>{{objNoticia.dataCadastro}}</h6>
+        <h6>{{objNoticia.textoNoticia}}</h6>
+      </div>
     </ion-content>
-        <ion-view>
-           <ion-content class="has-header" >
-            <ion-list>
-              <div class="card">
-               <div class="row" >
-                  <div class="col col-55" style="text-align: left">
-                    <h6>{{objNoticia.titulo}}</h6>
-                    <h6>{{objNoticia.dataCadastro}}</h6>
-                    <h6>{{objNoticia.textoNoticia}}</h6>
-                  </div>
-                </div>
-                </div>
-            </ion-list>
-           </ion-content>
-         </ion-view>
-
 </ion-view>
