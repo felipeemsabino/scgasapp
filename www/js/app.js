@@ -171,6 +171,15 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
         }
       }
     })
+    .state('app.fale_conosco', {
+      url: '/fale_conosco',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/fale_conosco.html',
+          controller: 'FaleConoscoCtrl'
+        }
+      }
+    })
 	.state('app.recuperar_senha', {
 		url: '/recuperar_senha',
 		views: {
