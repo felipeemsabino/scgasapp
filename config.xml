@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.scgasapp734434" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>scgasApp</name>
+  <name>Rota GNV</name>
   <description>&#xD;
         An Ionic Framework and Cordova project.&#xD;
     </description>
@@ -29,7 +29,7 @@
   <plugin name="ionic-plugin-keyboard" spec="~2.2.1"/>
   <plugin name="cordova-plugin-facebook4" spec="~1.7.4">
     <variable name="APP_ID" value="1857306741157529"/>
-    <variable name="APP_NAME" value="scgasapp"/>
+    <variable name="APP_NAME" value="Rota GNV"/>
   </plugin>
   <plugin name="cordova-plugin-firebase" spec="~0.1.19"/>
   <platform name="ios">
