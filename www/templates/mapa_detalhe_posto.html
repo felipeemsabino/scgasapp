@@ -25,7 +25,12 @@
             </div>
           </div>
           <div class="row">
-            <h3 style="margin:auto;color:dimgrey;font-size:large;">{{posto.distanciaFormatada + ' km'}}</h3>
+            <h3 style="margin:auto;color:dimgrey;font-size:medium;">
+              {{posto.distanciaFormatada}}
+            </h3>
+            <h6 style="color:dimgrey;font-size:inherit;">
+              km
+            </h6>
           </div>
         </div>
       </div>
@@ -59,10 +64,12 @@
           </label>
         </div>
       </div>
-	  <div class="row hide-row-when-map">
-		  <button class="button gas-station-go-to" ng-click="navegarPosto();">Ir até o posto</button>
-		  <button class="button gas-station-navigate-to" ng-click="abrirNavegador();">Ir com navegador</button>
+	  <div class="row hide-row-when-map" style="padding-bottom:10px;">
+		  <button class="button gas-station-go-to" style="width: 100%" ng-click="navegarPosto();">Ir até o posto</button>
 	  </div>
+    <div class="row hide-row-when-map">
+      <button class="button gas-station-navigate-to" style="width: 100%" ng-click="abrirNavegador();">Ir com navegador</button>
+    </div>
     <div class="row" style="margin-top:5px" ng-show="isIOS">
       <button class="rodape button gas-station-go-to"  style="width: 100%" id="btnResize" ng-click="resizeMaps();">Full screen</button>
       <button class="rodape button gas-station-navigate-to"  style="width: 100%" id="btnResizeLess" ng-click="resizeMaps();">Normal screen</button>

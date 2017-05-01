@@ -2,7 +2,7 @@
   <ion-nav-bar class="bar-clear">
     <ion-nav-back-button class="button-clear" style="color:black;display:inline-flex;">
       <i class="ion-arrow-left-c" style="color:white;"></i>
-      <p class="buscar-postos-title">Buscar Postos</p>
+      <p class="buscar-postos-title">Buscar Postoss</p>
     </ion-nav-back-button>
   </ion-nav-bar>
   <ion-content style="top:0px;">
@@ -49,7 +49,8 @@
                            <h1 style="color:dimgrey;margin:0px;font-size:large;">{{posto.precoFormatado}}</h1>
                          </div>
                          <div class="row">
-                          <h4 style="color:dimgrey;margin:0px;font-size:inherit;">{{posto.ultimaAtualizacao ? posto.ultimaAtualizacao : 'Sem Atualização'}}</h3>
+                          <h4 style="color:dimgrey;margin:0px;font-size:x-small;">
+                            {{posto.ultimaAtualizacao ? posto.ultimaAtualizacao : 'Sem Atualização'}}</h3>
                          </div>
                        </div>
                        <div class="col col-45">
@@ -66,7 +67,12 @@
                           </div>
                         </div>
                         <div class="row">
-                          <h3 style="margin:auto;color:dimgrey;font-size:large;">{{posto.distanciaFormatada + ' km'}}</h3>
+                          <h3 style="margin:auto;color:dimgrey;font-size:medium;">
+                            {{posto.distanciaFormatada}}
+                          </h3>
+                          <h6 style="color:dimgrey;font-size:inherit;">
+                            km
+                          </h6>
                         </div>
                        </div>
                     </div>
