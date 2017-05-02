@@ -16,8 +16,8 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   $scope.topResize = false;
   // Posto enviado via parametro
   $scope.posto = $stateParams.paramPosto;
-  $scope.novoPreco = {'preco':''};
   $scope.posto.preco = parseFloat($scope.posto.preco) == 0 ? '00,00' : $scope.posto.preco;
+  $scope.precoPostoAux = $scope.posto.precoFormatado;
 
   $scope.urlImagemx24 = $scope.defaultURL+'/images/'+$scope.posto.bandeiraPosto.urlImgBandeira;
   $scope.urlImagemx48 = $scope.urlImagemx24.replace(".png","_x48.png");
@@ -26,7 +26,6 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   $scope.flag = false;
 
   // Verificacao de preco
-  $scope.novoPreco.preco = 'R$ 00,00';
   $scope.distanciaFormatada = $scope.posto.distanciaPosto.match(/^-?\d+(?:\.\d{0,2})?/)[0].replace(".",",");
 
   // Variavel para verificar se é iOS
@@ -39,7 +38,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     $ionicSideMenuDelegate.canDragContent(false)
     $scope.$root.showMenuIcon = false;
     $scope.isIOS = ionic.Platform.isIOS();
-    
+
     console.log('entrou na view de detalhe');
   });
 
@@ -79,7 +78,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     response.success(function(data, status, headers, config) {
       $scope.hide();
       window.plugins.toast.show('Preço atualizado com sucesso!', 'long', 'center', function(a){}, function(b){});
-
+      //$scope.posto.precoFormatado = $scope.posto.preco;
       //alert('Preço atualizado com sucesso!');
       //alert('Retorno -> ' + JSON.stringify({data2: data}));
 
@@ -103,22 +102,35 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     $scope.flag = true;
   };
 
-  // Mostra popup para usuario inserir o preço e salvar
+  $scope.popupLoaded = function() {
+    setTimeout(function () {
 
+      console.log('popupLoaded');
+      $('input.dinheiro').val($('h1.dinheiro').text());
+    }, 500);
+  };
+
+  // Mostra popup para usuario inserir o preço e salvar
   $scope.showPopupPreco = function() {
     var myPopup = $ionicPopup.show({
-      template: '<input type="text" ng-model="novoPreco.preco" class="dinheiro" ng-change="aplicaMascara();"> ',
+      template: '<input ng-init="popupLoaded()" placeholder="Preço do GNV: R$" type="tel" ng-model="posto.precoFormatado" '+
+      'ui-number-mask="2" class="dinheiro"> ',
       title: 'Atualizar preço do posto',
       subTitle: 'Entre com o valor do preço do posto!',
       scope: $scope,
       cssClass: 'popup-update-price',
       buttons: [
-        { text: 'Cancelar' },
+        { text: 'Cancelar',
+          onTap: function(e) {
+            $scope.posto.precoFormatado = $scope.precoPostoAux;
+          }
+        },
         {
           text: '<b>Salvar</b>',
           type: 'button-positive',
           onTap: function(e) {
-            if (!$('.dinheiro').val() || $('.dinheiro').val() == "R$ 00,00" || parseFloat($('.dinheiro').val().replace(",","."))>99.99) {
+            if (!$('.dinheiro').val() || $('.dinheiro').val() == "R$ 00,00" ||
+                parseFloat($('.dinheiro').val().replace(",","."))>99.99) {
               //don't allow the user to close unless he enters wifi password
               window.plugins.toast.show('Favor digitar um valor maior que zero e menor que R$ 99,99!', 'long', 'center', function(a){}, function(b){});
               e.preventDefault();
@@ -132,6 +144,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     });
 
     myPopup.then(function(res) {
+      console.log('abriu');
       $scope.flag = false;// reseta flag para mascara de dinheiro
     });
 
@@ -145,11 +158,12 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
    $scope.abrirNavegador = function() {
 
     var destination = [$scope.posto.coordenadaX.replace(',','.'), $scope.posto.coordenadaY.replace(',','.')];
-	var start = null;
+    var start = null;
     $cordovaLaunchNavigator.navigate(destination, start).then(function() {
+
     }, function (err) {
-       alert(err);
-      console.error(err);
+    //alert(err);
+    console.error(err);
     });
   };
 
