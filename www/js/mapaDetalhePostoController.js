@@ -63,6 +63,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
 
   // Atualiza o preço do posto que o usuario inseriu
   $scope.atualizarPrecoPosto = function () {
+
     $scope.show('Atualizando preço...');
 
     var storedUser = JSON.parse(window.localStorage.getItem("dadosUsuario"));
@@ -122,6 +123,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
       buttons: [
         { text: 'Cancelar',
           onTap: function(e) {
+
             $scope.posto.precoFormatado = $scope.precoPostoAux;
           }
         },
@@ -129,7 +131,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
           text: '<b>Salvar</b>',
           type: 'button-positive',
           onTap: function(e) {
-
+            
             if ($scope.posto.precoFormatado == "00,00" ||
                 parseFloat($scope.posto.precoFormatado) > 99.99) {
               //don't allow the user to close unless he enters wifi password
