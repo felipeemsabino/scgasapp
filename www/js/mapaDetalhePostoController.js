@@ -69,7 +69,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     var postParams = {
       "posto":{"id": $scope.posto.id},
       "usuario":{"id": storedUser.id},
-      "valorGNV": $('.dinheiro').val().replace(",",".")
+      "valorGNV": $scope.posto.precoFormatado
     };
 
     var response = $http.post(
@@ -114,7 +114,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   $scope.showPopupPreco = function() {
     var myPopup = $ionicPopup.show({
       template: '<input ng-init="popupLoaded()" placeholder="Preço do GNV: R$" type="tel" ng-model="posto.precoFormatado" '+
-      'ui-number-mask="2" class="dinheiro"> ',
+      'ui-number-mask="3" class="dinheiro"> ',
       title: 'Atualizar preço do posto',
       subTitle: 'Entre com o valor do preço do posto!',
       scope: $scope,
@@ -129,8 +129,9 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
           text: '<b>Salvar</b>',
           type: 'button-positive',
           onTap: function(e) {
-            if (!$('.dinheiro').val() || $('.dinheiro').val() == "R$ 00,00" ||
-                parseFloat($('.dinheiro').val().replace(",","."))>99.99) {
+
+            if ($scope.posto.precoFormatado == "00,00" ||
+                parseFloat($scope.posto.precoFormatado) > 99.99) {
               //don't allow the user to close unless he enters wifi password
               window.plugins.toast.show('Favor digitar um valor maior que zero e menor que R$ 99,99!', 'long', 'center', function(a){}, function(b){});
               e.preventDefault();
