@@ -18,6 +18,9 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   $scope.posto = $stateParams.paramPosto;
   $scope.posto.preco = parseFloat($scope.posto.preco) == 0 ? '00,00' : $scope.posto.preco;
   $scope.precoPostoAux = $scope.posto.precoFormatado;
+  console.log('Preços');
+  console.log($scope.posto.preco);
+  console.log($scope.posto.precoFormatado);
 
   $scope.urlImagemx24 = $scope.defaultURL+'/images/'+$scope.posto.bandeiraPosto.urlImgBandeira;
   $scope.urlImagemx48 = $scope.urlImagemx24.replace(".png","_x48.png");
@@ -84,7 +87,20 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
       //alert('Retorno -> ' + JSON.stringify({data2: data}));
 
       $scope.posto.usuarioUltimaAtualizacao = JSON.parse(window.localStorage.getItem("dadosUsuario")).nome;
-      $scope.posto.preco = data.valorGNV.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0].replace(".",",");
+      $scope.posto.preco = data.valorGNV.toString().match(/^-?\d+(?:\.\d{0,3})?/)[0].replace(".",",");
+      var numCasasDecimais = $scope.posto.preco.split(",").length;
+      if(numCasasDecimais == 1) {
+        $scope.posto.precoFormatado = $scope.posto.preco+",000";
+      } else {
+        var decimais = $scope.posto.preco.split(",")[1];
+        if (decimais.length == 1) {
+          $scope.posto.precoFormatado = $scope.posto.preco+"00";
+        } else if (decimais.length == 2) {
+          $scope.posto.precoFormatado = $scope.posto.preco+"0";
+        } else {
+          $scope.posto.precoFormatado = $scope.posto.preco;
+        }
+      }
     });
     response.error(function(data, status, headers, config) {
       $scope.hide();
@@ -131,7 +147,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
           text: '<b>Salvar</b>',
           type: 'button-positive',
           onTap: function(e) {
-            
+
             if ($scope.posto.precoFormatado == "00,00" ||
                 parseFloat($scope.posto.precoFormatado) > 99.99) {
               //don't allow the user to close unless he enters wifi password

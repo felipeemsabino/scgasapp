@@ -240,9 +240,13 @@ $ionicPopup, orderBy) {
       popupContent += 'R$ 00,00';
     else {
       //var valor = parseFloat(posto.preco).toFixed(2).replace(".",",");
-      posto.preco = posto.preco.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0].replace(".",",");
+      posto.preco = posto.preco.toString().match(/^-?\d+(?:\.\d{0,3})?/)[0].replace(".",",");
       popupContent += 'R$ ' + posto.preco;
     }
+
+    // cria atributos para serem usados na tela de detalhes
+    posto.precoFormatado = formataValor(posto.preco);
+    posto.distanciaFormatada = formataDistancia(posto.distanciaPosto);
 
     popupContent += "</br><a ng-click='carregaDetalhePosto("+JSON.stringify(posto)+");'>Ver detalhes</a></div>";
     var compiled = $compile(popupContent)($scope);
@@ -437,7 +441,7 @@ $ionicPopup, orderBy) {
 
   // Trecho para criar o Mapa e todas as configurações necessárias
   jQuery(document).ready(function() {
-    $scope.show(0);
+    $scope.show(3000);
     /* Inicio configurações do mapa */
 
       var mapOptions = {
@@ -464,7 +468,6 @@ $ionicPopup, orderBy) {
 
       //Wait until the map is loaded
       google.maps.event.addListenerOnce(mapa, 'idle', function(){
-        $scope.hide();
         $scope.recuperaPostos();
         $scope.rota.origem.lat = $scope.position.coords.latitude;
         $scope.rota.origem.lng = $scope.position.coords.longitude;
