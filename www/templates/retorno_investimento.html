@@ -14,23 +14,23 @@
         <label class="item-input" >
           <span class="input-label">GNV</span>
           <input type="tel" ng-model="parametros.precoGNV" width="50"
-          style="text-decoration: underline;" id="precoGNC" ui-money-mask>
+          style="text-decoration: underline;" id="precoGNC" ui-number-mask="3">
         </label>
         <label class="item-input" >
           <span class="input-label">Gasolina</span>
-          <input type="tel" ui-money-mask id="precoGasolina" ng-model="parametros.precoGasolina"
+          <input type="tel" ui-number-mask="3" id="precoGasolina" ng-model="parametros.precoGasolina"
           style="text-decoration: underline;" width="50">
         </label>
       </div>
       <div class="row">
         <label class="item-input">
           <span class="input-label">Etanol</span>
-          <input  type="tel" ui-money-mask ng-model="parametros.precoEtanol"
+          <input  type="tel" ui-number-mask="3" ng-model="parametros.precoEtanol"
           style="text-decoration: underline;" id="prcEtanol" width="40">
         </label>
         <label class="item-input">
           <span class="input-label">Kit GNV</span>
-          <input type="tel" ui-money-mask ng-model="parametros.precoKitGNV"
+          <input type="tel" ui-number-mask="2" ng-model="parametros.precoKitGNV"
           style="text-decoration: underline;" id="prcKitGnv" width="40" >
         </label>
       </div>
@@ -47,7 +47,7 @@
       <div class="row">
         <label class="item item-input">
           <span class="input-label">Km/mês</span>
-          <input type="tel" ui-number-mask="3" ng-model="parametros.kmRodadoMes"
+          <input type="tel" ui-number-mask="1" ng-model="parametros.kmRodadoMes"
           style="text-decoration: underline;" id="kmMes">
         </label>
       </div>
@@ -55,27 +55,31 @@
         Consumo médio:
       </div>
       <div class="row">
-        <label class="item-input">
-          <span class="input-label">Gasolina</span>
-          <input type="tel" ui-number-mask="3"  ng-model="parametros.consumoMedioGasolina"
+        <label class="item">
+          <span class="input-label">Gasolina km/l</span>
+          <input type="tel" ui-number-mask="2"  ng-model="parametros.consumoMedioGasolina"
           style="text-decoration: underline;" id="csmMedioGasolina">
+
         </label>
-        <label class="item-input">
-          <span class="input-label">Etanol</span>
-          <input type="tel" ui-number-mask="3" ng-model="parametros.consumoMedioEtanol"
+        <label class="item">
+          <span class="input-label">Etanol km/l</span>
+          <input type="tel" ui-number-mask="2" ng-model="parametros.consumoMedioEtanol"
           style="text-decoration: underline;" id="csmMedioEtanol">
+
         </label>
       </div>
       <div class="row">
-        <label class="item-input">
-          <span class="input-label">GNV</span>
-          <input type="tel" ui-number-mask="3"  ng-model="parametros.consumoMedioGNV"
+        <label class="item">
+          <span class="input-label">GNV km/m³</span>
+          <input type="tel" ui-number-mask="2"  ng-model="parametros.consumoMedioGNV"
           style="text-decoration: underline;" id="csmMedioGnv">
+
         </label>
       </div>
-      <div class="row">
-        <button class="button gas-station-navigate-to" style="width:100%" ng-click="calcularEconomia();">Calcular</button>
-      </div>
+
+    </div>
+    <div class="card">
+      <button class="button gas-station-navigate-to" style="width:100%" ng-click="calcularEconomia();">Calcular</button>
     </div>
   </ion-content>
 </ion-view>

@@ -5,49 +5,40 @@ angular.module('starter.controllers')
 function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading,$ionicPlatform,$location,$window,
 $ionicSideMenuDelegate, $locale) {
 
-  $scope.parametros = {
-    "consumoMedioGNV": 13.2,      // parametro estatico
-    "consumoMedioGasolina":10.7, // parametro estatico
-    "consumoMedioEtanol": 7.5,    // parametro estatico
-    "precoKitGNV": 3500.00,
-    "valorInspecao": 250.00,
-    "kmRodadoMes": 200.00,
-    "precoGNV": 2.8,
-    "precoGasolina": 3.9,
-    "precoEtanol": 3.7
-  };
-  // valores para teste
-  /*$scope.parametros = {
-    "consumoMedioGNV": 13.2,      // parametro estatico
-    "consumoMedioGasolina": 10.7, // parametro estatico
-    "consumoMedioEtanol": 7.5,    // parametro estatico
-    "precoKitGNV": 3500,
-    "valorInspecao": 250,
-    "kmRodadoMes": 200,
-    "precoGNV": 2.8,
-    "precoGasolina": 3.9,
-    "precoEtanol": 3.7
-  };*/
 
-  $scope.resultados = {
-    "cmGasolina": 0.0,
-    "cmGNV": 0.0,
-    "cmEtanol": 0.0,
-    "gmGasolina": 0.0,
-    "gmGNV": 0.0,
-    "gmEtanol": 0.0,
-    "cpkmGasolina": 0.0,
-    "cpkmGNV": 0.0,
-    "cpkmEtanol": 0.0,
-    "emGasolina": 0.0,
-    "emEtanol": 0.0,
-    "trGasolina": 0.0,
-    "trEtanol": 0.0
-  };
+
 
   $scope.$on('$ionicView.afterEnter', function() {
     $ionicSideMenuDelegate.canDragContent(false)
     $scope.$root.showMenuIcon = false;
+
+    $scope.parametros = {
+      "consumoMedioGNV": 13.2,      // parametro estatico
+      "consumoMedioGasolina":10.7, // parametro estatico
+      "consumoMedioEtanol": 7.5,    // parametro estatico
+      "precoKitGNV": 3500.00,
+      "valorInspecao": 250.00,
+      "kmRodadoMes": 200.00,
+      "precoGNV": 2.8,
+      "precoGasolina": 3.9,
+      "precoEtanol": 3.7
+    };
+
+    $scope.resultados = {
+      "cmGasolina": 0.0,
+      "cmGNV": 0.0,
+      "cmEtanol": 0.0,
+      "gmGasolina": 0.0,
+      "gmGNV": 0.0,
+      "gmEtanol": 0.0,
+      "cpkmGasolina": 0.0,
+      "cpkmGNV": 0.0,
+      "cpkmEtanol": 0.0,
+      "emGasolina": 0.0,
+      "emEtanol": 0.0,
+      "trGasolina": 0.0,
+      "trEtanol": 0.0
+    };
 
   /**  alert('Mascara valores');
     $('#precoGNV').maskMoney();

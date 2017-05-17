@@ -12,13 +12,13 @@
       </div>
       <label class="item-input">
         <span class="input-label resultado-ri-small">Gasolina</span>
-        <span class="resultado-ri-small">
+        <span  ng-class="{'bold': bold,resultado-ri-small}">
           {{parametros.trGasolina | number : 1}} meses
         </span>
       </label>
       <label class="item-input">
         <span class="input-label resultado-ri-small">Etanol</span>
-        <span class="resultado-ri-small">
+        <span ng-class="{'bold': bold,resultado-ri-small}">
           {{parametros.trEtanol | number : 1}} meses
         </span>
       </label>

@@ -5,21 +5,21 @@ var myApp = angular.module('starter.controllers')
 function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading,$ionicPlatform,$location,$window,
 $ionicSideMenuDelegate, $locale) {
 
-  $scope.parametros = {
-    "precoGNV": '',
-    "consumoMedioGNV": 13.2,
-    "consumoMedioGasolina": 10.7,
-    "consumoMedioEtanol": 7.5,
-    "mostrarResultado": false,
-    "resultadoGasolina": 0.0,
-    "resultadoEtanol": 0.0
-  };
+
 
 
   $scope.$on('$ionicView.afterEnter', function() {
     $ionicSideMenuDelegate.canDragContent(false)
     $scope.$root.showMenuIcon = false;
-
+    $scope.parametros = {
+      "precoGNV": '',
+      "consumoMedioGNV": 13.2,
+      "consumoMedioGasolina": 10.7,
+      "consumoMedioEtanol": 7.5,
+      "mostrarResultado": false,
+      "resultadoGasolina": 0.0,
+      "resultadoEtanol": 0.0
+    };
   });
   $scope.validaParametros = function () {
     if($scope.parametros.consumoMedioEtanol <= 0.00){
@@ -32,6 +32,11 @@ $ionicSideMenuDelegate, $locale) {
     }
     if($scope.parametros.precoGNV <= 0.00){
       window.plugins.toast.show('Valor para preço de GNV é inválido!', 'long', 'center', function(a){}, function(b){});
+      return false;
+    }
+
+    if($scope.parametros.precoGNV > 3.000){
+      window.plugins.toast.show('Valor maxímo do GNV é de R$3,00 o m³!', 'long', 'center', function(a){}, function(b){});
       return false;
     }
 

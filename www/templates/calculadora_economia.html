@@ -45,16 +45,18 @@
           Resultado:
         </div>
         <label class="item item-input">
-          <span class="input-label">Se o GNV custa:</span>
+          <span ng-class="{'bold': bold,resultado-ri-small}">Se o GNV custa:</span>
           <span>{{parametros.precoGNV | currency }}</span>
         </label>
-        <label class="item item-input">
-          <span class="input-label">Só vale etanol se:</span>
-          <span>{{parametros.resultadoEtanol | currency }}</span>
+        <label class="item-input">
+          <span ng-class="{'bold': bold,resultado-ri-small}">
+            Só vale usar Gasolina se o litro for menor que {{parametros.resultadoEtanol | currency }}</span>
+
         </label>
-        <label class="item item-input">
-          <span class="input-label">Só vale gasolina se:</span>
-          <span>{{parametros.resultadoGasolina | currency }}</span>
+        <label class="item-input">
+          <span ng-class="{'bold': bold,resultado-ri-small}">Só vale usar Gasolina se o litro for menor
+            que {{parametros.resultadoGasolina | currency }}</span>
+
         </label>
       </div>
     </div>
