@@ -18,6 +18,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   $scope.posto = $stateParams.paramPosto;
   $scope.posto.preco = parseFloat($scope.posto.preco) == 0 ? '00,00' : $scope.posto.preco;
   $scope.precoPostoAux = $scope.posto.precoFormatado;
+  $scope.precoPostoOld = $scope.posto.preco;
   console.log('Preços');
   console.log($scope.posto.preco);
   console.log($scope.posto.precoFormatado);
@@ -67,6 +68,13 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
   // Atualiza o preço do posto que o usuario inseriu
   $scope.atualizarPrecoPosto = function () {
 
+    if($scope.posto.precoFormatado < $scope.posto.parametrosGerais.valorMinGnv ||
+    $scope.posto.precoFormatado > $scope.posto.parametrosGerais.valorMaxGNV ){
+      window.plugins.toast.show('Valor para GNV deve ser maior que R$'+$scope.posto.parametrosGerais.valorMinGnv+ ' menor que R$'+$scope.posto.parametrosGerais.valorMaxGNV, 'long', 'center', function(a){}, function(b){});
+      $scope.posto.precoFormatado = $scope.precoPostoOld;
+      return false;
+    }
+
     $scope.show('Atualizando preço...');
 
     var storedUser = JSON.parse(window.localStorage.getItem("dadosUsuario"));
@@ -88,6 +96,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
 
       $scope.posto.usuarioUltimaAtualizacao = JSON.parse(window.localStorage.getItem("dadosUsuario")).nome;
       $scope.posto.preco = data.valorGNV.toString().match(/^-?\d+(?:\.\d{0,3})?/)[0].replace(".",",");
+
       var numCasasDecimais = $scope.posto.preco.split(",").length;
       if(numCasasDecimais == 1) {
         $scope.posto.precoFormatado = $scope.posto.preco+",000";
@@ -95,12 +104,14 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
         var decimais = $scope.posto.preco.split(",")[1];
         if (decimais.length == 1) {
           $scope.posto.precoFormatado = $scope.posto.preco+"00";
+
         } else if (decimais.length == 2) {
           $scope.posto.precoFormatado = $scope.posto.preco+"0";
         } else {
           $scope.posto.precoFormatado = $scope.posto.preco;
         }
       }
+      $scope.precoPostoOld = $scope.posto.precoFormatado;
     });
     response.error(function(data, status, headers, config) {
       $scope.hide();
