@@ -70,7 +70,7 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
 
     if($scope.posto.precoFormatado < $scope.posto.parametrosGerais.valorMinGnv ||
     $scope.posto.precoFormatado > $scope.posto.parametrosGerais.valorMaxGNV ){
-      window.plugins.toast.show('Valor para GNV deve ser maior que R$'+$scope.posto.parametrosGerais.valorMinGnv+ ' menor que R$'+$scope.posto.parametrosGerais.valorMaxGNV, 'long', 'center', function(a){}, function(b){});
+      window.plugins.toast.show('Valor para GNV deve ser maior que R$'+$scope.posto.parametrosGerais.valorMinGnv+ ' menor que R$'+$scope.posto.parametrosGerais.valorMaxGnv, 'long', 'center', function(a){}, function(b){});
       $scope.posto.precoFormatado = $scope.precoPostoOld;
       return false;
     }
