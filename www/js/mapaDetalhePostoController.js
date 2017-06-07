@@ -115,8 +115,8 @@ function($scope, $state, $cordovaGeolocation, $ionicLoading, $http, $stateParams
     });
     response.error(function(data, status, headers, config) {
       $scope.hide();
-      window.plugins.toast.show('Ocorreram erros ao atualizar preço do gás. Tente novamente!', 'long', 'center', function(a){}, function(b){});
-      //alert('Erro -> ' + JSON.stringify({data2: data}));
+      window.plugins.toast.show('Valor para GNV deve ser maior que R$'+$scope.posto.parametrosGerais.valorMinGnv+ ' menor que R$'+$scope.posto.parametrosGerais.valorMaxGnv, 'long', 'center', function(a){}, function(b){});
+      $scope.posto.precoFormatado = $scope.precoPostoOld;
     });
   };
 

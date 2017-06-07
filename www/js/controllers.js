@@ -8,7 +8,7 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-  $scope.defaultURL = 'http://ec2-52-67-135-39.sa-east-1.compute.amazonaws.com:8080';
+  $scope.defaultURL = 'http://appgnvdev.scgas.com.br:8080';
   //$scope.defaultURL = 'http://192.168.187.218:8080';
 
 
