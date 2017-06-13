@@ -13,70 +13,91 @@
         Preços:
       </div>
       <div class="row">
-        <label class="item-input" >
+        <div class="col col-15">
           <span class="input-label">GNV</span>
-          <input type="tel" ng-model="parametros.precoGNV" width="50"
-          style="text-decoration: underline;" id="precoGNC" ui-number-mask="3">
-        </label>
-        <label class="item-input" >
+        </div>
+        <div class="col col-15">
+          <input type="tel" ng-model="parametros.precoGNV"
+          style="text-decoration: underline;width: 70px;" id="precoGNC" ui-number-mask="3" class="input-padrao">
+        </div>
+        <div class="col col-25">
           <span class="input-label">Gasolina</span>
+        </div>
+        <div class="col col-25">
           <input type="tel" ui-number-mask="3" id="precoGasolina" ng-model="parametros.precoGasolina"
-          style="text-decoration: underline;" width="50">
-        </label>
+            style="text-decoration: underline;width: 70px;" class="input-padrao">
+        </div>
       </div>
+
       <div class="row">
-        <label class="item-input">
+        <div class="col col-15">
           <span class="input-label">Etanol</span>
+        </div>
+        <div class="col col-15">
           <input  type="tel" ui-number-mask="3" ng-model="parametros.precoEtanol"
-          style="text-decoration: underline;" id="prcEtanol" width="40">
-        </label>
-        <label class="item-input">
+            style="text-decoration: underline;width: 70px;" id="prcEtanol" class="input-padrao">
+        </div>
+        <div class="col col-25">
           <span class="input-label">Kit GNV</span>
+        </div>
+        <div class="col col-25">
           <input type="tel" ui-number-mask="2" ng-model="parametros.precoKitGNV"
-          style="text-decoration: underline;" id="prcKitGnv" width="40" >
-        </label>
+            style="text-decoration: underline;width: 70px;" id="prcKitGnv" class="input-padrao">
+        </div>
       </div>
+
       <div class="row">
-        <label class="item-input">
-          <span class="input-label">Valor inspeção</span>
+        <div class="col col-15">
+          <span class="input-label">Kit inspeção</span>
+        </div>
+        <div class="col col-15">
           <input type="tel" ui-money-mask ng-model="parametros.valorInspecao"
-          style="text-decoration: underline;" id="valorInspecao" width="40">
-        </label>
+            style="text-decoration: underline;" id="valorInspecao" class="input-padrao">
+        </div>
       </div>
+
       <div class="item item-divider">
         Quilometros rodados por mês:
       </div>
       <div class="row">
-        <label class="item item-input">
+        <div class="col col-15">
           <span class="input-label">Km/mês</span>
+        </div>
+        <div class="col col-15">
           <input type="tel" ui-number-mask="1" ng-model="parametros.kmRodadoMes"
-          style="text-decoration: underline;" id="kmMes">
-        </label>
+            style="text-decoration: underline;" id="kmMes" class="input-padrao">
+        </div>
       </div>
+
       <div class="item item-divider">
         Consumo médio:
       </div>
-      <div class="row">
-        <label class="item">
+
+      <div class="row item-input">
+        <div class="col col-15">
           <span class="input-label">Gasolina km/l</span>
+        </div>
+        <div class="col col-15">
           <input type="tel" ui-number-mask="2"  ng-model="parametros.consumoMedioGasolina"
-          style="text-decoration: underline;" id="csmMedioGasolina">
-
-        </label>
-        <label class="item">
+            style="text-decoration: underline;width: 60px;" id="csmMedioGasolina" class="input-padrao">
+        </div>
+        <div class="col col-25">
           <span class="input-label">Etanol km/l</span>
+        </div>
+        <div class="col col-25">
           <input type="tel" ui-number-mask="2" ng-model="parametros.consumoMedioEtanol"
-          style="text-decoration: underline;" id="csmMedioEtanol">
-
-        </label>
+            style="text-decoration: underline;width: 60px;" id="csmMedioEtanol" class="input-padrao">
+        </div>
       </div>
-      <div class="row">
-        <label class="item">
-          <span class="input-label">GNV km/m³</span>
-          <input type="tel" ui-number-mask="2"  ng-model="parametros.consumoMedioGNV"
-          style="text-decoration: underline;" id="csmMedioGnv">
 
-        </label>
+      <div class="row item-input">
+        <div class="col col-15">
+          <span class="input-label">GNV km/m³</span>
+        </div>
+        <div class="col col-15">
+          <input type="tel" ui-number-mask="2"  ng-model="parametros.consumoMedioGNV"
+            style="text-decoration: underline;" id="csmMedioGnv" class="input-padrao" >
+        </div>
       </div>
 
     </div>

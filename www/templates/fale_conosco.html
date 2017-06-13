@@ -12,11 +12,13 @@
         <ion-list>
           <ion-item>
             <ion-label fixed>Título</ion-label>
-            <input name="title" type="text" ng-model="message.titulo">
+            <input name="title" class="input-padrao" style="width:100%" type="text"
+              ng-model="message.titulo">
           </ion-item>
           <ion-item>
             <ion-label fixed>Mensagem</ion-label>
-            <textarea style="width:100%;height:200px;" maxlength="200" name="comment" type="text" ng-model="message.textoContato">
+            <textarea class="input-padrao" style="width:100%;height:200px;" maxlength="200" name="comment"
+            type="text" ng-model="message.textoContato">
             </textarea>
           </ion-item>
           <ion-item>

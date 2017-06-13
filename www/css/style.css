@@ -355,3 +355,12 @@ a.tab-item.tab-item-active {
   height:100%;
   margin:auto;
 }
+
+
+/*Geral*/
+.input-padrao {
+  border: solid !important;
+  border-color: #36FFAB !important;
+  border-width: thin !important;
+  border-radius: 5px !important;
+}

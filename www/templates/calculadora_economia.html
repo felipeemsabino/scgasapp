@@ -14,30 +14,26 @@
       </div>
       <label class="item item-input">
 
-        <input  placeholder="Preço do GNV: R$" id="vlr" ng-model="parametros.precoGNV"
-        type="tel" ui-number-mask="3"
-              value="{{parametros.precoGNV | currency}}">
+        <input class="input-padrao" placeholder="Preço do GNV: R$" id="vlr" ng-model="parametros.precoGNV"
+        type="tel" ui-number-mask="3" value="{{parametros.precoGNV | currency}}">
       </label>
       <div class="item item-divider">
         Consumo Médio:
       </div>
-      <label class="item item-input">
+      <label class="col col-80" style="display:-webkit-inline-box;">
         <span class="input-label">GNV Km/m3</span>
         <input type="tel" ui-number-mask="3"  ng-model="parametros.consumoMedioGNV"
-        style="text-decoration: underline;"
-            >
+        style="text-decoration: underline;width: 50%;" class="input-padrao">
       </label>
-      <label class="item item-input">
+      <label class="col col-80" style="display:-webkit-inline-box;">
         <span class="input-label">Gasolina Km/l</span>
         <input type="tel" ui-number-mask="3"  ng-model="parametros.consumoMedioGasolina"
-        style="text-decoration: underline;"
-              >
+        style="text-decoration: underline;width: 50%;" class="input-padrao">
       </label>
-      <label class="item item-input">
+      <label class="col col-80" style="display:-webkit-inline-box;">
         <span class="input-label">Etanol Km/l</span>
         <input type="tel" ui-number-mask="3"  ng-model="parametros.consumoMedioEtanol"
-        style="text-decoration: underline;"
-              >
+        style="text-decoration: underline;width: 50%;" class="input-padrao">
       </label>
       <div class="row">
         <button class="button button-block gas-station-navigate-to" ng-click="calcularEconomia();">Calcular</button>
