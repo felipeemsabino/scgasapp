@@ -12,7 +12,7 @@
         <div class="card" style="border-radius:5px;"ng-repeat="noticia in arrNoticias" ng-click="detalhaNoticia(noticia);" >
          <div class="row" >
             <div class="col col-55" style="text-align: left">
-              <h6>{{noticia.titulo}}</h6>
+              <h6 style="font-weight:900;">{{noticia.titulo}}</h6>
               <h6>{{noticia.dataCadastro}}</h6>
               <h6>{{noticia.textoNoticia | limitTo:50:0}}</h6>
             </div>
