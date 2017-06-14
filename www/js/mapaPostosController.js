@@ -68,7 +68,11 @@ $ionicPopup, orderBy) {
     $scope.$root.showMenuIcon = false;
     if($scope.map != null){
       google.maps.event.trigger($scope.map, 'resize'); // resolvendo bug de area cinza quando volta para o mapa principal após atualizar o preço
-      $scope.atualizarInformacoesPostos();
+      //Caso seja a aba mapa que esta selecionada carrega os postos novamente
+      if($ionicTabsDelegate.selectedIndex() == 0) {
+           $scope.atualizarInformacoesPostos();
+      }
+
     }
 
 
