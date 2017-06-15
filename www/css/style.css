@@ -323,10 +323,21 @@ input[type=number]:focus {
   border-radius: 20px;
   background-color:white;
   width:90%;
-  height:110%;
+  height:97%;
   margin:auto;
   margin-top:50px;
 }
+
+/* gas station details*/
+.calculators-detail-card-calc {
+  border-radius: 20px;
+  background-color:white;
+  width:90%;
+  height:115%;
+  margin:auto;
+  margin-top:50px;
+}
+
 
 .resultado-ri-small {
   font-size: smaller;

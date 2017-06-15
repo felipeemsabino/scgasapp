@@ -8,7 +8,7 @@
       src="img/LOGO_3.png"></img>
   </ion-nav-bar>
   <ion-content>
-    <div class="card calculators-detail-card">
+    <div class="card calculators-detail-card-calc">
       <div class="item item-divider">
         Preencha as informações abaixo:
       </div>
@@ -43,16 +43,15 @@
           Resultado:
         </div>
         <label class="item-input">
-          <span style="font-size: large;font-weight: bold;" ng-class="{'bold': bold,resultado-ri-small}">Se o GNV custa:
+          <span style="font-size: medium;font-weight: bold;" ng-class="{'bold': bold,resultado-ri-small}">Se o GNV custa:
           {{parametros.precoGNV | currency }}</span>
         </label>
         <label class="item-input">
-          <span style="font-size: large;font-weight: bold;" ng-class="{'bold': bold,resultado-ri-small}">
+          <span style="font-size: medium;font-weight: bold;" ng-class="{'bold': bold,resultado-ri-small}">
             Só vale usar Etanol se o litro for menor que {{parametros.resultadoEtanol | currency }}</span>
-
         </label>
         <label class="item-input">
-          <span style="font-size: large;font-weight: bold;" ng-class="{'bold': bold,resultado-ri-small}">Só vale usar Gasolina se o litro for menor
+          <span style="font-size: medium;font-weight: bold;" ng-class="{'bold': bold,resultado-ri-small}">Só vale usar Gasolina se o litro for menor
             que {{parametros.resultadoGasolina | currency }}</span>
 
         </label>
