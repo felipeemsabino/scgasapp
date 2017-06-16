@@ -40,7 +40,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
     url: '/user_login',
     views: {
       'menuContent': {
-        templateUrl: 'templates/user_login_atualizado.html',
+        templateUrl: 'templates/user_login.html',
         controller: 'LoginCtrl'
       }
     }
@@ -81,7 +81,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
       url: '/tela_inicial',
       views: {
         'menuContent': {
-          templateUrl: 'templates/playlists_atualizado.html',
+          templateUrl: 'templates/tela_inicial.html',
           controller: 'TelaInicialCtrl'
         }
       }
@@ -143,7 +143,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
       params: {paramNoticia: null},
       views: {
         'menuContent': {
-          templateUrl: 'templates/detalheNoticia.html',
+          templateUrl: 'templates/detalhe_noticia.html',
           controller: 'DetalheNoticiaCtrl'
         }
       }
