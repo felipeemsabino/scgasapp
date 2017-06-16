@@ -29,7 +29,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
 
   $stateProvider
 
-   .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
@@ -77,16 +77,8 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
-    .state('app.playlists', {
-      url: '/playlists',
+  .state('app.tela_inicial', {
+      url: '/tela_inicial',
       views: {
         'menuContent': {
           templateUrl: 'templates/playlists_atualizado.html',
@@ -95,15 +87,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
       }
     })
 
-  .state('app.single', {
-    url: '/playlists/:playlistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
-      }
-    }
-  })
   .state('app.sair', {
     url: '/sair',
     views: {
@@ -113,6 +96,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
       }
     }
   })
+
   .state('app.calculadora_economia', {
     url: '/calculadora_economia',
     views: {
@@ -131,6 +115,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
       }
     }
   })
+
   .state('app.resultado_retorno_investimento', {
       url: '/resultado_retorno_investimento',
       params: {parametros: null},
@@ -142,7 +127,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
       }
     })
 
-    .state('app.lista_noticias', {
+  .state('app.lista_noticias', {
       url: '/lista_noticias',
       params: {parametros: null},
       views: {
@@ -152,6 +137,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
         }
       }
     })
+
     .state('app.detalhe_noticia', {
       url: '/detalhe_noticia',
       params: {paramNoticia: null},
@@ -162,6 +148,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
         }
       }
     })
+
     .state('app.termos_condicoes', {
       url: '/termos_condicoes',
       views: {
@@ -171,6 +158,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
         }
       }
     })
+
     .state('app.fale_conosco', {
       url: '/fale_conosco',
       views: {
@@ -180,6 +168,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
         }
       }
     })
+
 	.state('app.recuperar_senha', {
 		url: '/recuperar_senha',
 		views: {
@@ -190,5 +179,5 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'ion-goo
 		}
 	});
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/tela_inicial');
 });

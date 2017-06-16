@@ -79,7 +79,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading) {
 
       window.plugins.toast.show('Recuperação de senha realizada com sucesso!', 'long', 'center', function(a){}, function(b){});
 
-      $state.go("app.playlists");
+      $state.go("app.tela_inicial");
     });
 
     // Response retornado com erros

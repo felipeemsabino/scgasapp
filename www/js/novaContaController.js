@@ -67,7 +67,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading,
       var navegarTelaInicial = window.localStorage.getItem("dadosUsuario") == null ? false : true;
 
       if(navegarTelaInicial)
-        $state.go("app.playlists");
+        $state.go("app.tela_inicial");
     });
     response.error(function(data, status, headers, config) {
       window.plugins.toast.show('Ocorreram erros ao cadastrar usuário. Tente novamente!', 'long', 'center', function(a){}, function(b){});

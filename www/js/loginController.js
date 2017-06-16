@@ -48,7 +48,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
 
       window.plugins.toast.show('Login realizado com sucesso!', 'long', 'center', function(a){}, function(b){});
 
-      $state.go("app.playlists");
+      $state.go("app.tela_inicial");
 		});
 
     // Response retornado com erros
@@ -86,7 +86,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
           //  alert('Login realizado com sucesso! -> '+JSON.stringify({data2: data}));
 
             window.localStorage.setItem("dadosUsuario", JSON.stringify(data)); // Sobrescreve registro de login
-            $state.go("app.playlists");
+            $state.go("app.tela_inicial");
           });
           responseAutentica.error(function(data, status, headers, config) {
             $scope.hide();
@@ -119,7 +119,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
                   var navegarTelaInicial = window.localStorage.getItem("dadosUsuario") == null ? false : true;
 
                   if(navegarTelaInicial)
-                    $state.go("app.playlists");
+                    $state.go("app.tela_inicial");
                 });
                 responseCadastroUsuario.error(function(data, status, headers, config) {
                   $scope.hide();
@@ -146,7 +146,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
 
           //alert('Sucesso' + JSON.stringify({data2: data}));
           window.localStorage.setItem("dadosUsuario", JSON.stringify(data)); // Sobrescreve registro de login
-          $state.go("app.playlists");
+          $state.go("app.tela_inicial");
         });
         response.error(function(data, status, headers, config) {
           $scope.hide();
@@ -178,7 +178,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
               var navegarTelaInicial = window.localStorage.getItem("dadosUsuario") == null ? false : true;
 
               if(navegarTelaInicial)
-                $state.go("app.playlists");
+                $state.go("app.tela_inicial");
             });
             responseCadastroUsuario.error(function(data, status, headers, config) {
               $scope.hide();
@@ -191,7 +191,7 @@ function($scope, $stateParams, $state, $http, $ionicPopup, $ionicLoading, $ionic
         });
       },
       function (msg) {
-        
+
         window.plugins.toast.show('Erro ao recuperar dados do Google+!', 'long', 'center', function(a){}, function(b){});
         //alert('Erro ao trazer dados do Google+, ' + JSON.stringify({data: msg}));
       }
